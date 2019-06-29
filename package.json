@@ -1,8 +1,10 @@
 {
-  "name": "panda",
-  "description": "a really cool app",
+  "name": "my-bot",
   "version": "1.0.0",
-  "engines": {
-    "node": "10.3.0"
-  }
-}
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",   
+  },
+  "dependencies": {
+    "discord.js": "^11.4.2"
+  },
