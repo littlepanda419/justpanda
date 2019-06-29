@@ -11,5 +11,10 @@ client.on('message', (message) =>{
 	{
 		message.channel.send("猴爆");
 	}
+	if(message.content ==="你是不是孫文浩") 
+	{
+		message.channel.send("你才死胖呆");
+	}
+	
 });
 client.login(process.env.BOT_TOKEN);		
