@@ -19,13 +19,13 @@ client.on('message', (message) =>{
 	{
 		message.reply("V=IR , I=V/R , R= V/I");
 	}
-	if(message.content ==="KCL") 
-	{
-		message.reply("V=IR , I=V/R , R= V/I");
-	}
 	if(message.content ==="KVL") 
 	{
-		message.reply("V=IR , I=V/R , R= V/I");
+		message.reply( "  " + "https://cdn.discordapp.com/attachments/594119720022573076/594555813377605635/unknown.png");
+	}
+	if(message.content ==="KCL") 
+	{
+		message.reply( "  " + "https://cdn.discordapp.com/attachments/594119720022573076/594555557709611033/unknown.png");
 	}
 });
 client.login(process.env.BOT_TOKEN);		
