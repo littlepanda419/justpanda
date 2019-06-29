@@ -1,15 +1,15 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
-client.on('ready', () => {
+client.on('ready', () => 
+	{
 	console.log('i am ready!');
 });
 
 client.on('message', message =>{
-	if(message.content ==='ping' {
-			message.reply('pong');
+	if(message.content ==="ping" 
+	{
+		message.reply('pong');
 	}
 });
-
-//
 client.login(process.env.BOT_TOKEN);		
