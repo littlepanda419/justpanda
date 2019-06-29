@@ -21,7 +21,7 @@ client.on('message', (message) =>{
 	}
 	if(message.content ==="KVL") 
 	{
-		message.reply( "  " + "https://cdn.discordapp.com/attachments/594119720022573076/594555813377605635/unknown.png");
+		message.reply( "  " + "https://cdn.discordapp.com/attachments/594119720022573076/594556625155784724/unknown.png");
 	}
 	if(message.content ==="KCL") 
 	{
