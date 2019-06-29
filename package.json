@@ -1,7 +1,8 @@
 {
-  "name": "my-bot",
+  "name": "greeter-bot",
   "version": "1.0.0",
-  "main": "index.js",
-  "scripts": {
-    "start": "node index.js",   
-  }
+  "description": "My own Discord bot",
+  "main": "bot.js",
+  "author": "YOUR-NAME-HERE",
+  "dependencies": {}
+}
