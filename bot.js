@@ -15,6 +15,17 @@ client.on('message', (message) =>{
 	{
 		message.channel.send("你才死胖呆");
 	}
-	
+	if(message.content ==="歐姆定律") 
+	{
+		message.reply("V=IR , I=V/R , R= V/I");
+	}
+	if(message.content ==="KCL") 
+	{
+		message.reply("V=IR , I=V/R , R= V/I");
+	}
+	if(message.content ==="KVL") 
+	{
+		message.reply("V=IR , I=V/R , R= V/I");
+	}
 });
 client.login(process.env.BOT_TOKEN);		
