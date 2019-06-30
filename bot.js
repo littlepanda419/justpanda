@@ -3,7 +3,7 @@ const client = new Discord.Client();
 
 client.on('ready', () => 
 	{
-	console.log('i am ready!');
+	console.log("機器人已上線");
 });
 
 client.on('message', (message) =>{	
