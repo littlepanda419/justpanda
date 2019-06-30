@@ -14,11 +14,11 @@ client.on('message', (message) =>{
 	var m = d.getMinutes();
 	var s = d.getSeconds();
 	
-	var generalChannel = client.channels.get("594119720022573076") // Replace with known channel ID
+	var generalChannel = client.channels.get("594119720022573076") ;// Replace with known channel ID
 	
 	if(message.content.toUpperCase()==="TEST") 
 	{
- 	   generalChannel.send("whalla bitch")  
+ 	   generalChannel.send(h + m + s)  ;
 	}
 	if(h === 21 && m===50 && s<=3)
 	{
