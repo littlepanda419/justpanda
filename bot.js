@@ -14,7 +14,7 @@ client.on('message', (message) =>{
 	
 	if(message.content ==="test")
 	{
-		client.channels.get(594119720022573076).send("9點了 該吃消夜嚕");
+		client.channels.get(594119720022573076).send('time is 8:87');
 	}
 
 	
@@ -49,3 +49,4 @@ client.on('message', (message) =>{
 	}
 });
 client.login(process.env.BOT_TOKEN);		
+	
