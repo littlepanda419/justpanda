@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 var generalChannel = client.channels.get("594119720022573076") ;// Replace with known channel ID
-var d = new Date();
+var d = new Date();	
 var h = d.getHours()+8;
 var m = d.getMinutes();
 var s = d.getSeconds();
@@ -23,7 +23,32 @@ client.on('ready', () =>
         status: 'idle'
     })
 
+	
+	setTimeout(function(){ // in leftToEight() milliseconds run this:
+        sendMessage(); // send the message once
+        var dayMillseconds = 1000 * 60 * 60 * 24;
+        setInterval(function(){ // repeat this every 24 hours
+            sendMessage();
+        }, dayMillseconds)
+    }, leftToEight())
+	
+	
 });
+
+function leftToEight(){
+	var d = new Date();	
+    return (-d + d.setHours(8,0,0,0));
+}
+
+function sendMessage(){
+    var guild = client.guilds.get('450975130387218454');
+    if(guild && guild.channels.get('594119720022573076')){
+        guild.channels.get('594119720022573076').send("Good Morning <@554654697261105180> ");
+    }
+
+}
+
+
 
 client.on('message', (message) =>{
 	var generalChannel = client.channels.get("594119720022573076") ;
@@ -37,7 +62,7 @@ client.on('message', (message) =>{
  	   generalChannel.send(h+":"+m+":"+s) ;
 	}
 	
-	if(h === 21 && m===0 && s<=2)
+	/*if(h === 21 && m===0 && s<=2)
 	{
 		generalChannel.send("9點了 該吃消夜嚕")  ;
 	}
@@ -52,7 +77,8 @@ client.on('message', (message) =>{
 	if(h === 18 && m===0 && s<=2)
 	{
 		generalChannel.send("6點了 該吃晚餐嚕")  ;
-	}
+	}*/
+	
 	if(message.content ==="歐姆定律") 
 	{
 		message.reply("V=IR , I=V/R , R= V/I");
