@@ -20,9 +20,9 @@ client.on('message', (message) =>{
 	{
  	   generalChannel.send("whalla bitch")  
 	}
-	if(h === 22 , m===0 , s<=3)
+	if(h === 21 , m===45 , s<=3)
 	{
-		generalChannel.send("try")  ;
+		generalChannel.send("9點了 該吃消夜嚕")  ;
 	}
 	
 	if(h === 21 , m===0 , s<=3)
