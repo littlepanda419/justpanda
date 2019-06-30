@@ -4,12 +4,17 @@ const client = new Discord.Client();
 
 client.on('ready', () => 
 	{
+	var d = new Date();
+	var h = d.getHours()+8;
+	var m = d.getMinutes();
+	var s = d.getSeconds();
+
 	console.log("機器人已上線");
+	generalChannel.send(" <@324536397803290626> 熊貓已在 "+h+":"+m+":"+s+ " 時運作。") ;
 });
 
 client.on('message', (message) =>{
 	
-	var d = new Date();
 	var h = d.getHours()+8;
 	var m = d.getMinutes();
 	var s = d.getSeconds();
