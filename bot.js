@@ -1,14 +1,15 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 
+var generalChannel = client.channels.get("594119720022573076") ;// Replace with known channel ID
+var d = new Date();
+var h = d.getHours()+8;
+var m = d.getMinutes();
+var s = d.getSeconds();
 
 client.on('ready', () => 
 	{
-	var generalChannel = client.channels.get("594119720022573076") ;// Replace with known channel ID
-	var d = new Date();
-	var h = d.getHours()+8;
-	var m = d.getMinutes();
-	var s = d.getSeconds();
+	
 
 	console.log("機器人已上線");
 	generalChannel.send(" <@324536397803290626> bot已在 "+h+":"+m+":"+s+ " 時運作。") ;
@@ -26,11 +27,7 @@ if(h === 22)
 	}
 
 client.on('message', (message) =>{
-	var generalChannel = client.channels.get("594119720022573076") ;// Replace with known channel ID
-	var d = new Date();
-	var h = d.getHours()+8;
-	var m = d.getMinutes();
-	var s = d.getSeconds();
+	
 	
 	
 	
