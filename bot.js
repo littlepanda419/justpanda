@@ -20,7 +20,7 @@ client.on('message', (message) =>{
 	{
  	   generalChannel.send("whalla bitch")  
 	}	
-	if(h === 21 , m===0 , s===0)
+	if(h === 21 , m===0 , s<=0)
 	{
 		generalChannel.send("9點了 該吃消夜嚕")  ;
 	}
