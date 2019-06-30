@@ -15,7 +15,7 @@ client.on('ready', () =>
 });
 
 client.on('message', (message) =>{
-	
+	var generalChannel = client.channels.get("594119720022573076") ;// Replace with known channel ID
 	var d = new Date();
 	var h = d.getHours()+8;
 	var m = d.getMinutes();
