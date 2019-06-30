@@ -16,7 +16,7 @@ client.on('ready', () =>
 
 client.on('message', (message) =>{
 	
-	
+	var d = new Date();
 	var h = d.getHours()+8;
 	var m = d.getMinutes();
 	var s = d.getSeconds();
