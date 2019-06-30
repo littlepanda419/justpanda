@@ -20,24 +20,24 @@ client.on('message', (message) =>{
 	{
  	   generalChannel.send("whalla bitch")  
 	}
-	if(h === 21 , m===45 , s<=3)
+	if(h === 21 && m===50 && s<=3)
 	{
 		generalChannel.send("9點了 該吃消夜嚕")  ;
 	}
 	
-	if(h === 21 , m===0 , s<=3)
+	if(h === 21 && m===0 && s<=3)
 	{
 		generalChannel.send("9點了 該吃消夜嚕")  ;
 	}
-	if(h === 6  , m===0 , s<=3)
+	if(h === 6  && m===0 && s<=3)
 	{
 		generalChannel.send("6點了 快起床阿幹")  ;
 	}
-	if(h === 12 , m===0 , s<=3)
+	if(h === 12 && m===0 && s<=3)
 	{
 		generalChannel.send("12點了 該吃午餐嚕")  ;
 	}
-	if(h === 18 , m===0 , s<=3)
+	if(h === 18 && m===0 && s<=3)
 	{
 		generalChannel.send("6點了 該吃晚餐嚕")  ;
 	}
