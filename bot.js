@@ -11,8 +11,14 @@ client.on('ready', () =>
 	{
 	console.log("機器人已上線");
 	generalChannel.send(" <@324536397803290626> bot已在 "+h+":"+m+":"+s+ " 時運作。") ;
-	client.user.setActivity("code", { type: "PLAYING"})
-})
+	
+	client.user.setPresence({
+        game: { 
+            name: 'code',
+            type: 'PLAYING'
+        },
+        status: 'idle'
+    })
 
 });
 
