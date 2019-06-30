@@ -16,7 +16,7 @@ client.on('message', (message) =>{
 	
 	var generalChannel = client.channels.get("594119720022573076") // Replace with known channel ID
 	
-	if(message.content ==="test") 
+	if(message.content ==="test" , "TEST") 
 	{
  	   generalChannel.send("for test")  
 	}	
