@@ -69,11 +69,11 @@ client.on('message', (message) =>{
 	}
 	if(message.content ==="KVL") 
 	{
-		message.reply(KVL);
+		message.reply(kvl);
 	}
 	if(message.content ==="KCL") 
 	{
-		message.reply(KCL);
+		message.reply(kcl);
 	}
 });
 client.login(process.env.BOT_TOKEN);		
