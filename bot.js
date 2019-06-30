@@ -11,16 +11,23 @@ client.on('message', (message) =>{
 	Textchannel.typing===(1);
 	var time = today.getHours();
 
-	
-	if(message.content ==="test")
+
+	if(message.content ==="test") 
 	{
-		client.channels.get(594119720022573076).send('time is 8:87');
+		var generalChannel = client.channels.get("594119720022573076") // Replace with known channel ID
+ 	   generalChannel.send("9點了 該吃消夜嚕")  
 	}
+
+	
+	var generalChannel = client.channels.get("594119720022573076") // Replace with known channel ID
+    generalChannel.send("9點了 該吃消夜嚕") ;
+
 
 	
 	if(time === 21 )
 	{
-		client.channels.get("594119720022573076").send("9點了 該吃消夜嚕");
+		var generalChannel = client.channels.get("594119720022573076") // Replace with known channel ID
+		generalChannel.send("9點了 該吃消夜嚕")  ;
 	}
 	if(time === 6 )
 	{
@@ -49,4 +56,3 @@ client.on('message', (message) =>{
 	}
 });
 client.login(process.env.BOT_TOKEN);		
-	
