@@ -11,9 +11,10 @@ client.on('message', (message) =>{
 	Textchannel.typing===(1);
 	var time = today.getHours();
 
+	
 	if(message.content ==="test")
 	{
-		client.channels.get("594119720022573076").send("9點了 該吃消夜嚕");
+		client.channels.get(594119720022573076).send("9點了 該吃消夜嚕");
 	}
 
 	
