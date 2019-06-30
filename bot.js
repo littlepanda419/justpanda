@@ -9,6 +9,8 @@ var s = d.getSeconds();
 
 client.on('ready', () => 
 	{
+var generalChannel = client.channels.get("594119720022573076") ;
+	
 	console.log("機器人已上線");
 	generalChannel.send(" <@324536397803290626> bot已在 "+h+":"+m+":"+s+ " 時運作。") ;
 	
@@ -34,6 +36,7 @@ if(h === 22)
 	}
 
 client.on('message', (message) =>{
+	var generalChannel = client.channels.get("594119720022573076") ;
 	
 	if(message.author.bot) return;	
 	
