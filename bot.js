@@ -10,38 +10,32 @@ client.on('ready', () =>
 client.on('message', (message) =>{
 	
 	var d = new Date();
-	var t = d.getHours();
-
-	if(message.content ==="test") 
-	{
-		var generalChannel = client.channels.get("594119720022573076") // Replace with known channel ID
- 	   generalChannel.send("9點了 該吃消夜嚕")  
-	}
-
+	var h = d.getHours();
+	var m = d.getMinutes();
+	var s = d.getSeconds();
 	
 	var generalChannel = client.channels.get("594119720022573076") // Replace with known channel ID
-    generalChannel.send("9點了 該吃消夜嚕") ;
-
-
 	
-	if(t === 21 )
+	if(message.content ==="test") 
 	{
-		var generalChannel = client.channels.get("594119720022573076") // Replace with known channel ID
+ 	   generalChannel.send("9點了 該吃消夜嚕")  
+	}	
+	if(h === 21 , m===0 , s===0)
+	{
 		generalChannel.send("9點了 該吃消夜嚕")  ;
 	}
-	if(t === 6 )
+	if(h === 6  , m===0 , s===0)
 	{
-		client.channels.get("594119720022573076").send("6點了 快起床阿幹");
+		generalChannel.send("6點了 快起床阿幹")  ;
 	}
-	if(t === 12 )
+	if(h === 12 , m===0 , s===0)
 	{
-		client.channels.get("594119720022573076").send("12點了 該吃午餐嚕");
+		generalChannel.send("12點了 該吃午餐嚕")  ;
 	}
-	if(t === 18 )
+	if(h === 18 , m===0 , s===0)
 	{
-		client.channels.get("594119720022573076").send("6點了 該吃晚餐嚕");
+		generalChannel.send("6點了 該吃晚餐嚕")  ;
 	}
-
 	if(message.content ==="歐姆定律") 
 	{
 		message.reply("V=IR , I=V/R , R= V/I");
