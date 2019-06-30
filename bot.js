@@ -20,7 +20,7 @@ client.on('message', (message) =>{
 	{
  	   generalChannel.send(h+" "+m+" "+s) ;
 	}
-	if(h === 22 && m===7 && s<=2)
+	if(h === 22 && m===8 && s<=2)
 	{
 		generalChannel.send("9點了 該吃消夜嚕")  ;
 	}
