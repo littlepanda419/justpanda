@@ -18,7 +18,7 @@ client.on('message', (message) =>{
 	
 	if(message.content ==="test" , "TEST") 
 	{
- 	   generalChannel.send("for test")  
+ 	   generalChannel.send("HIHIHI")  
 	}	
 	if(h === 21 , m===0 , s===0)
 	{
