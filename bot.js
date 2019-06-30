@@ -18,7 +18,7 @@ client.on('message', (message) =>{
 	
 	if(message.content.toUpperCase()==="TEST") 
 	{
- 	   generalChannel.send('h' + 'm' + 's')  ;
+ 	   generalChannel.send(h & m & s)  ;
 	}
 	if(h === 21 && m===53 && s<=10)
 	{
