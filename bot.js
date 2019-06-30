@@ -22,9 +22,7 @@ client.on('message', (message) =>{
 	}	
 	if(h === 21 , m===0 , s===0)
 	{
-		generalChannel.send(" <@324536397803290626> ")  ;
 		generalChannel.send("9點了 該吃消夜嚕")  ;
-		generalChannel.send(" <@554654697261105180> ")  ;
 	}
 	if(h === 6  , m===0 , s===0)
 	{
