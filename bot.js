@@ -8,8 +8,9 @@ client.on('ready', () =>
 });
 
 client.on('message', (message) =>{
-	var time = today.getHours();
-
+	
+	var d = new Date();
+	var t = d.getHours();
 
 	if(message.content ==="test") 
 	{
@@ -23,20 +24,20 @@ client.on('message', (message) =>{
 
 
 	
-	if(time === 21 )
+	if(t === 21 )
 	{
 		var generalChannel = client.channels.get("594119720022573076") // Replace with known channel ID
 		generalChannel.send("9點了 該吃消夜嚕")  ;
 	}
-	if(time === 6 )
+	if(t === 6 )
 	{
 		client.channels.get("594119720022573076").send("6點了 快起床阿幹");
 	}
-	if(time === 12 )
+	if(t === 12 )
 	{
 		client.channels.get("594119720022573076").send("12點了 該吃午餐嚕");
 	}
-	if(time === 18 )
+	if(t === 18 )
 	{
 		client.channels.get("594119720022573076").send("6點了 該吃晚餐嚕");
 	}
