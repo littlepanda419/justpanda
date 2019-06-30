@@ -25,11 +25,11 @@ client.on('message', (message) =>{
 	
 	if(message.content.toUpperCase()==="TEST") 
 	{
- 	   generalChannel.send(h+" "+m+" "+s) ;
+ 	   generalChannel.send(h+":"+m+":"+s) ;
 	}
 	if(h === 22)
 	{
-		if(m===28)
+		if(m===31)
 		{
 			if(s<=20)
 			{
