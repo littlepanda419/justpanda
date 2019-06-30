@@ -57,11 +57,11 @@ client.on('message', (message) =>{
 	{
 		message.reply("V=IR , I=V/R , R= V/I");
 	}
-	if(message.content ==="KVL") 
+	if(message.content.toUpperCase()==="KVL") 
 	{
 		message.reply(kvl);
 	}
-	if(message.content ==="KCL") 
+	if(message.content.toUpperCase()==="KCL") 
 	{
 		message.reply(kcl);
 	}
