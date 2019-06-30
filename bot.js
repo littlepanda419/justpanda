@@ -27,9 +27,9 @@ client.on('message', (message) =>{
 	}
 	if(h === 22)
 	{
-		if(m===25)
+		if(m===28)
 		{
-			if(s<=8)
+			if(s<=20)
 			{
 				generalChannel.send("9點了 該吃消夜嚕")  ;
 			}
