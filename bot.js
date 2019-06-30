@@ -9,10 +9,11 @@ var s = d.getSeconds();
 
 client.on('ready', () => 
 	{
-	
-
 	console.log("機器人已上線");
 	generalChannel.send(" <@324536397803290626> bot已在 "+h+":"+m+":"+s+ " 時運作。") ;
+	client.user.setActivity("code", { type: "PLAYING"})
+})
+
 });
 
 if(h === 22)
@@ -28,22 +29,11 @@ if(h === 22)
 
 client.on('message', (message) =>{
 	
-	
-	
+	if(message.author.bot) return;	
 	
 	if(message.content.toUpperCase()==="TEST") 
 	{
  	   generalChannel.send(h+":"+m+":"+s) ;
-	}
-	if(h === 22)
-	{
-		if(m===31)
-		{
-			if(s<=20)
-			{
-				generalChannel.send("9點了 該吃消夜嚕")  ;
-			}
-		}
 	}
 	
 	if(h === 21 && m===0 && s<=2)
