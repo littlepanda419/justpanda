@@ -7,8 +7,7 @@ client.on('ready', () =>
 	console.log("機器人已上線");
 });
 
-client.on('message', (message) =>{	
-	Textchannel.typing===(1);
+client.on('message', (message) =>{
 	var time = today.getHours();
 
 
