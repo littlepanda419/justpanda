@@ -16,7 +16,7 @@ client.on('message', (message) =>{
 	
 	var generalChannel = client.channels.get("594119720022573076") // Replace with known channel ID
 	
-	if(message.content == "test" || message.content == "TEST") 
+	if(message.content.toUpperCase()==="TEST") 
 	{
  	   generalChannel.send("whalla bitch")  
 	}	
