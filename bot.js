@@ -9,8 +9,7 @@ var s = d.getSeconds();
 
 client.on('ready', () => 
 	{
-	const kcl = new Discord.Attachment('https://cdn.discordapp.com/attachments/594119720022573076/594555557709611033/unknown.png')
-	const kvl = new Discord.Attachment('https://cdn.discordapp.com/attachments/594119720022573076/594556625155784724/unknown.png')
+	
 	var generalChannel = client.channels.get("594119720022573076") ;
 	
 	console.log("機器人已上線");
@@ -26,19 +25,10 @@ client.on('ready', () =>
 
 });
 
-if(h === 22)
-	{
-		if(m===35)
-		{
-			if(s<=20)
-			{
-				generalChannel.send("9點了 該吃消夜嚕")  ;
-			}
-		}
-	}
-
 client.on('message', (message) =>{
 	var generalChannel = client.channels.get("594119720022573076") ;
+	const kcl = new Discord.Attachment('https://cdn.discordapp.com/attachments/594119720022573076/594555557709611033/unknown.png')
+	const kvl = new Discord.Attachment('https://cdn.discordapp.com/attachments/594119720022573076/594556625155784724/unknown.png')
 	
 	if(message.author.bot) return;	
 	
