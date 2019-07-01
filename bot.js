@@ -21,9 +21,8 @@ client.on('ready', () =>
         game: { 
             name: 'code',
             type: 'PLAYING'
-        },
-        status: 'idle'
-		
+      	      },
+        status: 'idle',		
 	
 	
 	returnTime = (24-today.getMinutes())*60*1000+(0-today.getSeconds())*1000;
