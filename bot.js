@@ -25,7 +25,7 @@ client.on('ready', () =>
         status: 'idle',		
 	
 	
-	returnTime = (50-today.getMinutes())*60*1000+(0-today.getSeconds())*1000;
+	returnTime = (60-today.getMinutes())*60*1000+(60-today.getSeconds())*1000;
   	if(today.getHours()<12)
 	{
 		 returnTime += (11-today.getHours())*1000*60*60;
