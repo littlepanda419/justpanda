@@ -26,14 +26,14 @@ client.on('ready', () =>
 		
 	
 	
-  	returntime = (24-today.getMinutes())*60*1000+(0-today.getSeconds())*1000;
+	var returntime = (24-today.getMinutes())*60*1000+(0-today.getSeconds())*1000;
   	if(today.getHours()<12)
 	{
-		returntime += (11-today.getHours())*1000*60*60;
+		var returntime += (11-today.getHours())*1000*60*60;
 	}
 	    else if(today.getHours()<18)
 	{
-		returntime += (14-today.getHours())*1000*60*60;
+		var returntime += (14-today.getHours())*1000*60*60;
 	}
 	client.setTimeout(function(){gc.send("<@!324536397803290626>吃午餐啦");},returntime);
 
