@@ -12,14 +12,12 @@ client.on('ready', () =>{
   
 	var generalChannel = client.channels.get("594119720022573076") ;		
 	console.log("機器人已上線");
-	generalChannel.send(" <@324536397803290626> bot已在 "+h+":"+m+":"+s+ " 時運作。");
-  
-   });
+	generalChannel.send(" <@324536397803290626> bot已在 "+h+":"+m+":"+s+ " 時運作。");  
 	// Set the client user's status
 	client.user.setActivity('code', { type: 'PLAYING' });	
-	client.user.setStatus('idle')
+	client.user.setStatus('idle');
           
-    });
+    ]);
 	
 client.on('message', (message) =>{
 	var d = new Date();
