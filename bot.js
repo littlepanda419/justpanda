@@ -100,4 +100,4 @@ client.on('message', (message) =>{
 		message.reply(zzch);
 	}
 });
-client.login(process.env.BOT_TOKEN);
+client.login(process.env.BOT_TOKEN)
