@@ -17,7 +17,7 @@ client.on('ready', () =>{
 	client.user.setActivity('code', { type: 'PLAYING' });	
 	client.user.setStatus('idle');
           
-    ]);
+});
 	
 client.on('message', (message) =>{
 	var d = new Date();
