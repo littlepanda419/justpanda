@@ -19,6 +19,13 @@ client.on('ready', () =>
 	console.log("機器人已上線");
 	generalChannel.send(" <@324536397803290626> bot已在 "+h+":"+m+":"+s+ " 時運作。") ;
 	
+	client.user.setPresence({
+        game: { 
+            name: 'code',
+            type: 'PLAYING'
+        },
+        status: 'idle'
+    })
 	/*console.log(get_current_time());
   	returntime = (4-today.getMinutes())*60*1000+(60-today.getSeconds())*1000;
   	if(today.getHours()<12)
@@ -32,14 +39,7 @@ client.on('ready', () =>
     var gc = client.channels.get("594119720022573076");
     client.setTimeout(function(){gc.send("<@!324536397803290626>吃午餐啦");},returntime);*/
 
-
-	client.user.setPresence({
-        game: { 
-            name: 'code',
-            type: 'PLAYING'
-        },
-        status: 'idle'
-    })
+	
 
 /*
 	
@@ -66,7 +66,6 @@ function sendMorning(){
 
 }
 */
-
 client.on('message', (message) =>{
 	var d = new Date();
 	var h = d.getHours()+8;
@@ -100,4 +99,5 @@ client.on('message', (message) =>{
 		message.reply(zzch);
 	}
 });
-client.login(process.env.BOT_TOKEN)
+	
+client.login(process.env.BOT_TOKEN);
