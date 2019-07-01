@@ -65,10 +65,10 @@ client.on('message', (message) =>{
 	{
 		message.reply(zzch);
 	}
-	if(message.content.toUpperCase()===".G"+) 
+	/*if(message.content.toUpperCase()===".G"+) 
 	{
 		message.reply(zzch);
-	}
+	}*/
 });
 	
 client.login(process.env.BOT_TOKEN);
