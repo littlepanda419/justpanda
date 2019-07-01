@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
-var cheerio = require("cheerio"); /* Used to extract html content, based on jQuery || install with npm install cheerio */
-var request = require("request"); /* Used to make requests to URLs and fetch response  || install with npm install request */ 
-var google = require('google')
+//var cheerio = require("cheerio"); /* Used to extract html content, based on jQuery || install with npm install cheerio */
+//var request = require("request"); /* Used to make requests to URLs and fetch response  || install with npm install request */ 
+//var google = require('google')
 const client = new Discord.Client();
 
 
