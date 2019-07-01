@@ -25,14 +25,14 @@ client.on('ready', () =>
         status: 'idle',		
 	
 	
-	returnTime = (24-today.getMinutes())*60*1000+(0-today.getSeconds())*1000;
+	returnTime = (24-today.getMinutes())*60*1000+(0-today.getSeconds())*1000
   	if(today.getHours()<12)
 	{
-		 returnTime += (11-today.getHours())*1000*60*60;
+		 returnTime += (11-today.getHours())*1000*60*60
 	}
 	    else if(today.getHours()<18)
 	{
-		 returnTime += (14-today.getHours())*1000*60*60;
+		 returnTime += (14-today.getHours())*1000*60*60
 	}
 	client.setTimeout(function(){gc.send("<@!324536397803290626>吃午餐啦");},returntime);
 
