@@ -50,6 +50,10 @@ function sendMessage(){
 
 
 client.on('message', (message) =>{
+	var d = new Date();
+	var h = d.getHours()+8;
+	var m = d.getMinutes();
+	var s = d.getSeconds();
 	var generalChannel = client.channels.get("594119720022573076") ;
 	const kcl = new Discord.Attachment('https://cdn.discordapp.com/attachments/594119720022573076/594555557709611033/unknown.png')
 	const kvl = new Discord.Attachment('https://cdn.discordapp.com/attachments/594119720022573076/594556625155784724/unknown.png')
