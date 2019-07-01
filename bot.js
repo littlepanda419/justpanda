@@ -15,6 +15,7 @@ client.on('ready', () =>
 	{		
 	var generalChannel = client.channels.get("594119720022573076") ;		
 	console.log("機器人已上線");
+	console.log(get_current_time());
 	generalChannel.send(" <@324536397803290626> bot已在 "+h+":"+m+":"+s+ " 時運作。") ;
 	client.user.setPresence({
         game: { 
@@ -24,7 +25,7 @@ client.on('ready', () =>
         status: 'idle'
 		
 	
-	console.log(get_current_time());
+	
   	returntime = (24-today.getMinutes())*60*1000+(0-today.getSeconds())*1000;
   	if(today.getHours()<12)
 	{
