@@ -7,6 +7,9 @@ var h = d.getHours()+8;
 var m = d.getMinutes();
 var s = d.getSeconds();
 
+function Hex() {
+    generalChannel.send(" <@551290295078223885> AS U WISH") ;
+}
 client.on('ready', () => 
 	{
 	
@@ -14,7 +17,7 @@ client.on('ready', () =>
 	
 	console.log("機器人已上線");
 	generalChannel.send(" <@324536397803290626> bot已在 "+h+":"+m+":"+s+ " 時運作。") ;
-	
+	Hex();
 	client.user.setPresence({
         game: { 
             name: 'code',
@@ -23,7 +26,7 @@ client.on('ready', () =>
         status: 'idle'
     })
 
-	
+
 	setTimeout(function(){ // in leftToEight() milliseconds run this:
         var dayMillseconds = 1000 * 60 * 60 * 24;
         setInterval(function(){ // repeat this every 24 hours
@@ -152,4 +155,4 @@ client.on('message', (message) =>{
 		message.reply(kcl);
 	}
 });
-client.login(process.env.BOT_TOKEN);		
+client.login(process.env.BOT_TOKEN);			
