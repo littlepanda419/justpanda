@@ -52,11 +52,11 @@ client.on('message', (message) =>{
 	{
  	   generalChannel.send(h+":"+m+":"+s) ;
 	}
-
-	if (!message.guild) return;
+	
     if (message.content === '欸欸欸你過來一下') {
     // Only try to join the sender's voice channel if they are in one themselves
-    if (message.member.voiceChannel) {
+	if (message.member.voiceChannel) 
+	{
       message.member.voiceChannel.join()
         .then(connection => { // Connection is an instance of VoiceConnection
 		  message.reply('我過來了啦怎樣');
