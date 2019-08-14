@@ -61,14 +61,14 @@ client.on('message', (message) =>{
  	   generalChannel.send(h+":"+m+":"+s) ;
 	}
 	
-	if (message.content === "欸欸欸你過來一下"||message.content ==="欸欸欸你進來一下"||message.content ==="過來一下"||message.content ==="pandain")
+	if (message.content === "欸欸欸你過來一下"||message.content ==="欸欸欸你進來一下"||message.content ==="過來一下"||message.content.toUpperCase()==="PANDAIN")
 	{
 		const musicchannel = message.member.voiceChannel;
 		musicchannel.join();
 		message.channel.send("已加入語音");	
 	}
 
-	if (message.content === "滾啦幹"||message.content ==="pandaout")
+	if (message.content === "滾啦幹"||message.content.toUpperCase()==="PANDAOUT")
 	{		
 		const musicchannel = message.member.voiceChannel;
 		musicchannel.leave();
