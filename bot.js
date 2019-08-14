@@ -62,11 +62,11 @@ client.on('message', (message) =>{
  	   generalChannel.send(h+":"+m+":"+s) ;
 	}
 	
-	if (message.content === "欸欸欸你過來一下")
+	if (message.content === "欸欸欸你過來一下" ||"欸欸欸你進來一下" || "過來一下" ||"panda in")
 	{
 		const musicchannel = message.member.voiceChannel;
 		musicchannel.join();
-		message.channel.send("已加入語音");	
+		message.channel.send("已加入語音"||"panda out");	
 	}
 
 	if (message.content === "滾啦幹")
