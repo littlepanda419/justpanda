@@ -20,14 +20,19 @@ function Hex() {
 }*/
 
 client.on('ready', () =>{
-  
+	
 	var generalChannel = client.channels.get("594119720022573076") ;		
 	console.log("機器人已上線");
 	generalChannel.send(" <@324536397803290626> bot已在 "+h+":"+m+":"+s+ " 時運作。");  
 	// Set the client user's status
 	client.user.setStatus('idle');
 	client.user.setActivity("扣ㄉ", { type: 'PLAYING' });
-          
+    const musicchannel = client.channels.get("506108715720769536");
+	musicchannel.join().then(connection => {
+		generalChannel.send("連接語音成功");
+	  }).catch(e => {
+		generalChannel.send("連接語音失敗");
+	  });      
     });
 
 function addZero(i) {
@@ -49,28 +54,14 @@ client.on('message', (message) =>{
 	
 	if(message.author.bot) return;	
 	
-	if(message.content.toUpperCase()==="TEST") 
+	if(message.content.toUpperCase()==="TT") 
 	{
  	   generalChannel.send(h+":"+m+":"+s) ;
 	}
 	
-	if (message.content === "欸欸欸你過來一下") 
+	if (message.content === "欸欸欸你過來一下")
 	{
-    // Only try to join the sender's voice channel if they are in one themselves
-	if (message.member.voiceChannel)
-		{
-		message.member.voiceChannel.join()
-				.then(_connection => { // Connection is an instance of VoiceConnection
-				message.reply("我過來了啦怎樣");
-				//const stream = ytdl('https://www.youtube.com/watch?v=fS7OffmLrf0&list=PL7tnvmTUTcvZhYaBzNPxVgGz8tdwVyyX5', { filter : 'audioonly' });
-				// broadcast.playStream(stream);
-				//  const dispatcher = connection.playBroadcast(broadcast);
-				}
-				)
-		}	else
-			{
-		message.reply("幹你自己不會先過去一下");
-			}	
+   				
 	}
 
 	
