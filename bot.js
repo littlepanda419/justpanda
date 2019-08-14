@@ -3,9 +3,9 @@ const Discord = require('discord.js');
 //var request = require("request"); /* Used to make requests to URLs and fetch response  || install with npm install request */ 
 //var google = require('google')
 const client = new Discord.Client();
-//const ytdl = require('ytdl-core');
-//const streamOptions = { seek: 0, volume: 1 };
-//const broadcast = client.createVoiceBroadcast();
+const ytdl = require('ytdl-core');
+const streamOptions = { seek: 0, volume: 1 };
+const broadcast = client.createVoiceBroadcast();
 
 
 var d = new Date();	
@@ -78,9 +78,9 @@ client.on('message', (message) =>{
 	{
 		message.reply("V=IR , I=V/R , R= V/I");
 	}
-	if(message.content ==="怕") 
+	if(message.content.includes("怕"))
 	{
-		message.send("gan gan gan gan gan 挖就ㄍㄧㄚㄟ");
+		message.channel.send("gan gan gan gan gan 挖就ㄍㄧㄚㄟ");
 	}
 	if(message.content.toUpperCase()==="KVL") 
 	{
