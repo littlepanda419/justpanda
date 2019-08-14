@@ -66,10 +66,10 @@ client.on('message', (message) =>{
 	{
 		const musicchannel = message.member.voiceChannel;
 		musicchannel.join();
-		message.channel.send("已加入語音"||"panda out");	
+		message.channel.send("已加入語音");	
 	}
 
-	if (message.content === "滾啦幹")
+	if (message.content === "滾啦幹"||"panda out")
 	{		
 		const musicchannel = message.member.voiceChannel;
 		musicchannel.leave();
