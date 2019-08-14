@@ -71,12 +71,7 @@ client.on('message', (message) =>{
 
 	if (message.content === "滾啦幹")
 	{		
-		/*if(!author.VoiceChannel) return message.channel.send("You are not in a voice channel");
-		if(author.VoiceChannel.id !== client.voiceChannel.id) return message.channel.send("We're not in the same voice channel");*/
-		message.author.voiceChannel.leave();
-		VoiceChannel.leave();
-		voiceChannel.leave();
-		message.channel.send("好咩滾就滾");
+		
 	}
 	
 	if(message.content.includes("胎死腹中"))
