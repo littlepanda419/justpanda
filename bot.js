@@ -21,12 +21,13 @@ function Hex() {
 
 client.on('ready', () =>{
 	
-	var generalChannel = client.channels.get("594119720022573076") ;		
+	var generalChannel = client.channels.get("594119720022573076");		
 	console.log("機器人已上線");
 	generalChannel.send(" <@324536397803290626> bot已在 "+h+":"+m+":"+s+ " 時運作。");  
 	// Set the client user's status
 	client.user.setStatus('idle');
 	client.user.setActivity("扣ㄉ", { type: 'PLAYING' });
+
     const musicchannel = client.channels.get("506108715720769536");
 	musicchannel.join().then(connection => {
 		generalChannel.send("連接語音成功");
@@ -51,7 +52,7 @@ client.on('message', (message) =>{
 	const kcl = new Discord.Attachment('https://cdn.discordapp.com/attachments/594119720022573076/594555557709611033/unknown.png');
 	const kvl = new Discord.Attachment('https://cdn.discordapp.com/attachments/594119720022573076/594556625155784724/unknown.png');
 	const zzch = new Discord.Attachment('https://cdn.discordapp.com/attachments/512603339071160377/595194587866464256/65761563_2350292711718973_5573736612304519168_o.png');
-	
+	const musicchannel = client.channels.get("506108715720769536");
 	if(message.author.bot) return;	
 	
 	if(message.content.toUpperCase()==="TT") 
@@ -61,9 +62,17 @@ client.on('message', (message) =>{
 	
 	if (message.content === "欸欸欸你過來一下")
 	{
-   				
+		message.author.voiceChannel.join().then(connection => {
+			generalChannel.reply("我進來了嗎啦楊士傑");
+		  }).catch(e => {
+			generalChannel.reply("進不去啦幹");
+		  });    				
 	}
 
+	if (message.content === "退下")
+	{
+		message.author.voiceChannel.leave();
+	}
 	
 	if(message.content.includes("胎死腹中"))
 	{
