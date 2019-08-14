@@ -65,15 +65,15 @@ client.on('message', (message) =>{
 	if (message.content === "欸欸欸你過來一下")
 	{
 		const musicchannel = message.member.voiceChannel;
-		musicchannel.join()
-		.then(connection => console.log('Connected!'))		
+		musicchannel.join();
+		message.channel.send("已加入語音");	
 	}
 
 	if (message.content === "滾啦幹")
 	{		
 		const musicchannel = message.member.voiceChannel;
-		musicchannel.leave()
-		.then(connection => console.log('Connected!'))	
+		musicchannel.leave();
+		message.channel.send("已離開語音");	
 	}
 	
 	if(message.content.includes("胎死腹中"))
