@@ -22,7 +22,7 @@ client.on('ready', () =>{
 	generalChannel.send(" <@324536397803290626> bot已在 "+h+":"+m+":"+s+ " 時運作。");  
 	// Set the client user's status
 	client.user.setStatus('idle');
-	client.user.setActivity('code', { type: 'PLAYING' });
+	client.user.setActivity("扣ㄉ", { type: 'PLAYING' });
           
     });
 
