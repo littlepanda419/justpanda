@@ -53,20 +53,20 @@ client.on('message', (message) =>{
  	   generalChannel.send(h+":"+m+":"+s) ;
 	}
 	
-    if (message.content === '欸欸欸你過來一下') {
+    if (message.content === "欸欸欸你過來一下") {
     // Only try to join the sender's voice channel if they are in one themselves
 	if (message.member.voiceChannel) 
 	{
       message.member.voiceChannel.join()
         .then(connection => { // Connection is an instance of VoiceConnection
-		  message.reply('我過來了啦怎樣');
+		  message.reply("我過來了啦怎樣");
 		 //const stream = ytdl('https://www.youtube.com/watch?v=fS7OffmLrf0&list=PL7tnvmTUTcvZhYaBzNPxVgGz8tdwVyyX5', { filter : 'audioonly' });
  	 	 // broadcast.playStream(stream);
   		//  const dispatcher = connection.playBroadcast(broadcast);
         })
 		.catch(console.log);} 		
 	else {
-      message.reply('幹你自己不會先過去一下');
+      message.reply("幹你自己不會先過去一下");
 	}
 	}
 	
@@ -80,7 +80,7 @@ client.on('message', (message) =>{
 	}
 	if(message.content ==="怕") 
 	{
-		message.reply("gan gan gan gan gan 挖就ㄍㄧㄚㄟ");
+		message.send("gan gan gan gan gan 挖就ㄍㄧㄚㄟ");
 	}
 	if(message.content.toUpperCase()==="KVL") 
 	{
