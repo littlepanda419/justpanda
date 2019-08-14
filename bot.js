@@ -85,7 +85,7 @@ client.on('message', (message) =>{
 	}
 	if(message.content.includes("派"))
 	{
-		message.reply("pi");
+		message.reply(pi);
 	}
 	if(message.content.includes("怕"))
 	{
@@ -103,23 +103,21 @@ client.on('message', (message) =>{
 	{
 		message.reply(zzch);
 	}
-	/*if(message.content.toUpperCase()===".G"+) 
+
+	if (message.content.toUpperCase()==="PLAY") 
 	{
-		message.reply(zzch);
-	}*/
-
-
-	if (message.content===(play)) {
 		execute(message, serverQueue);
 		return;
-	} else if (message.content===(skip)) {
+	}
+	if (message.content.toUpperCase()==="SKIP")
+	{
 		skip(message, serverQueue);
 		return;
-	} else if (message.content===(stop)) {
+	}
+	if (message.content.toUpperCase()==="STOP")
+	{
 		stop(message, serverQueue);
 		return;
-	} else {
-		message.channel.send('You need to enter a valid command!')
 	}
 });
 
