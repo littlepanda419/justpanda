@@ -52,9 +52,8 @@ client.on('message', (message) =>{
 	const kcl = new Discord.Attachment('https://cdn.discordapp.com/attachments/594119720022573076/594555557709611033/unknown.png');
 	const kvl = new Discord.Attachment('https://cdn.discordapp.com/attachments/594119720022573076/594556625155784724/unknown.png');
 	const zzch = new Discord.Attachment('https://cdn.discordapp.com/attachments/512603339071160377/595194587866464256/65761563_2350292711718973_5573736612304519168_o.png');
+	const pi  = new Discord.Attachment('https://truth.bahamut.com.tw/s01/201907/295c16d012c60f51b45fb37d629232ce.JPG');
 	
-
-   
 	if(message.author.bot) return;	
 	
 	if(message.content.toUpperCase()==="TT") 
@@ -62,14 +61,14 @@ client.on('message', (message) =>{
  	   generalChannel.send(h+":"+m+":"+s) ;
 	}
 	
-	if (message.content === "欸欸欸你過來一下" |"欸欸欸你進來一下" | "過來一下"|'pandain')
+	if (message.content === "欸欸欸你過來一下"||"欸欸欸你進來一下"||"過來一下"||"pandain")
 	{
 		const musicchannel = message.member.voiceChannel;
 		musicchannel.join();
 		message.channel.send("已加入語音");	
 	}
 
-	if (message.content === "滾啦幹"|'pandaout')
+	if (message.content === "滾啦幹"||"pandaout")
 	{		
 		const musicchannel = message.member.voiceChannel;
 		musicchannel.leave();
@@ -83,6 +82,10 @@ client.on('message', (message) =>{
 	if(message.content ==="歐姆定律") 
 	{
 		message.reply("V=IR , I=V/R , R= V/I");
+	}
+	if(message.content.includes("派"))
+	{
+		message.reply("pi");
 	}
 	if(message.content.includes("怕"))
 	{
@@ -105,7 +108,100 @@ client.on('message', (message) =>{
 		message.reply(zzch);
 	}*/
 
+
+	if (message.content===(play)) {
+		execute(message, serverQueue);
+		return;
+	} else if (message.content===(skip)) {
+		skip(message, serverQueue);
+		return;
+	} else if (message.content===(stop)) {
+		stop(message, serverQueue);
+		return;
+	} else {
+		message.channel.send('You need to enter a valid command!')
+	}
+});
+
+async function execute(message, serverQueue) {
+	const args = message.content.split(' ');
+
+	const voiceChannel = message.member.voiceChannel;
+	if (!voiceChannel) return message.channel.send('You need to be in a voice channel to play music!');
+	const permissions = voiceChannel.permissionsFor(message.client.user);
+	if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
+		return message.channel.send('I need the permissions to join and speak in your voice channel!');
+	}
+
+	const songInfo = await ytdl.getInfo(args[1]);
+	const song = {
+		title: songInfo.title,
+		url: songInfo.video_url,
+	};
+
+	if (!serverQueue) {
+		const queueContruct = {
+			textChannel: message.channel,
+			voiceChannel: voiceChannel,
+			connection: null,
+			songs: [],
+			volume: 5,
+			playing: true,
+		};
+
+		queue.set(message.guild.id, queueContruct);
+
+		queueContruct.songs.push(song);
+
+		try {
+			var connection = await voiceChannel.join();
+			queueContruct.connection = connection;
+			play(message.guild, queueContruct.songs[0]);
+		} catch (err) {
+			console.log(err);
+			queue.delete(message.guild.id);
+			return message.channel.send(err);
+		}
+	} else {
+		serverQueue.songs.push(song);
+		console.log(serverQueue.songs);
+		return message.channel.send(`${song.title} has been added to the queue!`);
+	}
+
 }
-);
+
+function skip(message, serverQueue) {
+	if (!message.member.voiceChannel) return message.channel.send('You have to be in a voice channel to stop the music!');
+	if (!serverQueue) return message.channel.send('There is no song that I could skip!');
+	serverQueue.connection.dispatcher.end();
+}
+
+function stop(message, serverQueue) {
+	if (!message.member.voiceChannel) return message.channel.send('You have to be in a voice channel to stop the music!');
+	serverQueue.songs = [];
+	serverQueue.connection.dispatcher.end();
+}
+
+function play(guild, song) {
+	const serverQueue = queue.get(guild.id);
+
+	if (!song) {
+		serverQueue.voiceChannel.leave();
+		queue.delete(guild.id);
+		return;
+	}
+
+	const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
+		.on('end', () => {
+			console.log('Music ended!');
+			serverQueue.songs.shift();
+			play(guild, serverQueue.songs[0]);
+		})
+		.on('error', error => {
+			console.error(error);
+		});
+	dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 	
+	}
+
 client.login(process.env.BOT_TOKEN);
