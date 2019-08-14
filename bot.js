@@ -103,7 +103,7 @@ client.on('message', (message) =>{
 	{
 		message.reply(zzch);
 	}
-
+/*
 	if (message.content.toUpperCase()==="PLAY") 
 	{
 		execute(message, serverQueue);
@@ -200,6 +200,6 @@ function play(guild, song) {
 		});
 	dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 	
-	}
-
+}*/
+});
 client.login(process.env.BOT_TOKEN);
