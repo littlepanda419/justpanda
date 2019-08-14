@@ -2,10 +2,10 @@ const Discord = require('discord.js');
 //var cheerio = require("cheerio"); /* Used to extract html content, based on jQuery || install with npm install cheerio */
 //var request = require("request"); /* Used to make requests to URLs and fetch response  || install with npm install request */ 
 //var google = require('google')
-const client = new Discord.Client();
 const ytdl = require('ytdl-core');
 const streamOptions = { seek: 0, volume: 1 };
 const broadcast = client.createVoiceBroadcast();
+const client = new Discord.Client();
 
 
 var d = new Date();	
