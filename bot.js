@@ -71,10 +71,13 @@ client.on('message', (message) =>{
 
 	if (message.content === "滾啦幹")
 	{
-		let authorVoiceChannel = message.member.voiceChannel;
-		if(!authorVoiceChannel) return message.channel.send("You are not in a voice channel");
-		if(authorVoiceChannel.id !== client.voiceChannel.id) return message.channel.send("We're not in the same voice channel");
-		authorVoiceChannel.leave();
+		
+		if(!author.VoiceChannel) return message.channel.send("You are not in a voice channel");
+		if(author.VoiceChannel.id !== client.voiceChannel.id) return message.channel.send("We're not in the same voice channel");
+		author.VoiceChannel.leave();
+		message.author.voiceChannel.leave();
+		VoiceChannel.leave();
+		voiceChannel.leave();
 		message.channel.send("好咩滾就滾");
 	}
 	
