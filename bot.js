@@ -3,6 +3,9 @@ const Discord = require('discord.js');
 //var request = require("request"); /* Used to make requests to URLs and fetch response  || install with npm install request */ 
 //var google = require('google')
 const client = new Discord.Client();
+const ytdl = require('ytdl-core');
+const streamOptions = { seek: 0, volume: 1 };
+const broadcast = client.createVoiceBroadcast();
 
 
 var d = new Date();	
@@ -49,6 +52,24 @@ client.on('message', (message) =>{
 	{
  	   generalChannel.send(h+":"+m+":"+s) ;
 	}
+
+	if (!message.guild) return;
+    if (message.content === '欸欸欸你過來一下') {
+    // Only try to join the sender's voice channel if they are in one themselves
+    if (message.member.voiceChannel) {
+      message.member.voiceChannel.join()
+        .then(connection => { // Connection is an instance of VoiceConnection
+		  message.reply('我過來了啦怎樣');
+		  const stream = ytdl('https://www.youtube.com/watch?v=fS7OffmLrf0&list=PL7tnvmTUTcvZhYaBzNPxVgGz8tdwVyyX5', { filter : 'audioonly' });
+ 	 	  broadcast.playStream(stream);
+  		  const dispatcher = connection.playBroadcast(broadcast);
+        })
+		.catch(console.log);} 		
+	else {
+      message.reply('幹你自己不會先過去一下');
+	}
+	}
+	
 	if(message.content.includes("胎死腹中"))
 	{
 		message.reply("你才吃飯嗆到喝水噎到");
@@ -77,6 +98,8 @@ client.on('message', (message) =>{
 	{
 		message.reply(zzch);
 	}*/
-});
+
+}
+);
 	
 client.login(process.env.BOT_TOKEN);
