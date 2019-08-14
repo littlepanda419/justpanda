@@ -7,7 +7,7 @@ const ytdl = require('ytdl-core');
 const streamOptions = { seek: 0, volume: 1 };
 const broadcast = client.createVoiceBroadcast();
 */
-
+const queue = new Map();
 
 var d = new Date();	
 var h = d.getHours()+8;
@@ -69,9 +69,13 @@ client.on('message', (message) =>{
 		  });    				
 	}
 
-	if (message.content === "退下")
+	if (message.content === "滾啦幹")
 	{
-		message.author.voiceChannel.leave();
+		let authorVoiceChannel = message.member.voiceChannel;
+		if(!authorVoiceChannel) return message.channel.send("You are not in a voice channel");
+		if(authorVoiceChannel.id !== client.voiceChannel.id) return message.channel.send("We're not in the same voice channel");
+		authorVoiceChannel.leave();
+		message.channel.send("好咩滾就滾");
 	}
 	
 	if(message.content.includes("胎死腹中"))
