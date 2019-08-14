@@ -33,8 +33,8 @@ client.on('ready', () =>{
 		generalChannel.send("連接語音成功");
 	  }).catch(e => {
 		generalChannel.send("連接語音失敗");
-	  });      
-    });*/
+	  }); */     
+    });
 
 function addZero(i) {
 	if (i < 10) {
