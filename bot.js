@@ -49,13 +49,17 @@ client.on('message', (message) =>{
 	{
  	   generalChannel.send(h+":"+m+":"+s) ;
 	}
-	if(message.content ==="胎死腹中") 
+	if(message.content.includes("胎死腹中"))
 	{
 		message.reply("你才吃飯嗆到喝水噎到");
 	}
 	if(message.content ==="歐姆定律") 
 	{
 		message.reply("V=IR , I=V/R , R= V/I");
+	}
+	if(message.content ==="怕") 
+	{
+		message.reply("gan gan gan gan gan 挖就ㄍㄧㄚㄟ");
 	}
 	if(message.content.toUpperCase()==="KVL") 
 	{
