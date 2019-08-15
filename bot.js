@@ -1,13 +1,16 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+//const config = require("./config.json"); (process.env.BOT_TOKEN) OR (config.token)
+
 /*var cheerio = require("cheerio"); // Used to extract html content, based on jQuery || install with npm install cheerio 
 var request = require("request"); // Used to make requests to URLs and fetch response  || install with npm install request  
 var google = require('google')
 const ytdl = require('ytdl-core');
 const streamOptions = { seek: 0, volume: 1 };
 const broadcast = client.createVoiceBroadcast();
-*/
+
 const queue = new Map();
+*/
 
 var d = new Date();	
 var h = d.getHours()+8;
@@ -61,18 +64,34 @@ client.on('message', (message) =>{
  	   generalChannel.send(h+":"+m+":"+s) ;
 	}
 	
-	if (message.content === "欸欸欸你過來一下"||message.content ==="欸欸欸你進來一下"||message.content ==="過來一下"||message.content.toUpperCase()==="PANDAIN")
+	if (message.content === "欸欸欸你過來一下"||message.content ==="欸你過來一下"||message.content ==="欸你進來一下"||message.content ==="欸欸欸你進來一下"||message.content ==="過來一下"||message.content ==="pandain")
 	{
 		const musicchannel = message.member.voiceChannel;
-		musicchannel.join();
+		try {
+			musicchannel.join();
 		message.channel.send("已加入語音");	
-	}
+		} catch (error) {
+			generalChannel.send("進不去啦幹");
+		}
+		}
+	
 
-	if (message.content === "滾啦幹"||message.content.toUpperCase()==="PANDAOUT")
+	if (message.content === "滾啦幹"||message.content ==="pandaout")
 	{		
 		const musicchannel = message.member.voiceChannel;
+		if (musicchannel!==client.member.voiceChannel)
+		{
+		message.channel.send("幹不同頻道啦");		
+		}
+		else if (musicchannel===null) 
+		{
+		message.channel.send("幹我就沒有進去喔");
+		}
+		else() =>
+		{
 		musicchannel.leave();
 		message.channel.send("已離開語音");	
+		}
 	}
 	
 	if(message.content.includes("胎死腹中"))
