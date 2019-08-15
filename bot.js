@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-//const config = require("./config.json"); (process.env.BOT_TOKEN) OR (config.token)
+//const config = require("./config.json");// (process.env.BOT_TOKEN) OR (config.token)
 
 /*var cheerio = require("cheerio"); // Used to extract html content, based on jQuery || install with npm install cheerio 
 var request = require("request"); // Used to make requests to URLs and fetch response  || install with npm install request  
@@ -46,6 +46,12 @@ function addZero(i) {
 	return i;
   }
 
+ 
+function leafe() {
+	musicchannel.leave();
+	message.channel.send("已離開語音");	
+	}
+
 client.on('message', (message) =>{
 	var d = new Date();
 	var h = addZero(d.getHours()+8);
@@ -74,6 +80,14 @@ client.on('message', (message) =>{
 		} catch (error) {
 			generalChannel.send("進不去啦幹");
 		}
+		
+		/*try {
+			musicchannel.join();
+		message.channel.send("已加入語音");
+		} catch {
+		if(message.member.voiceChannel === null)
+		generalChannel.send("你沒進頻道炒屁喔");
+		}*/
 	}
 	
 
@@ -86,6 +100,16 @@ client.on('message', (message) =>{
 		} catch (error) {
 		generalChannel.send("08偏不要滾");
 		}
+		/*try {
+		leafe();
+		} catch{
+		if(client.voiceChannel !== message.member.voiceChannel)
+		generalChannel.send("不同頻道的閉嘴啦");
+		if(client.voiceChannel === null)
+		generalChannel.send("沒有進頻道要怎麼離開啦");
+		if(message.member.voiceChannel === null)
+		generalChannel.send("你沒進頻道炒屁喔");
+		}*/
 	}
 	
 	if(message.content.includes("胎死腹中"))
