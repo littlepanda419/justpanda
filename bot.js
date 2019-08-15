@@ -64,7 +64,8 @@ client.on('message', (message) =>{
  	   generalChannel.send(h+":"+m+":"+s) ;
 	}
 	
-	if (message.content === "欸欸欸你過來一下"||message.content ==="欸你過來一下"||message.content ==="欸你進來一下"||message.content ==="欸欸欸你進來一下"||message.content ==="過來一下"||message.content ==="pandain")
+	if (message.content === "欸欸欸你過來一下"||message.content ==="欸你過來一下"||message.content ==="欸你進來一下"
+	||message.content ==="欸欸欸你進來一下"||message.content ==="過來一下"||message.content.toUpperCase()==="PANDAIN")
 	{
 		const musicchannel = message.member.voiceChannel;
 		try {
@@ -76,21 +77,14 @@ client.on('message', (message) =>{
 		}
 	
 
-	if (message.content === "滾啦幹"||message.content ==="pandaout")
+	if (message.content === "滾啦幹"||message.content.toUpperCase()==="PANDAOUT")
 	{		
 		const musicchannel = message.member.voiceChannel;
-		if (musicchannel!==client.member.voiceChannel)
-		{
-		message.channel.send("幹不同頻道啦");		
-		}
-		else if (musicchannel===null) 
-		{
-		message.channel.send("幹我就沒有進去喔");
-		}
-		else() =>
-		{
+		try {
 		musicchannel.leave();
 		message.channel.send("已離開語音");	
+		} catch (error) {
+		generalChannel.send("08偏不要滾");
 		}
 	}
 	
