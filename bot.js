@@ -79,10 +79,10 @@ client.on('message', (message) =>{
 		try {
 			musicchannel.join();
 		message.channel.send("已加入語音");	
-		message.react("612253892046094349");
+		message.react("🐼");
 		} catch (error) {
 			generalChannel.send("進不去啦幹");
-			message.react("612254441956966400");
+			message.react("🐼");
 		}
 	}
 	
@@ -93,10 +93,10 @@ client.on('message', (message) =>{
 		try {
 		musicchannel.leave();
 		message.channel.send("已離開語音");
-		message.react("612253892046094349");	
+		message.react("🐼");	
 		} catch (error) {
 		generalChannel.send("08偏不要滾");
-		message.react("612254355466485791");
+		message.react("🐼");
 		}
 	}
 	
