@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const ytdl = require('ytdl-core');
+//const ytdl = require('ytdl-core');
 const queue = new Map();
 //const config = require("./config.json");// (process.env.BOT_TOKEN) OR (config.token)
 
