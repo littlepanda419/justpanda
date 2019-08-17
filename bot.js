@@ -1,5 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const ytdl = require('ytdl-core');
+const queue = new Map();
 //const config = require("./config.json");// (process.env.BOT_TOKEN) OR (config.token)
 
 /*var cheerio = require("cheerio"); // Used to extract html content, based on jQuery || install with npm install cheerio 
@@ -9,7 +11,7 @@ const ytdl = require('ytdl-core');
 const streamOptions = { seek: 0, volume: 1 };
 const broadcast = client.createVoiceBroadcast();
 
-const queue = new Map();
+con
 */
 
 var d = new Date();	
@@ -77,17 +79,11 @@ client.on('message', (message) =>{
 		try {
 			musicchannel.join();
 		message.channel.send("已加入語音");	
+		message.react("612253892046094349");
 		} catch (error) {
 			generalChannel.send("進不去啦幹");
+			message.react("612254441956966400");
 		}
-		
-		/*try {
-			musicchannel.join();
-		message.channel.send("已加入語音");
-		} catch {
-		if(message.member.voiceChannel === null)
-		generalChannel.send("你沒進頻道炒屁喔");
-		}*/
 	}
 	
 
@@ -96,26 +92,28 @@ client.on('message', (message) =>{
 		const musicchannel = message.member.voiceChannel;
 		try {
 		musicchannel.leave();
-		message.channel.send("已離開語音");	
+		message.channel.send("已離開語音");
+		message.react("612253892046094349");	
 		} catch (error) {
 		generalChannel.send("08偏不要滾");
+		message.react("612254355466485791");
 		}
-		/*try {
-		leafe();
-		} catch{
-		if(client.voiceChannel !== message.member.voiceChannel)
-		generalChannel.send("不同頻道的閉嘴啦");
-		if(client.voiceChannel === null)
-		generalChannel.send("沒有進頻道要怎麼離開啦");
-		if(message.member.voiceChannel === null)
-		generalChannel.send("你沒進頻道炒屁喔");
-		}*/
 	}
 	
 	if(message.content.includes("胎死腹中"))
 	{
 		message.reply("你才吃飯嗆到喝水噎到");
 	}
+
+	if(message.content == "ping"){ // Check if message is "!ping"
+			message.channel.send("Pinging ...") // Placeholder for pinging ... 
+			.then((msg) => { // Resolve promise
+				msg.edit("Ping: " + (Date.now() - msg.createdTimestamp)) // Edits message with current timestamp minus timestamp of message
+				message.react("612253892046094349");
+			});
+		}
+
+
 	if(message.content ==="歐姆定律") 
 	{
 		message.reply("V=IR , I=V/R , R= V/I");
@@ -140,6 +138,9 @@ client.on('message', (message) =>{
 	{
 		message.reply(zzch);
 	}
+
+
+
 
 	});
 client.login(process.env.BOT_TOKEN);
