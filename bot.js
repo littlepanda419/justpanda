@@ -45,17 +45,12 @@ function addZero(i) {
 	}
 	return i;
   }
-
-  async function execute(message, serverQueue) 
-  {
-	const args = message.content.split(' ');
-	const voiceChannel = message.member.voiceChannel;
-	if (!voiceChannel) return message.channel.send('You need to be in a voice channel to play music!');
-	 const permissions =     voiceChannel.permissionsFor(message.client.user);
-	if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
-	 return message.channel.send('I need the permissions to join and   speak in your voice channel!');
-	}
-  }
+  function emoji(e_id)
+{
+    const e = client.emojis.find(emoji => emoji.id === e_id)
+    return e;
+}
+//msg.channel.send(`${emoji(/*表情ID*/)}`);
 
 client.on('message', (message) =>{
 	var d = new Date();
@@ -86,7 +81,8 @@ client.on('message', (message) =>{
 		message.react("🐼");
 		} catch (error) {
 			generalChannel.send("進不去啦幹");
-			message.react("🐼");
+			emoji(612549755502985247);
+			message.react(`${emoji(e.id)}`);
 		}
 	}
 	if (message.content === "滾啦幹"||message.content.toUpperCase()==="PANDAOUT")
@@ -127,7 +123,7 @@ client.on('message', (message) =>{
 			message.channel.send("Pinging ...") // Placeholder for pinging ... 
 			.then((msg) => { // Resolve promise
 				msg.edit("Ping: " + (Date.now() - msg.createdTimestamp)) // Edits message with current timestamp minus timestamp of message
-				message.react("612253892046094349");
+				message.react("🐼");
 			});
 		}
 
