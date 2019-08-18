@@ -3,7 +3,7 @@ const client = new Discord.Client();
 
 
 //const Youtube = require('simple-youtube-api');
-const ytdl = require('ytdl-core');
+const ytdl = require('ytdl');
 //const youtube =  Youtube(jLSoTuszX4pyBV0WBP5g4Fdq); // insert here your Youtube API key, you can also store it as an environment variable or in a config.json
 var isPlaying; // we will use this variable to determine if a song is playing
 const queue = new Map();
