@@ -82,7 +82,7 @@ client.on('message', (message) =>{
 		} catch (error) {
 			generalChannel.send("進不去啦幹");
 			emoji(612549755502985247);
-			message.react(`${emoji(e.id)}`);
+			message.react(`${emoji(/*表情ID*/ )}`);
 		}
 	}
 	if (message.content === "滾啦幹"||message.content.toUpperCase()==="PANDAOUT")
