@@ -14,7 +14,7 @@ const queue = new Map();
 	client.login(config.token);
 	}
 	{ INTERNET
-	(process.env.BOT_TOKEN)
+	client.login(process.env.BOT_TOKEN);
 	}	
 	*/
 
@@ -242,5 +242,4 @@ client.on('message', (message) =>{
 		dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 	}
 
-	
-(process.env.BOT_TOKEN)
+client.login(process.env.BOT_TOKEN);
