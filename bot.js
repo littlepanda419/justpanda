@@ -1,6 +1,6 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const config = require("./config.json");
+
 
 //const Youtube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
@@ -243,4 +243,4 @@ client.on('message', (message) =>{
 	}
 
 	
-client.login(config.token);
+(process.env.BOT_TOKEN)
