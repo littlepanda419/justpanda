@@ -1,28 +1,28 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-//const ytdl = require('ytdl-core');
-const queue = new Map();
-//const config = require("./config.json");// (process.env.BOT_TOKEN) OR (config.token)
+const config = require("./config.json");
 
-/*var cheerio = require("cheerio"); // Used to extract html content, based on jQuery || install with npm install cheerio 
-var request = require("request"); // Used to make requests to URLs and fetch response  || install with npm install request  
-var google = require('google')
+//const Youtube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
-const streamOptions = { seek: 0, volume: 1 };
-const broadcast = client.createVoiceBroadcast();
+//const youtube =  Youtube(jLSoTuszX4pyBV0WBP5g4Fdq); // insert here your Youtube API key, you can also store it as an environment variable or in a config.json
+var isPlaying; // we will use this variable to determine if a song is playing
+const queue = new Map();
 
-con
-*/
+	/*
+	{ LOCAL
+	const config = require("./config.json");
+	client.login(config.token);
+	}
+	{ INTERNET
+	(process.env.BOT_TOKEN)
+	}	
+	*/
+
 
 var d = new Date();	
 var h = d.getHours()+8;
 var m = d.getMinutes();
 var s = d.getSeconds();
-/*
-function Hex() {
-	var generalChannel = client.channels.get("594119720022573076") ;// Replace with known channel ID
-    generalChannel.send(" <@551290295078223885> AS U WISH") ;
-}*/
 
 client.on('ready', () =>{
 	
@@ -48,11 +48,16 @@ function addZero(i) {
 	return i;
   }
 
- 
-function leafe() {
-	musicchannel.leave();
-	message.channel.send("已離開語音");	
+  async function execute(message, serverQueue) 
+  {
+	const args = message.content.split(' ');
+	const voiceChannel = message.member.voiceChannel;
+	if (!voiceChannel) return message.channel.send('You need to be in a voice channel to play music!');
+	 const permissions =     voiceChannel.permissionsFor(message.client.user);
+	if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
+	 return message.channel.send('I need the permissions to join and   speak in your voice channel!');
 	}
+  }
 
 client.on('message', (message) =>{
 	var d = new Date();
@@ -64,6 +69,7 @@ client.on('message', (message) =>{
 	const kvl = new Discord.Attachment('https://cdn.discordapp.com/attachments/594119720022573076/594556625155784724/unknown.png');
 	const zzch = new Discord.Attachment('https://cdn.discordapp.com/attachments/512603339071160377/595194587866464256/65761563_2350292711718973_5573736612304519168_o.png');
 	const pi  = new Discord.Attachment('https://truth.bahamut.com.tw/s01/201907/295c16d012c60f51b45fb37d629232ce.JPG');
+	const serverQueue = queue.get(message.guild.id);
 	
 	if(message.author.bot) return;	
 	
@@ -79,33 +85,47 @@ client.on('message', (message) =>{
 		try {
 			musicchannel.join();
 		message.channel.send("已加入語音");	
-		message.react("🐼");
+		message.react("612253892046094349");
 		} catch (error) {
 			generalChannel.send("進不去啦幹");
-			message.react("🐼");
+			message.react("612254441956966400");
 		}
 	}
-	
-
 	if (message.content === "滾啦幹"||message.content.toUpperCase()==="PANDAOUT")
 	{
 		const musicchannel = message.member.voiceChannel;
 		try {
 		musicchannel.leave();
 		message.channel.send("已離開語音");
-		message.react("🐼");	
+		message.react("612253892046094349");	
 		} catch (error) {
 		generalChannel.send("08偏不要滾");
-		message.react("🐼");
+		message.react("612254355466485791");
 		}
 	}
 	
+	if (message.content.toLowerCase()==="play") 
+		{
+		execute(message, serverQueue);
+		return;
+	   }
+	    if (message.content.toLowerCase()==="skip") 
+	   {
+		skip(message, serverQueue);
+		return;
+	   }
+		if (message.content.toLowerCase()==="stop") 
+	   {
+		stop(message, serverQueue);
+		return;
+	   }
+
 	if(message.content.includes("胎死腹中"))
 	{
 		message.reply("你才吃飯嗆到喝水噎到");
 	}
 
-	if(message.content == "ping"){ // Check if message is "!ping"
+	if(message.content.toLowerCase()==="ping"){ // Check if message is "ping"
 			message.channel.send("Pinging ...") // Placeholder for pinging ... 
 			.then((msg) => { // Resolve promise
 				msg.edit("Ping: " + (Date.now() - msg.createdTimestamp)) // Edits message with current timestamp minus timestamp of message
@@ -140,7 +160,87 @@ client.on('message', (message) =>{
 	}
 
 
-
-
 	});
-client.login(process.env.BOT_TOKEN);
+
+	async function execute(message, serverQueue) {
+		const args = message.content.split(' ');
+	
+		const voiceChannel = message.member.voiceChannel;
+		if (!voiceChannel) return message.channel.send('You need to be in a voice channel to play music!');
+		const permissions = voiceChannel.permissionsFor(message.client.user);
+		if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
+			return message.channel.send('I need the permissions to join and speak in your voice channel!');
+		}
+	
+		const songInfo = await ytdl.getInfo(args[1]);
+		const song = {
+			title: songInfo.title,
+			url: songInfo.video_url,
+		};
+	
+		if (!serverQueue) {
+			const queueContruct = {
+				textChannel: message.channel,
+				voiceChannel: voiceChannel,
+				connection: null,
+				songs: [],
+				volume: 5,
+				playing: true,
+			};
+	
+			queue.set(message.guild.id, queueContruct);
+	
+			queueContruct.songs.push(song);
+	
+			try {
+				var connection = await voiceChannel.join();
+				queueContruct.connection = connection;
+				play(message.guild, queueContruct.songs[0]);
+			} catch (err) {
+				console.log(err);
+				queue.delete(message.guild.id);
+				return message.channel.send(err);
+			}
+		} else {
+			serverQueue.songs.push(song);
+			console.log(serverQueue.songs);
+			return message.channel.send(`${song.title} has been added to the queue!`);
+		}
+	
+	}
+	
+	function skip(message, serverQueue) {
+		if (!message.member.voiceChannel) return message.channel.send('You have to be in a voice channel to stop the music!');
+		if (!serverQueue) return message.channel.send('There is no song that I could skip!');
+		serverQueue.connection.dispatcher.end();
+	}
+	
+	function stop(message, serverQueue) {
+		if (!message.member.voiceChannel) return message.channel.send('You have to be in a voice channel to stop the music!');
+		serverQueue.songs = [];
+		serverQueue.connection.dispatcher.end();
+	}
+	
+	function play(guild, song) {
+		const serverQueue = queue.get(guild.id);
+	
+		if (!song) {
+			serverQueue.voiceChannel.leave();
+			queue.delete(guild.id);
+			return;
+		}
+	
+		const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
+			.on('end', () => {
+				console.log('Music ended!');
+				serverQueue.songs.shift();
+				play(guild, serverQueue.songs[0]);
+			})
+			.on('error', error => {
+				console.error(error);
+			});
+		dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
+	}
+
+	
+client.login(config.token);
