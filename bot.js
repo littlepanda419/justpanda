@@ -46,9 +46,7 @@ client.on('ready', () =>{
 		message.channel.send("已加入語音");	
 		message.react("🐼");
 	} catch (error) {
-		generalChannel.send("進不去啦幹");
-		emoji(612549755502985247);
-		message.react(`${emoji(/*表情ID*/ )}`);
+		generalChannel.send("進不去啦幹");		
 	}
 	console.log("機器人已上線");
 });
