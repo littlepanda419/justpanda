@@ -232,4 +232,4 @@ client.on('message', (message) =>{
 		dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 	}*/
 
-client.login(process.env.BOT_TOKEN);
+client.login(process.env.BOT_TOKEN)
