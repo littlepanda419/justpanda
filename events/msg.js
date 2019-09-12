@@ -1,9 +1,22 @@
 const Discord = require('discord.js')
 
+
+const kcl = new Discord.Attachment('https://cdn.discordapp.com/attachments/594119720022573076/594555557709611033/unknown.png');
+const kvl = new Discord.Attachment('https://cdn.discordapp.com/attachments/594119720022573076/594556625155784724/unknown.png');
+const zzch = new Discord.Attachment('https://cdn.discordapp.com/attachments/512603339071160377/595194587866464256/65761563_2350292711718973_5573736612304519168_o.png');
+const pi  = new Discord.Attachment('https://truth.bahamut.com.tw/s01/201907/295c16d012c60f51b45fb37d629232ce.JPG');
+    
 module.exports = (msg,client) =>
 
-{
-    if(message.content.toUpperCase()==="TT") 
+{    
+	var d = new Date();
+	var h = addZero(d.getHours()+8);
+	var m = addZero(d.getMinutes());
+    var s = addZero(d.getSeconds());
+    
+   
+	
+	if(message.content.toUpperCase()==="TT") 
 	{
  	   generalChannel.send(h+":"+m+":"+s) ;
 	}
@@ -59,7 +72,7 @@ module.exports = (msg,client) =>
 	if(message.content.toLowerCase()==="ping"){ // Check if message is "ping"
 			message.channel.send("Pinging ...") // Placeholder for pinging ... 
 			.then((msg) => { // Resolve promise
-				msg.edit("Ping: " + (Date.now() - msg.createdTimestamp)) // Edits message with current timestamp minus timestamp of message
+				msg.edit("Ping: " + (Date.now() - msg.createdTimestamp)); // Edits message with current timestamp minus timestamp of message
 				message.react("🐼");
 			});
 		}
@@ -89,5 +102,4 @@ module.exports = (msg,client) =>
 	{
 		message.reply(zzch);
 	}
-
 };
