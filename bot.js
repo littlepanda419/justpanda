@@ -152,7 +152,7 @@ client.on('message', (message) =>{
 
 	});
 
-	async function execute(message, serverQueue) {
+	/*async function execute(message, serverQueue) {
 		const args = message.content.split(' ');
 	
 		const voiceChannel = message.member.voiceChannel;
@@ -230,6 +230,6 @@ client.on('message', (message) =>{
 				console.error(error);
 			});
 		dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
-	}
+	}*/
 
 client.login(process.env.BOT_TOKEN);
