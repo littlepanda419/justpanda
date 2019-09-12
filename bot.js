@@ -21,7 +21,7 @@ const time = require("./events/time.js");
 
 client.on('ready', () =>{
 	
-	var generalChannel = client.channels.get("594119720022573076") ;
+	var generalChannel = new client.channels.get("594119720022573076") ;
 	console.log("機器人已上線");
 	generalChannel.send(" <@324536397803290626> bot已在 "+h+":"+m+":"+s+ " 時開始吃竹子。");  
 	client.user.setStatus('idle');
