@@ -148,10 +148,6 @@ client.on('message', (message) =>{
 	{
 		message.reply(zzch);
 	}
-
-
-	});
-
 	/*async function execute(message, serverQueue) {
 		const args = message.content.split(' ');
 	
@@ -231,5 +227,5 @@ client.on('message', (message) =>{
 			});
 		dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 	}*/
-
+});
 client.login(process.env.BOT_TOKEN);
