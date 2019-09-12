@@ -29,18 +29,27 @@ function addZero(i)
 
 
 client.on('ready', () =>{
-	
+
 	var d = new Date();	
 	var h = addZero(d.getHours()+8);
 	var m = addZero(d.getMinutes());
 	var s = addZero(d.getSeconds());
 
-	var generalChannel =  client.channels.get("594119720022573076") ;		
-	const musicchannel = "506108715720769536";	  
+	var generalChannel =  client.channels.get("594119720022573076");	  
 	client.user.setStatus('idle');
-	client.user.setActivity("扣ㄉ", { type: 'PLAYING' });	
+	client.user.setActivity("扣ㄉ", { type: 'PLAYING' });		
 	generalChannel.send(" <@324536397803290626> bot已在 "+h+":"+m+":"+s+ " 時開始吃竹子。");
-	musicchannel.join();
+
+	var musicchannel = client.channels.get("506108715720769536");
+	try {
+		musicchannel.join();
+		message.channel.send("已加入語音");	
+		message.react("🐼");
+	} catch (error) {
+		generalChannel.send("進不去啦幹");
+		emoji(612549755502985247);
+		message.react(`${emoji(/*表情ID*/ )}`);
+	}
 	console.log("機器人已上線");
 });
   
