@@ -40,7 +40,7 @@ client.on('ready', () =>{
 	client.user.setStatus('idle');
 	client.user.setActivity("扣ㄉ", { type: 'PLAYING' });
 	
-
+});
   function emoji(e_id)
 {
     const e = client.emojis.find(emoji => emoji.id === e_id)
@@ -118,7 +118,7 @@ client.on('message', (message) =>{
 	if(message.content.toLowerCase()==="ping"){ // Check if message is "ping"
 			message.channel.send("Pinging ...") // Placeholder for pinging ... 
 			.then((msg) => { // Resolve promise
-				msg.edit("Ping: " + (Date.now() - msg.createdTimestamp)) // Edits message with current timestamp minus timestamp of message
+				msg.edit("Ping: " + (Date.now() - msg.createdTimestamp)); // Edits message with current timestamp minus timestamp of message
 				message.react("🐼");
 			});
 		}
