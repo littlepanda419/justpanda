@@ -3,7 +3,7 @@ const client = new Discord.Client();
 const addzero = require("./events/addzero.js");
 const emote = require("./events/emote.js");
 const msg = require("./events/msg.js");
-const music = require("./events/musik.js");
+const music = require("./events/music.js");
 const time = require("./events/time.js");
 
 var generalChannel = client.channels.get("594119720022573076") ;
