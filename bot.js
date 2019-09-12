@@ -6,6 +6,15 @@ const client = new Discord.Client();
 var isPlaying; // we will use this variable to determine if a song is playing
 const queue = new Map();
 
+
+function addZero(i) 
+	{
+	if (i < 10) {
+	  i = "0" + i;
+	}
+	return i;
+  }
+
 	/*
 	{ LOCAL
 	const config = require("./config.json");
@@ -18,9 +27,9 @@ const queue = new Map();
 
 
 var d = new Date();	
-var h = d.getHours()+8;
-var m = d.getMinutes();
-var s = d.getSeconds();
+var h = addZero(d.getHours()+8);
+var m = addZero(d.getMinutes());
+var s = addZero(d.getSeconds());
 
 client.on('ready', () =>{
 	
@@ -30,21 +39,8 @@ client.on('ready', () =>{
 	// Set the client user's status
 	client.user.setStatus('idle');
 	client.user.setActivity("扣ㄉ", { type: 'PLAYING' });
+	
 
-   /* const musicchannel = client.channels.get("506108715720769536");
-	musicchannel.join().then(connection => {
-		generalChannel.send("連接語音成功");
-	  }).catch(e => {
-		generalChannel.send("連接語音失敗");
-	  }); */     
-    });
-
-function addZero(i) {
-	if (i < 10) {
-	  i = "0" + i;
-	}
-	return i;
-  }
   function emoji(e_id)
 {
     const e = client.emojis.find(emoji => emoji.id === e_id)
