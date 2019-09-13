@@ -25,7 +25,7 @@ client.on('ready', () =>{
 		.setColor(0xFFFF00)
 		.setThumbnail("https://qpa.tw/wp-content/uploads/2019/05/%E7%86%8A%E8%B2%93-1.jpg")
 		.setFooter("阿這麼小你也要看")
-	generalChannel.sendEmbed(Myinfo);
+	generalChannel.send(Myinfo);
 	 
 	client.user.setStatus('idle');
 	client.user.setActivity("扣ㄉ", { type: 'PLAYING' });		
