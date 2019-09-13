@@ -14,7 +14,7 @@ function addZero(i)
 	return i;
   }
 
-module.exports = (msg,client) =>
+module.exports = (message,client) =>
 
 {    
 	var d = new Date();
