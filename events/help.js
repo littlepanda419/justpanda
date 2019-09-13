@@ -1,6 +1,6 @@
 const Discord = require('discord.js')
 
-module.exports = (msg,client) =>{
+module.exports = (message,client) =>{
 
 //----------------------------------表情符號--------------------------------
 
