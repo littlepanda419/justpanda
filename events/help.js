@@ -21,8 +21,8 @@ module.exports = (msg,client) =>{
             embed.addField("**5.算數學**","");
             embed.addField("**6.幫你估狗**","");
             embed.addField("**7.我還想不到不過會有**","");
-            msg.author.send({embed});
-        msg.channel.send("好喔!我已經把指令說明寄給你了");
+            message.author.send({embed});
+            message.channel.send("好喔!我已經把指令說明寄給你了");
         
     }
 }
