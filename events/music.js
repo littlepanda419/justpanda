@@ -35,7 +35,7 @@ async function playMusic(conn, entry = 0) {
         updatePresence(`❙ ❙ ${curSong}`);
         logger.info(`Nobody is listening in ${channel.name}, music has been paused.`);
       }
-    });
+    }
 	  
 	  
 	  
