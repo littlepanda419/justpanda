@@ -24,7 +24,7 @@ client.on('ready', () =>{
 		.addField("蛤","肏零呆蛤沙小",true)
 		.addField("我在幹嘛","我誰",true)
 		.setColor(0xFFFF00)
-		.setThumbnail(message.author.avatarURL)
+		.setThumbnail("https://qpa.tw/wp-content/uploads/2019/05/%E7%86%8A%E8%B2%93-1.jpg")
 		.setFooter("阿這麼小你也要看")
 	generalChannel.sendEmbed(Myinfo);
 	 
