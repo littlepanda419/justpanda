@@ -9,7 +9,7 @@ module.exports = (message,client) =>{
         const e = client.emojis.find(emoji => emoji.id === e_id)
         return e;
     }
-    if(msg.content.toLocaleLowerCase()=="help")
+    if(message.content.toLocaleLowerCase()=="help")
     {
         var help = new Discord.RichEmbed()
             .setColor(0xFFFF00)
