@@ -1,11 +1,11 @@
 const Discord = require('discord.js');
-const YTDL = require('ytdl-core');
+const ytdl = require('ytdl-core-discord');
 const client = new Discord.Client();
 
 function play(connection, message)
 {
 	var server =servers[message.guild.id]
-	server.dispatcher = connection.playStream(YTDL(sever.queue[0], {filter:"audioonly"}));
+	server.dispatcher = connection.playStream(ytdl(sever.queue[0], {filter:"audioonly"}));
 	server.queue.shift();
 	server.dispatcher.on("end",function(){
 		if(server.queue[0])	 
