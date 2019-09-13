@@ -11,7 +11,7 @@ module.exports = (msg,client) =>{
     }
     if(msg.content.toLocaleLowerCase()=="help")
     {
-        var embed = new Discord.RichEmbed();
+        var embed = new Discord.RichEmbed()
             embed.setColor(0xFFFF00);
             embed.addField("**指令說明**","快點把指令背起啦來幹");
             embed.addField("**1.文字回應**","派  胎死腹中  歐姆定律  怕  KVL  KCL  自走其  ");
