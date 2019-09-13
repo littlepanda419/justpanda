@@ -5,7 +5,8 @@ const kcl = new Discord.Attachment('https://cdn.discordapp.com/attachments/59411
 const kvl = new Discord.Attachment('https://cdn.discordapp.com/attachments/594119720022573076/594556625155784724/unknown.png');
 const zzch = new Discord.Attachment('https://cdn.discordapp.com/attachments/512603339071160377/595194587866464256/65761563_2350292711718973_5573736612304519168_o.png');
 const pi  = new Discord.Attachment('https://truth.bahamut.com.tw/s01/201907/295c16d012c60f51b45fb37d629232ce.JPG');
-var generalChannel =  client.channels.get("594119720022573076");
+var generalChannel =  client.channels.get('594119720022573076');
+
 
 function addZero(i) 
 	{
@@ -22,8 +23,7 @@ module.exports = ('message', (message) =>
 	var h = addZero(d.getUTCHours()+8);
 	var m = addZero(d.getMinutes());
   	var s = addZero(d.getSeconds());
-	var generalChannel =  client.channels.get("594119720022573076");
-    
+	var generalChannel =  client.channels.get('594119720022573076');    
    
 	
 	if(message.content.toUpperCase()==="TT") 
