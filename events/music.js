@@ -1,5 +1,5 @@
 const Discord = require('discord.js');
-const ytdl = require('ytdl-core-discord');
+const fs = require('fs');
 const client = new Discord.Client();
 
 function play(connection, message)
