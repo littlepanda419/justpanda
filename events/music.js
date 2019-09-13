@@ -16,7 +16,29 @@ function play(connection, message)
 	});
 }
 
+async function playMusic(conn, entry = 0) {
+  const song = queue[entry];
 
+  try {
+    const stream = ytdl(song, { 
+      quality: 'highestaudio',
+      highWaterMark: 1<<25
+     });
+
+    stream.on('info', info => {
+      curSong = info.title;
+      logger.info(`Playing: ${curSong}`);
+      updatePresence(`► ${curSong}`);
+
+      if (listeners <= 1) {
+        dispatcher.pause();
+        updatePresence(`❙ ❙ ${curSong}`);
+        logger.info(`Nobody is listening in ${channel.name}, music has been paused.`);
+      }
+    });
+	  
+	  
+	  
 module.exports =('message', (message) =>
 {
 	if (message.content === "欸欸欸你過來一下"||message.content ==="欸你過來一下"||message.content ==="欸你進來一下"
@@ -38,7 +60,7 @@ module.exports =('message', (message) =>
 	}
 	if(message.content.toLowerCase()==="play") 
 	{	
-		play(connection,message);
+		playMusic(connection);
 	}
 
 	if (message.content === "滾啦幹"||message.content.toUpperCase()==="PANDAOUT")
