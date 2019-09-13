@@ -40,7 +40,7 @@ module.exports = ('message', (message) =>
 		message.channel.send("已加入語音");	
 		message.react("🐼");
 		} catch (error) {
-			generalChannel.send("進不去啦幹");
+			message.channel.send("進不去啦幹");
 			emoji(612549755502985247);
 			message.react(`${emoji(/*表情ID*/ )}`);
 		}
@@ -53,7 +53,7 @@ module.exports = ('message', (message) =>
 		message.channel.send("已離開語音");
 		message.react("🐼");	
 		} catch (error) {
-		generalChannel.send("08偏不要滾");
+		message.channel.send("08偏不要滾");
 		message.react("🐼");
 		}
 	}
