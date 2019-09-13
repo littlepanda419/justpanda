@@ -3,12 +3,27 @@ const queue = new Map();
 module.exports = (msg,client) =>
 
 {
-	
+	/*
     const serverQueue = queue.get(message.guild.id);
     
     
-	
-	/*async function execute(message, serverQueue) {
+	if (message.content.toLowerCase()==="play") 
+		{
+		execute(message, serverQueue);
+		return;
+	   }
+	    if (message.content.toLowerCase()==="skip") 
+	   {
+		skip(message, serverQueue);
+		return;
+	   }
+		if (message.content.toLowerCase()==="stop") 
+	   {
+		stop(message, serverQueue);
+		return;
+	   }
+
+	async function execute(message, serverQueue) {
 		const args = message.content.split(' ');
 	
 		const voiceChannel = message.member.voiceChannel;
