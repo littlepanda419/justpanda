@@ -22,7 +22,7 @@ module.exports = (message,client) =>{
             .addField("**6.幫你估狗**","123",true)
             .addField("**7.我還想不到不過會有**","123",true)
             message.author.send(help);
-            message.channel.send("好喔!我已經把指令說明寄給你了");
+            message.channel.send("拿去啦臭乞丐");
         
     }
 }
