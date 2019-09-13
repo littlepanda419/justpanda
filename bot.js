@@ -1,4 +1,5 @@
 const Discord = require('discord.js');
+const commando = require('discord.js-commando');
 const client = new Discord.Client();
 const emote = require("./events/emote.js");
 const msg = require("./events/msg.js");
@@ -14,13 +15,19 @@ function addZero(i)
   }
 	
 client.on('ready', () =>{
-
 	var d = new Date();	
 	var h = addZero(d.getUTCHours()+8);
 	var m = addZero(d.getMinutes());
 	var s = addZero(d.getSeconds());
-
-	var generalChannel =  client.channels.get("594119720022573076");	  
+	var generalChannel =  client.channels.get("594119720022573076");
+	var Myinfo = new Discord.RichEmbed()
+		.addField("蛤","肏零呆蛤沙小",true)
+		.addField("我在幹嘛","我誰",true)
+		.setColor(0xFFFF00)
+		.setThumbnail(message.author.avatarURL)
+		.setFooter("阿這麼小你也要看")
+	generalChannel.sendEmbed(Myinfo);
+	 
 	client.user.setStatus('idle');
 	client.user.setActivity("扣ㄉ", { type: 'PLAYING' });		
 	generalChannel.send(" <@324536397803290626> bot已在 "+h+":"+m+":"+s+ " 時開始吃竹子。");
