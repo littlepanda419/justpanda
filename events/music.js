@@ -4,7 +4,7 @@ const client = new Discord.Client();
 
 function play(connection, message)
 {
-	var server =servers[message.guild.id]
+	var server =servers[message.guild.id];
 	server.dispatcher = connection.playStream(ytdl(sever.queue[0], {filter:"audioonly"}));
 	server.queue.shift();
 	server.dispatcher.on("end",function(){
@@ -12,7 +12,7 @@ function play(connection, message)
 		{
 		play(connection,message);
 	}
-	})
+	});
 }
 
 
