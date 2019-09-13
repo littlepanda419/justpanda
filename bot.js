@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const commando = require('discord.js-commando');
 const client = new Discord.Client();
 const emote = require("./events/emote.js");
 const msg = require("./events/msg.js");
