@@ -14,7 +14,7 @@ function addZero(i)
 	return i;
   }
 
-module.exports = (message,client) =>
+module.exports = ('message', (message) =>
 
 {    
 	var d = new Date();
@@ -110,4 +110,4 @@ module.exports = (message,client) =>
 	{
 		message.reply(zzch);
 	}
-};
+});
