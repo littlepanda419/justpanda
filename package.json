@@ -1,7 +1,7 @@
 {
 "name": "test",
 "description": "test",
-"version " : "0.0.0",
+"version " : "0.0.1",
 "main": "bot.js",
 "scripts": {
 "start" : "node bot.js"
@@ -9,6 +9,7 @@
  "dependencies":{
 		"discord.js": "11.5.0"	,		
 		"request": "2.81.0",
-		"cheerio": "0.22.0"		
+		"cheerio": "0.22.0",
+		"ytdl-core": "^0.7.24"
 	}
 }
