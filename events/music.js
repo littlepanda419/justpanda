@@ -28,7 +28,8 @@ module.exports =('message', (message) =>
 		message.channel.send("已加入語音");			
 		message.react("🐼");
 		server.queue.push(args);
-		} catch (error) {
+		} catch (error)
+		{
 			message.channel.send("進不去啦幹");
 			emoji(612549755502985247);
 			message.react(`${emoji(/*表情ID*/ )}`);
@@ -53,4 +54,4 @@ module.exports =('message', (message) =>
 		message.react("🐼");
 		}
 	}
-);
+}
