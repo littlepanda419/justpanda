@@ -12,7 +12,7 @@ function play(connection, message)
 		{
 		play(connection,message);
 	}
-});
+	})
 }
 
 
@@ -37,8 +37,6 @@ module.exports =('message', (message) =>
 	}
 	if(message.content.toLowerCase()==="play") 
 	{	
-		var server =server[message.guild.id];	
-		server.queue.push(args);
 		play(connection,message);
 	}
 
@@ -54,4 +52,4 @@ module.exports =('message', (message) =>
 		message.react("🐼");
 		}
 	}
-
+});
