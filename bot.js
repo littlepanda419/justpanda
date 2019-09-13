@@ -39,10 +39,10 @@ client.on('ready', () =>{
 client.on('message', (message) =>{
 	if(msg.author==client.user)   
 	return;		
-		time(msg,client);
-		music(msg,client);
-		emote(msg,client);
-		msg(msg,client);
+		time(message,client);
+		music(message,client);
+		emote(message,client);
+		msg(message,client);
 
 });
 client.login(process.env.BOT_TOKEN);
