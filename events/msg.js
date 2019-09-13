@@ -20,7 +20,8 @@ module.exports = ('message', (message) =>
 	var d = new Date();
 	var h = addZero(d.getUTCHours()+8);
 	var m = addZero(d.getMinutes());
-    var s = addZero(d.getSeconds());
+  	var s = addZero(d.getSeconds());
+	var generalChannel =  client.channels.get("594119720022573076");
     
    
 	
