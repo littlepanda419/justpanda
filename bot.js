@@ -12,26 +12,11 @@ function addZero(i)
 	}
 	return i;
   }
-
-
-
-
-
-	/*
-	{ LOCAL
-	const config = require("./config.json");
-	client.login(config.token);
-	}
-	{ INTERNET
-	client.login(process.env.BOT_TOKEN);
-	}	
-	*/
-
-
+	
 client.on('ready', () =>{
 
 	var d = new Date();	
-	var h = addZero(d.getHours()+8);
+	var h = addZero(d.getUTCHours()+8);
 	var m = addZero(d.getMinutes());
 	var s = addZero(d.getSeconds());
 
@@ -61,3 +46,13 @@ client.on('message', (message) =>{
 
 });
 client.login(process.env.BOT_TOKEN);
+
+/*
+	{ LOCAL
+	const config = require("./config.json");
+	client.login(config.token);
+	}
+	{ INTERNET
+	client.login(process.env.BOT_TOKEN);
+	}	
+	*/
