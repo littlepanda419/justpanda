@@ -5,7 +5,7 @@ const kcl = new Discord.Attachment('https://cdn.discordapp.com/attachments/59411
 const kvl = new Discord.Attachment('https://cdn.discordapp.com/attachments/594119720022573076/594556625155784724/unknown.png');
 const zzch = new Discord.Attachment('https://cdn.discordapp.com/attachments/512603339071160377/595194587866464256/65761563_2350292711718973_5573736612304519168_o.png');
 const pi  = new Discord.Attachment('https://truth.bahamut.com.tw/s01/201907/295c16d012c60f51b45fb37d629232ce.JPG');
-var generalChannel =  client.channels.get('594119720022573076');
+
 
 
 function addZero(i) 
@@ -28,7 +28,7 @@ module.exports = ('message', (message) =>
 	
 	if(message.content.toUpperCase()==="TT") 
 	{
- 	   generalChannel.send(h+":"+m+":"+s) ;
+ 	  message.channel.send(h+":"+m+":"+s);
 	}
 	
 	if (message.content === "欸欸欸你過來一下"||message.content ==="欸你過來一下"||message.content ==="欸你進來一下"
@@ -40,7 +40,7 @@ module.exports = ('message', (message) =>
 		message.channel.send("已加入語音");	
 		message.react("🐼");
 		} catch (error) {
-			generalChannel.send("進不去啦幹");
+			message.channel.send(h+":"+m+":"+s);
 			emoji(612549755502985247);
 			message.react(`${emoji(/*表情ID*/ )}`);
 		}
