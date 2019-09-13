@@ -1,12 +1,10 @@
 const Discord = require('discord.js')
 const queue = new Map();
-//const serverQueue = queue.get(message.guild.id);
-
 module.exports = (msg,client) =>
 
 {
 	
-   
+    const serverQueue = queue.get(message.guild.id);
     
     
 	
