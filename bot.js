@@ -4,7 +4,7 @@ const emote = require("./events/emote.js");
 const msg = require("./events/msg.js");
 const music = require("./events/music.js");
 const time = require("./events/time.js");
-
+const help = require("./events/help.js");
 function addZero(i) 
 	{
 	if (i < 10) {
@@ -45,6 +45,7 @@ client.on('message', (message) =>{
 	if(msg.author==client.user)   
 	return;		
 		time(message,client);
+		help(message,client);
 		music(message,client);
 		emote(message,client);
 		msg(message,client);
