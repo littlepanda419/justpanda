@@ -16,7 +16,7 @@ function play(connection, message)
 }
 
 
-module.exports = (msg,client) =>
+module.exports =('message', (message) =>
 {
 	if (message.content === "欸欸欸你過來一下"||message.content ==="欸你過來一下"||message.content ==="欸你進來一下"
 	||message.content ==="欸欸欸你進來一下"||message.content ==="過來一下"||message.content.toUpperCase()==="PANDAIN")
