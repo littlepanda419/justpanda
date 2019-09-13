@@ -1,106 +1,56 @@
-const Discord = require('discord.js')
-const queue = new Map();
-module.exports = (msg,client) =>
+const Discord = require('discord.js');
+const YTDL = require('ytdl-core');
+const client = new Discord.Client();
 
+function play(connection, message)
 {
-	/*
-    const serverQueue = queue.get(message.guild.id);
-    
-    
-	if (message.content.toLowerCase()==="play") 
+	var server =servers[message.guild.id]
+	server.dispatcher = connection.playStream(YTDL(sever.queue[0], {filter:"audioonly"}));
+	server.queue.shift();
+	server.dispatcher.on("end",function(){
+		if(server.queue[0])	 
 		{
-		execute(message, serverQueue);
-		return;
-	   }
-	    if (message.content.toLowerCase()==="skip") 
-	   {
-		skip(message, serverQueue);
-		return;
-	   }
-		if (message.content.toLowerCase()==="stop") 
-	   {
-		stop(message, serverQueue);
-		return;
-	   }
+		play(connection,message);
+	}
+});
+}
 
-	async function execute(message, serverQueue) {
-		const args = message.content.split(' ');
-	
-		const voiceChannel = message.member.voiceChannel;
-		if (!voiceChannel) return message.channel.send('You need to be in a voice channel to play music!');
-		const permissions = voiceChannel.permissionsFor(message.client.user);
-		if (!permissions.has('CONNECT') || !permissions.has('SPEAK')) {
-			return message.channel.send('I need the permissions to join and speak in your voice channel!');
+
+module.exports = (msg,client) =>
+{
+	if (message.content === "欸欸欸你過來一下"||message.content ==="欸你過來一下"||message.content ==="欸你進來一下"
+	||message.content ==="欸欸欸你進來一下"||message.content ==="過來一下"||message.content.toUpperCase()==="PANDAIN")
+	{
+		const musicchannel = message.member.voiceChannel;
+		try {
+		musicchannel.join();
+		var server =server[message.guild.id];
+		message.channel.send("已加入語音");			
+		message.react("🐼");
+		server.queue.push(args);
+		} catch (error) {
+			message.channel.send("進不去啦幹");
+			emoji(612549755502985247);
+			message.react(`${emoji(/*表情ID*/ )}`);
 		}
-	
-		const songInfo = await ytdl.getInfo(args[1]);
-		const song = {
-			title: songInfo.title,
-			url: songInfo.video_url,
-		};
-	
-		if (!serverQueue) {
-			const queueContruct = {
-				textChannel: message.channel,
-				voiceChannel: voiceChannel,
-				connection: null,
-				songs: [],
-				volume: 5,
-				playing: true,
-			};
-	
-			queue.set(message.guild.id, queueContruct);
-	
-			queueContruct.songs.push(song);
-	
-			try {
-				var connection = await voiceChannel.join();
-				queueContruct.connection = connection;
-				play(message.guild, queueContruct.songs[0]);
-			} catch (err) {
-				console.log(err);
-				queue.delete(message.guild.id);
-				return message.channel.send(err);
-			}
-		} else {
-			serverQueue.songs.push(song);
-			console.log(serverQueue.songs);
-			return message.channel.send(`${song.title} has been added to the queue!`);
+	}
+	if(message.content.toLowerCase()==="play") 
+	{	
+		var server =server[message.guild.id];	
+		server.queue.push(args);
+		play(connection,message);
+	}
+
+	if (message.content === "滾啦幹"||message.content.toUpperCase()==="PANDAOUT")
+	{
+		const musicchannel = message.member.voiceChannel;
+		try {
+		musicchannel.leave();
+		message.channel.send("已離開語音");
+		message.react("🐼");	
+		} catch (error) {
+		message.channel.send("08偏不要滾");
+		message.react("🐼");
 		}
-	
 	}
-	
-	function skip(message, serverQueue) {
-		if (!message.member.voiceChannel) return message.channel.send('You have to be in a voice channel to stop the music!');
-		if (!serverQueue) return message.channel.send('There is no song that I could skip!');
-		serverQueue.connection.dispatcher.end();
-	}
-	
-	function stop(message, serverQueue) {
-		if (!message.member.voiceChannel) return message.channel.send('You have to be in a voice channel to stop the music!');
-		serverQueue.songs = [];
-		serverQueue.connection.dispatcher.end();
-	}
-	
-	function play(guild, song) {
-		const serverQueue = queue.get(guild.id);
-	
-		if (!song) {
-			serverQueue.voiceChannel.leave();
-			queue.delete(guild.id);
-			return;
-		}
-	
-		const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
-			.on('end', () => {
-				console.log('Music ended!');
-				serverQueue.songs.shift();
-				play(guild, serverQueue.songs[0]);
-			})
-			.on('error', error => {
-				console.error(error);
-			});
-		dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
-    }*/
-    
 }
