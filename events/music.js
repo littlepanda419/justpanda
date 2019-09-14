@@ -27,10 +27,8 @@ module.exports =('message', (message) =>
 		const musicchannel = message.member.voiceChannel;
 		try {
 		musicchannel.join();
-		var server =server[message.guild.id];
 		message.channel.send("已加入語音");			
 		message.react("🐼");
-		server.queue.push(args);
 		} catch (error)
 		{
 			message.channel.send("進不去啦幹");
