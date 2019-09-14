@@ -1,20 +1,9 @@
 const Discord = require('discord.js');
-//onst fs = require('fs');
+//const fs = require('fs');
 const ytdl = require('ytdl-core');
 const client = new Discord.Client();
 
-function play(connection, message)
-{
-	var server =servers[message.guild.id];
-	server.dispatcher = connection.playStream(ytdl(sever.queue[0], {filter:"audioonly"}));
-	server.queue.shift();
-	server.dispatcher.on("end",function(){
-		if(server.queue[0])	 
-		{
-		play(connection,message);
-	}
-	});
-}
+
 
 
 	  
@@ -36,10 +25,7 @@ module.exports =('message', (message) =>
 			message.react(`${emoji(/*表情ID*/ )}`);
 		}
 	}
-	if(message.content.toLowerCase()==="play") 
-	{	
-		play(connection, message);
-	}
+	
 
 	if (message.content === "滾啦幹"||message.content.toUpperCase()==="PANDAOUT")
 	{
