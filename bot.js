@@ -61,7 +61,6 @@ client.on('message', (message) =>{
 		music(message,client);
 		emote(message,client);
 		msg(message,client);
-		play(client,message);
 
 });
 client.login(process.env.BOT_TOKEN);
