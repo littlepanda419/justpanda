@@ -15,7 +15,7 @@ var generalChannel =  client.channels.get("594119720022573076");
 
 client.on('warn', console.warn);
 client.on('error', console.error);
-client.on('diconnect', console.send("08被來捆阿"));
+client.on('diconnect', console.log("08被來捆阿"));
 
 
 client.on('ready', () =>{
