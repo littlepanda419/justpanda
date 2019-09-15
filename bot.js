@@ -7,7 +7,13 @@ const time = require("./events/time.js");
 const help = require("./events/help.js");
 const MusicClient = require('./struct/Client.js');
 const client = new MusicClient();
+
+require('dotenv').config();
 const { readdirSync } = require('fs');
+const { join } = require('path');
+const MusicClient = require('./struct/Client');
+const { Collection } = require('discord.js');
+
 
 var generalChannel =  client.channels.get("594119720022573076");
 
