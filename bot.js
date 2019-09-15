@@ -57,7 +57,7 @@ client.on('message', (message) =>{
 	return;		
 		time(message,client);
 		help(message,client);
-		music('message',async(message));
+		music(message,client);
 		emote(message,client);
 		msg(message,client);
 
