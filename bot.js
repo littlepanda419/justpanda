@@ -1,18 +1,22 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const ytdl = require('ytdl-core');
 const emote = require("./events/emote.js");
 const msg = require("./events/msg.js");
 const music = require("./events/music.js");
 const time = require("./events/time.js");
 const help = require("./events/help.js");
-function addZero(i) 
-	{
-	if (i < 10) {
-	  i = "0" + i;
-	}
-	return i;
-  }
-	
+
+var generalChannel =  client.channels.get("594119720022573076");
+
+
+
+
+client.on('warn', console.warn);
+client.on('error', console.error);
+client.on('diconnect', generalChannel.send("08被來捆阿"));
+
+
 client.on('ready', () =>{
 	var d = new Date();	
 	var h = addZero(d.getUTCHours()+8);
@@ -46,7 +50,7 @@ client.on('message', (message) =>{
 	return;		
 		time(message,client);
 		help(message,client);
-		music(message,client);
+		music(client,message,args,ops);
 		emote(message,client);
 		msg(message,client);
 
