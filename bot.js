@@ -7,6 +7,7 @@ const time = require("./events/time.js");
 const help = require("./events/help.js");
 const MusicClient = require('./struct/Client.js');
 const client = new MusicClient();
+const { readdirSync } = require('fs');
 
 var generalChannel =  client.channels.get("594119720022573076");
 
