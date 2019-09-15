@@ -5,13 +5,7 @@ const msg = require("./events/msg.js");
 const music = require("./events/music.js");
 const time = require("./events/time.js");
 const help = require("./events/help.js");
-const MusicClient = require('./struct/Client.js');
-const client = new MusicClient();
-
-require('dotenv').config();
-const { readdirSync } = require('fs');
-const { join } = require('path');
-const { Collection } = require('discord.js');
+const client = new Discord.Client();
 
 
 var generalChannel =  client.channels.get("594119720022573076");
@@ -26,12 +20,6 @@ function addZero(i)
   }
 
 
-
-const commandFiles = readdirSync(join(__dirname, 'commands')).filter(file => file.endsWith('.js'));
-for (const file of commandFiles) {
-	const command = require(join(__dirname, 'commands', `${file}`));
-	client.commands.set(command.name, command);
-}
 
 
 
