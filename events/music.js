@@ -2,7 +2,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 
-module.exports =(message,client) =>
+module.exports =('message', (message) =>
 {
 	if (message.content.toUpperCase()==="PANDAIN")
 	{
