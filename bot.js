@@ -6,6 +6,7 @@ const msg = require("./events/msg.js");
 const music = require("./events/music.js");
 const time = require("./events/time.js");
 const help = require("./events/help.js");
+const MusicClient = require('./struct/Client.js');
 
 var generalChannel =  client.channels.get("594119720022573076");
 
@@ -57,7 +58,7 @@ client.on('message', (message) =>{
 	return;		
 		time(message,client);
 		help(message,client);
-		music('message',async(message));
+		music(message,client);
 		emote(message,client);
 		msg(message,client);
 
