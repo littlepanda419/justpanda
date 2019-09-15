@@ -15,4 +15,4 @@ exports.run = async (client,message,args,ops)=>{
     let dispatcher = await connection.play(ytdl(args[0], {filter : 'audioonly'}));
     message.channel.send(`Now playing : ${info.title} `);
     client.user.setActivity(`${info.title}`, { type: 'PLAYING' });	
-}
+};
