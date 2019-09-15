@@ -7,7 +7,7 @@ const time = require("./events/time.js");
 const help = require("./events/help.js");
 const client = new Discord.Client();
 
-const PREFIX = toUpperCase('p.');
+const PREFIX = 'p.';
 var servers = {};
 
 var generalChannel =  client.channels.get("594119720022573076");
