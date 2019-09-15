@@ -1,4 +1,4 @@
-const Discord = require('discord.js')
+const Discord = require('discord.js');
 const client = new Discord.Client();
 
 const kcl = new Discord.Attachment('https://cdn.discordapp.com/attachments/594119720022573076/594555557709611033/unknown.png');
@@ -10,11 +10,11 @@ const pi  = new Discord.Attachment('https://truth.bahamut.com.tw/s01/201907/295c
 
 function addZero(i) 
 	{
-	if (i < 10) {
-	  i = "0" + i;
-	}
-	return i;
-  }
+		if (i < 10) {
+		i = "0" + i;
+		}
+		return i;
+ 	 }
 
 module.exports = ('message', (message) =>
 
