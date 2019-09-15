@@ -23,7 +23,7 @@ module.exports =('message',async(message)=>
 	{
 		const voiceChannel = message.member.voiceChannel;
 		if(!voiceChannel) return message.channel.send("阿不進語音是要怎麼聽歌啦猴子");
-		const permissions =voiceChannel.permissionsFOR(message.client.user);
+		const permissions =voiceChannel.permissionsFor(message.client.user);
 		if(!permissions.has('CONNECT')){
 			return message.channel.send("08沒權限連接啦幹");
 		}
