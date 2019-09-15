@@ -6,7 +6,7 @@ module.exports = (message,client) =>{
 
     function emoji(e_id)
     {
-        const e = client.emojis.find(emoji => emoji.id === e_id);
+        const e = client.emojis.find(emoji => emoji.id === e_id)
         return e;
     }
     if(message.content.toLocaleLowerCase()=="help")
@@ -20,9 +20,9 @@ module.exports = (message,client) =>{
             .addField("**4.管理**","123",true)
             .addField("**5.算數學**","123",true)
             .addField("**6.幫你估狗**","123",true)
-            .addField("**7.我還想不到不過會有**","123",true);
+            .addField("**7.我還想不到不過會有**","123",true)
             message.author.send(help);
             message.channel.send("拿去啦臭乞丐");
         
     }
-};
+}

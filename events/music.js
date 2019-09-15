@@ -1,6 +1,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const ytdl = require('ytdl-core');
+const ytdlDiscord = require('ytdl-core-discord');
+
 
 module.exports =('message',async(message)=>
 {
@@ -19,7 +21,7 @@ module.exports =('message',async(message)=>
 		}
 	}
   
-	if (message.content.toUpperCase()==="PLAY")
+	/*if (message.content.toUpperCase()==="PLAY")
 	{
 		const voiceChannel = message.member.voiceChannel;
 		if(!voiceChannel) return message.channel.send("阿不進語音是要怎麼聽歌啦猴子");
@@ -46,12 +48,10 @@ module.exports =('message',async(message)=>
 			console.error(error);
 			});
 			dispatcher.setVolumeLogarithmic(5 / 5);
+		}
+		*/
 
 
-
-
-
-	}
 	if (message.content.toUpperCase()==="PANDAOUT")
 	{
 		const musicchannel = message.member.voiceChannel;
