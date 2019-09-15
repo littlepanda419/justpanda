@@ -1,5 +1,4 @@
 const Discord = require('discord.js');
-const client = new Discord.Client();
 const ytdl = require('ytdl-core');
 const emote = require("./events/emote.js");
 const msg = require("./events/msg.js");
@@ -7,6 +6,7 @@ const music = require("./events/music.js");
 const time = require("./events/time.js");
 const help = require("./events/help.js");
 const MusicClient = require('./struct/Client.js');
+const client = new MusicClient();
 
 var generalChannel =  client.channels.get("594119720022573076");
 
@@ -18,6 +18,15 @@ function addZero(i)
 	}
 	return i;
   }
+
+
+
+const commandFiles = readdirSync(join(__dirname, 'commands')).filter(file => file.endsWith('.js'));
+for (const file of commandFiles) {
+	const command = require(join(__dirname, 'commands', `${file}`));
+	client.commands.set(command.name, command);
+}
+
 
 
 client.on('warn', console.warn);
