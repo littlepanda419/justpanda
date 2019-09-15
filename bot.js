@@ -7,6 +7,8 @@ const time = require("./events/time.js");
 const help = require("./events/help.js");
 const client = new Discord.Client();
 
+const PREFIX = toUpperCase('p.');
+var servers = {};
 
 var generalChannel =  client.channels.get("594119720022573076");
 
@@ -18,10 +20,6 @@ function addZero(i)
 	}
 	return i;
   }
-
-
-
-
 
 client.on('warn', console.warn);
 client.on('error', console.error);
@@ -39,7 +37,7 @@ client.on('ready', () =>{
 		.addField("我在幹嘛","我誰",true)
 		.setColor(0xFFFF00)
 		.setThumbnail("https://qpa.tw/wp-content/uploads/2019/05/%E7%86%8A%E8%B2%93-1.jpg")
-		.setFooter("阿這麼小你也要看")
+		.setFooter("阿這麼小你也要看");
 	generalChannel.send(Myinfo);
 	 
 	client.user.setStatus('idle');
@@ -48,8 +46,8 @@ client.on('ready', () =>{
 
 	var musicchannel = client.channels.get("506108715720769536");
 	try {
-		musicchannel.join();
-		generalChannel.send("已加入語音");			
+	//	musicchannel.join();
+	//	generalChannel.send("已加入語音");			
 	} catch (error) {
 		generalChannel.send("進不去啦幹");		
 	}
@@ -65,15 +63,47 @@ client.on('message', (message) =>{
 		emote(message,client);
 		msg(message,client);
 
-});
-client.login(process.env.BOT_TOKEN);
+		if (message.content.toUpperCase()==="PLAY")
+	{
+		 let args = message.content.substring(PREFIX.length).split (" ");
+	
+		switch (args[0])
+		{
+			case 'play':
 
-/*
-	{ LOCAL
-	const config = require("./config.json");
-	client.login(config.token);
-	}
-	{ INTERNET
-	client.login(process.env.BOT_TOKEN);
-	}	
-	*/
+			function play (connection , message)
+			{
+				var server = servers [message.guild.id];
+				server.dispatcher = connection.playStream(ytdl(server.queue[0], {filter: "audioonly"}));
+				server.queue.shift();
+				server.dispatcher.on ("end",function(){
+					if (server.queue[0]){
+						play (connection,message);
+					}else{
+						connection.disconnect();
+					}
+				});
+			}
+
+				if(!args[1]){
+					message.channel.send("you need to provide a link");
+					return;
+				}
+				if(!message.member.voiceChannel){
+					message.channel.send("you must be in a channel to let me join to");
+					return;
+				}
+				if(!server[message.guild.id]) server[message.guild.id] = {
+					queue: []
+				};
+        
+				var server = servers [message.guild.id];
+				server.queue.push(args[1]);
+
+				if (!message.guild.voiceConnection) message.member.voiceChannel.join() .then(function(connection){
+					play(connection,message);
+				});
+			}
+		}
+	});
+client.login(process.env.BOT_TOKEN);
