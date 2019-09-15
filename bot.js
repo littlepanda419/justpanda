@@ -60,7 +60,7 @@ client.on('message', (message) =>{
 		help(message,client);
 		music(message,client);
 		emote(message,client);
-		msg(message,client);
+		msg('message', (message));
 		play(client,message,args,ops);
 
 });
