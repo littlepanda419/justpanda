@@ -36,7 +36,7 @@ client.on('ready', () =>{
 		.addField("我在幹嘛","我誰",true)
 		.setColor(0xFFFF00)
 		.setThumbnail("https://qpa.tw/wp-content/uploads/2019/05/%E7%86%8A%E8%B2%93-1.jpg")
-		.setFooter("阿這麼小你也要看")
+		.setFooter("阿這麼小你也要看");
 	generalChannel.send(Myinfo);
 	 
 	client.user.setStatus('idle');
@@ -60,7 +60,7 @@ client.on('message', (message) =>{
 		help(message,client);
 		music(message,client);
 		emote(message,client);
-		msg('message', (message));
+		msg(message,client);
 		play(client,message,args,ops);
 
 });
