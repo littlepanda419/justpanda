@@ -1,8 +1,8 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
+const ytdl = require('ytdl-core');
 
-
-module.exports =('message', (message) =>
+module.exports =('message',async(message)=>
 {
 	if (message.content.toUpperCase()==="PANDAIN")
 	{
@@ -18,7 +18,40 @@ module.exports =('message', (message) =>
 			message.react(`${emoji(/*表情ID*/ )}`);
 		}
 	}
+  
+	if (message.content.toUpperCase()==="PLAY")
+	{
+		const voiceChannel = message.member.voiceChannel;
+		if(!voiceChannel) return message.channel.send("阿不進語音是要怎麼聽歌啦猴子");
+		const permissions =voiceChannel.permissionsFOR(message.client.user);
+		if(!permissions.has('CONNECT')){
+			return message.channel.send("08沒權限連接啦幹");
+		}
+		if(!permissions.has('SPEAK')){
+			return message.channel.send("08沒權限說話啦幹");
+		}
+		try{
+			var connection =await voiceChannel.join();
+		}catch(error)
+		{
+			console.error ("不能播啦幹")
+			return message.channel.send("不能播啦幹")
+		}
+		const dispatcher = connection.playStream(ytdl)(args[1])
+			.on ('end',()=> {
+				console.log('song end');
+				voiceChannel.leave();
+			})
+			.on('error',error =>{
+			console.error(error);
+			});
+			dispatcher.setVolumeLogarithmic(5 / 5);
 
+
+
+
+
+	}
 	if (message.content.toUpperCase()==="PANDAOUT")
 	{
 		const musicchannel = message.member.voiceChannel;
