@@ -11,11 +11,18 @@ const play = require("./events/play.js");
 var generalChannel =  client.channels.get("594119720022573076");
 
 
+function addZero(i) 
+	{
+	if (i < 10) {
+	  i = "0" + i;
+	}
+	return i;
+  }
 
 
 client.on('warn', console.warn);
 client.on('error', console.error);
-client.on('diconnect', () => console.log("08被來捆阿"));
+client.on('diconnect', () => generalChannel.send("08被來捆阿"));
 
 
 client.on('ready', () =>{
