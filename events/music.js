@@ -59,4 +59,4 @@ module.exports =(client,message,args,ops) =>
 		message.react("🐼");
 		}
 	}
-});
+};
