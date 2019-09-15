@@ -21,37 +21,50 @@ module.exports =('message',async(message)=>
 		}
 	}
   
-	/*if (message.content.toUpperCase()==="PLAY")
+	if (message.content.toUpperCase()==="PLAY")
 	{
-		const voiceChannel = message.member.voiceChannel;
-		if(!voiceChannel) return message.channel.send("阿不進語音是要怎麼聽歌啦猴子");
-		const permissions =voiceChannel.permissionsFor(message.client.user);
-		if(!permissions.has('CONNECT')){
-			return message.channel.send("08沒權限連接啦幹");
-		}
-		if(!permissions.has('SPEAK')){
-			return message.channel.send("08沒權限說話啦幹");
-		}
-		try{
-			var connection =await voiceChannel.join();
-		}catch(error)
+		 let args = message.content.substring(PREFIX.length).split (" ");
+	
+		switch (args[0])
 		{
-			console.error ("不能播啦幹")
-			return message.channel.send("不能播啦幹")
-		}
-		const dispatcher = connection.playStream(ytdl)(args[1])
-			.on ('end',()=> {
-				console.log('song end');
-				voiceChannel.leave();
-			})
-			.on('error',error =>{
-			console.error(error);
-			});
-			dispatcher.setVolumeLogarithmic(5 / 5);
-		}
-		*/
+			case 'play':
 
+			function play (connection , message)
+			{
+				var server = servers [message.guild.id];
+				server.dispatcher = connection.playStream(ytdl(server.queue[0], {filter: "audioonly"}));
+				server.queue.shift();
+				server.dispatcher.on ("end",function(){
+					if (server.queue[0]){
+						play (connection,message);
+					}else{
+						connection.disconnect();
+					}
+				});
+			}
 
+				if(!args[1]){
+					message.channel.send("you need to provide a link");
+					return;
+				}
+				if(!message.member.voiceChannel){
+					message.channel.send("you must be in a channel to let me join to");
+					return;
+				}
+				if(!server[message.guild.id]) server[message.guild.id] = {
+					queue: []
+				};
+        
+				var server = servers [message.guild.id];
+				server.queue.push(args[1]);
+
+				if (!message.guild.voiceConnection) message.member.voiceChannel.join() .then(function(connection){
+					play(connection,message);
+				}
+		
+		);
+	
+	}
 	if (message.content.toUpperCase()==="PANDAOUT")
 	{
 		const musicchannel = message.member.voiceChannel;
@@ -64,4 +77,5 @@ module.exports =('message',async(message)=>
 		message.react("🐼");
 		}
 	}
+}
 });
