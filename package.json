@@ -1,19 +1,19 @@
 {
-"name": "test",
-"description": "test",
-"version " : "0.0.0",
-"main": "bot.js",
-"scripts": {
-"start" : "node bot.js"
-},
- "dependencies":{
-		"discord.js": "11.5.0"	,		
-		"request": "2.81.0",
+	"name": "test",
+	"description": "test",
+	"version ": "0.0.0",
+	"main": "bot.js",
+	"scripts": {
+		"start": "node bot.js"
+	},
+	"dependencies": {
 		"cheerio": "0.22.0",
+		"discord.js": "11.5.0",
+		"dotenv": "^6.2.0",
+		"opusscript": "0.0.6",
+		"request": "2.81.0",
 		"ytdl-core": "^0.7.24",
-		"opusscript": "^0.0.6",
-		"ytdl-core-discord": "amishshah/ytdl-core-discord",
-		"dotenv": "^6.2.0"
+		"ytdl-core-discord": "amishshah/ytdl-core-discord"
 	},
 	"devDependencies": {
 		"eslint": "^5.14.0",

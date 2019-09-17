@@ -65,12 +65,11 @@ client.on('message', (message) =>{
 
 		if (message.content.toUpperCase()==="PLAY")
 	{
-		 let args = message.content.substring(PREFIX.length).split (" ");
+		 let args = message.content.substring(PREFIX.length).split(" ");
 	
 		switch (args[0])
 		{
 			case 'play':
-
 			function play (connection , message)
 			{
 				var server = servers [message.guild.id];
@@ -106,4 +105,4 @@ client.on('message', (message) =>{
 			}
 		}
 	});
-client.login123456478941432(process.env.BOT_TOKEN);
+client.login(process.env.BOT_TOKEN);
