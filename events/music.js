@@ -37,6 +37,7 @@ module.exports =('message',message=>
 					if (server.queue[0]){
                         play(connection,message);
                         message.channel.send("now playing your song");
+			console.log("recevied :" ); 
 					}else{
 						connection.disconnect();
 					}
