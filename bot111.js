@@ -1,11 +1,6 @@
-const {Client,Attachment} = require ('discord.js');
+/*const {Client,Attachment} = require ('discord.js');
 const bot = new Client();
-const ytdl = require("ytdl-core");
-//const opus = require("node-opus");
-//"node-gyp": "^5.0.3",
-//"node-opus": "^0.3.1",
-
-const token ='';
+const ytdl = require('ytdl-core');
 const PREFIX = 'p.';
 var servers = {};
 
@@ -18,7 +13,7 @@ bot.login(token);
 
     bot.on('message', message =>{
 
-        let args = message.content.substring(PREFIX.length).split(" ");
+        /*let args = message.content.substring(PREFIX.length).split(" ");
 	
 		switch (args[0])
 		{
@@ -30,15 +25,14 @@ bot.login(token);
 				server.queue.shift();
 				server.dispatcher.on ("end",function(){
 					if (server.queue[0]){
-						play(connection,message);
+                        play(connection,message);
+                        message.channel.send("now playing your song");
 					}else{
 						connection.disconnect();
 					}
                 });
                 
 			}
-
-
             if(!args[1]){
                 message.channel.send("you need to provide a link");
                 return;
@@ -62,3 +56,4 @@ bot.login(token);
  											
         }
     });
+*/
