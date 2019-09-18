@@ -1,6 +1,9 @@
-6/28 DISCORD�����H�Ыا��� HELLO WORLD
-6/28 �i�H�^���S�w�T�� (�کi�w�� �^�_v=ir
-6/29 ���\�[��HEROKU�W
-6/30 �յ۫إ߳��ɨt�� fail
-8/14 �h���O�i�X�J�W�D �}���۰ʶi�y�� �u�ƹϷ� 
-9/12 ���I�g��QQ
+6/28 DISCORD機器人創建完畢 HELLO WORLD
+6/28 可以回應特定訊息 (歐姆定律 回復v=ir
+6/29 成功架到HEROKU上
+6/30 試著建立報時系統 fail
+8/14 多指令進出入頻道 開機自動進語音 優化圖源 
+9/12 晚點寫啦QQ
+9/18 成功播放//FFMPEG ADD TO PATH  ...  NODE OPUS DELETE...  https://www.npmjs.com/package/discord.js-music-v11
+
+
