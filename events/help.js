@@ -1,5 +1,5 @@
 const Discord = require('discord.js')
-
+const PREFIX = 'p.';
 module.exports = (message,client) =>{
 
 //----------------------------------表情符號--------------------------------

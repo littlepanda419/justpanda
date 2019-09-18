@@ -6,9 +6,10 @@ const kvl = new Discord.Attachment('https://cdn.discordapp.com/attachments/59411
 const zzch = new Discord.Attachment('https://cdn.discordapp.com/attachments/512603339071160377/595194587866464256/65761563_2350292711718973_5573736612304519168_o.png');
 const pi  = new Discord.Attachment('https://truth.bahamut.com.tw/s01/201907/295c16d012c60f51b45fb37d629232ce.JPG');
 
+const PREFIX = 'p.';
+
 
 module.exports = ('message', (message) =>
-
 {    
 
 	function addZero(i) 
@@ -26,11 +27,14 @@ module.exports = ('message', (message) =>
   	var s = addZero(d.getSeconds());
 	var generalChannel =  client.channels.get('594119720022573076');    
    
-	
-	if(message.content.toUpperCase()==="TT") 
-	{
-		message.channel.send(h+":"+m+":"+s);	
-	}
+	let args = message.content.substring(PREFIX.length).split(" ");
+	switch (args[0])
+		{
+		case 'TT':
+		case 'tt':
+		message.channel.send(h+":"+m+":"+s);
+		break;
+		}
 
 	if(message.content.includes("胎死腹中"))
 	{
