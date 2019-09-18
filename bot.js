@@ -46,7 +46,7 @@ client.on('ready', () =>{
 
 	var musicchannel = client.channels.get("506108715720769536");
 	try {
-	//	musicchannel.join();
+		musicchannel.join();
 		generalChannel.send("已加入語音");			
 	} catch (error) {
 		generalChannel.send("進不去啦幹");		
