@@ -1,9 +1,11 @@
 const {Client,Attachment} = require ('discord.js');
 const bot = new Client();
 const ytdl = require("ytdl-core");
-var opus = require("node-opus");
+//const opus = require("node-opus");
+//"node-gyp": "^5.0.3",
+//"node-opus": "^0.3.1",
 
-const token ='NTk0MzczMDI0ODc5NDc2NzM3.XX3JNw.retK4HT0R8PNU4FFH8A2MsbB1Ks';
+const token ='';
 const PREFIX = 'p.';
 var servers = {};
 
