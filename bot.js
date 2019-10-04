@@ -29,7 +29,16 @@ client.on('diconnect', () => generalChannel.send("08被來捆阿"));
 
 client.on('ready', () =>{
 	var d = new Date();	
-	var h = addZero(d.getUTCHours()+8);
+	var h = d.getUTCHours()+8;
+	if (h > 24) 
+	{{
+	  h = h-24;
+	if (h < 10){
+	  h= "0" + h;
+	}
+	return h;
+	}}
+	
 	var m = addZero(d.getMinutes());
 	var s = addZero(d.getSeconds());
 	var generalChannel =  client.channels.get("594119720022573076");
