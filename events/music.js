@@ -30,18 +30,19 @@ module.exports =('message',message=>
 			case 'play':               
             function play (connection , message)
 			{
-				var server = servers [message.guild.id];				
-                 	        message.channel.send("now playing your song");
-				console.log("recevied :" ); 
-				server.dispatcher = connection.playStream(ytdl(server.queue[0],{filter: 'audioonly', quality: 'highestaudio', highWaterMark: 1<<25 }), {highWaterMark: 1});
-				server.queue.shift();
-				server.dispatcher.on ("end",function(){
-					if (server.queue[0]){
-                        play(connection,message);
-					}else{
-						connection.disconnect();
-					}
-                });
+			var server = servers [message.guild.id];				
+			message.channel.send("now playing your song");
+			console.log("recevied :" ); 
+				try
+			server.dispatcher = connection.playStream(ytdl(server.queue[0],{filter: 'audioonly', quality: 'highestaudio', highWaterMark: 1<<25 }), {highWaterMark: 1});
+			server.queue.shift();
+			server.dispatcher.on ("end",function(){
+				if (server.queue[0]){
+				play(connection,message);
+				}else{
+				connection.disconnect();
+				}
+		});
                 
 			}
             if(!args[1]){
