@@ -4,6 +4,7 @@
 6/30 試著建立報時系統 fail
 8/14 多指令進出入頻道 開機自動進語音 優化圖源 
 9/12 晚點寫啦QQ
-9/18 成功播放//FFMPEG ADD TO PATH  ...  NODE OPUS DELETE...  https://www.npmjs.com/package/discord.js-music-v11
-
+9/18 成功播放
+10/26 完整機器人成功
+10/27 報時系統
 
