@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const ytdl = require('ytdl-core');
+const YouTube = require('simple-youtube-api');
 const emote = require("./events/emote.js");
 const msg = require("./events/msg.js");
 const music = require("./events/music.js");
@@ -8,9 +9,10 @@ const help = require("./events/help.js");
 
 const client = new Discord.Client();
 
-const PREFIX = 'p.';
+const { token, PREFIX, GOOGLE_API_KEY } = require('./config');
+const youtube = new YouTube(GOOGLE_API_KEY);
 
-//const token = ("030");
+
 var generalChannel =  client.channels.get("594119720022573076");
 
 
@@ -29,16 +31,7 @@ client.on('diconnect', () => generalChannel.send("08被來捆阿"));
 
 client.on('ready', () =>{
 	var d = new Date();	
-	var h = d.getUTCHours()+8;
-	if (h > 24) 
-	{{
-	  h = h-24;
-	if (h < 10){
-	  h= "0" + h;
-	}
-	return h;
-	}}
-	
+	var h = addZero(d.getUTCHours()+8); if (h>=24)	h = "0"+(h-24);
 	var m = addZero(d.getMinutes());
 	var s = addZero(d.getSeconds());
 	var generalChannel =  client.channels.get("594119720022573076");
@@ -55,8 +48,8 @@ client.on('ready', () =>{
 
 	var musicchannel = client.channels.get("506108715720769536");
 	try {
-		musicchannel.join();
-		generalChannel.send("已加入語音");			
+	//	musicchannel.join();
+	//	generalChannel.send("已加入語音");
 	} catch (error) {
 		generalChannel.send("進不去啦幹");		
 	}
@@ -74,5 +67,5 @@ client.on('message', (message) =>{
 		msg(message,client);
 		
 	});
-client.login(process.env.BOT_TOKEN);
-//client.login(token);
+//client.login(process.env.BOT_TOKEN);
+client.login(token);

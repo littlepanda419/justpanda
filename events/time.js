@@ -10,8 +10,11 @@ module.exports = (msg,client) =>
 	return i;
   }
 
+
 var d = new Date();	
-var h = addZero(d.getHours()+8);
+var h = addZero(d.getUTCHours()+8); if (h>=24)	h = "0"+(h-24);
 var m = addZero(d.getMinutes());
 var s = addZero(d.getSeconds());
+
+
 }

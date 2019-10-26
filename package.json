@@ -13,6 +13,7 @@
 		"ffmpeg": "0.0.4",
 		"opusscript": "0.0.6",
 		"request": "2.81.0",
+		"simple-youtube-api": "^5.2.1",
 		"ytdl-core": "^0.29.7",
 		"ytdl-core-discord": "amishshah/ytdl-core-discord"
 	},
