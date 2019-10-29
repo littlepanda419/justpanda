@@ -12,7 +12,7 @@ client.on('warn', console.warn);
 
 client.on('error', console.error);
 
-client.on('ready', () => console.log('Yo this ready!'));
+client.on('ready', () => console.log('機器人已上線'));
 
 client.on('disconnect', () => console.log('I just disconnected, making sure you know, I will reconnect now...'));
 
@@ -49,7 +49,7 @@ module.exports = ('message', async msg =>
 				const video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
 				await handleVideo(video2, msg, voiceChannel, true); // eslint-disable-line no-await-in-loop
 			}
-			return msg.channel.send(`✅ Playlist: **${playlist.title}** has been added to the queue!`);
+			return msg.channel.send(`✅ 歌單: **${playlist.title}** 已經加入清單`);
 		} else {
 			try {
 				var video = await youtube.getVideo(url);
@@ -82,40 +82,42 @@ module.exports = ('message', async msg =>
 	} else if (command === 'skip') {
 		if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
 		if (!serverQueue) return msg.channel.send('There is nothing playing that I could skip for you.');
-		serverQueue.connection.dispatcher.end('Skip command has been used!');
+		msg.channel.send('已跳過歌曲');
+		serverQueue.connection.dispatcher.end('已跳過歌曲');
 		return undefined;
-	} else if (command === 'stop') {
+	} else if (command === 'quit') {
 		if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
 		if (!serverQueue) return msg.channel.send('There is nothing playing that I could stop for you.');
 		serverQueue.songs = [];
-		serverQueue.connection.dispatcher.end('Stop command has been used!');
+		msg.channel.send('已離開語音');
+		serverQueue.connection.dispatcher.end('已離開語音');
 		return undefined;
 	} else if (command === 'volume') {
 		if (!msg.member.voiceChannel) return msg.channel.send('You are not in a voice channel!');
 		if (!serverQueue) return msg.channel.send('There is nothing playing.');
-		if (!args[1]) return msg.channel.send(`The current volume is: **${serverQueue.volume}**`);
+		if (!args[1]) return msg.channel.send(`現在音量為: **${serverQueue.volume}**`);
 		serverQueue.volume = args[1];
 		serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
 		return msg.channel.send(`I set the volume to: **${args[1]}**`);
 	} else if (command === 'np') {
 		if (!serverQueue) return msg.channel.send('There is nothing playing.');
-		return msg.channel.send(`🎶 Now playing: **${serverQueue.songs[0].title}**`);
+		return msg.channel.send(`🎶 正在播放: **${serverQueue.songs[0].title}**`);
 	} else if (command === 'queue') {
 		if (!serverQueue) return msg.channel.send('There is nothing playing.');
-		return msg.channel.send(`__**Song queue:**__${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
-		**Now playing:** ${serverQueue.songs[0].title}`);
+		return msg.channel.send(`__**歌曲清單: **__${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
+		**正在播放: ** ${serverQueue.songs[0].title}`);
 	} else if (command === 'pause') {
 		if (serverQueue && serverQueue.playing) {
 			serverQueue.playing = false;
 			serverQueue.connection.dispatcher.pause();
-			return msg.channel.send('⏸ Paused the music for you!');
+			return msg.channel.send('⏸ 已暫停音樂');
 		}
 		return msg.channel.send('There is nothing playing.');
 	} else if (command === 'resume') {
 		if (serverQueue && !serverQueue.playing) {
 			serverQueue.playing = true;
 			serverQueue.connection.dispatcher.resume();
-			return msg.channel.send('▶ Resumed the music for you!');
+			return msg.channel.send('▶ 重新開始播放');
 		}
 		return msg.channel.send('There is nothing playing.');
 	}
@@ -157,7 +159,7 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
 		serverQueue.songs.push(song);
 		console.log(serverQueue.songs);
 		if (playlist) return undefined;
-		else return msg.channel.send(`✅ **${song.title}** has been added to the queue!`);
+		else return msg.channel.send(`✅ **${song.title}** 已被加入清單`);
 	}
 	return undefined;
 }
@@ -182,5 +184,5 @@ function play(guild, song) {
 		.on('error', error => console.error(error));
 	dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
 
-	serverQueue.textChannel.send(`🎶 Start playing: **${song.title}**`);
+	serverQueue.textChannel.send(`🎶 正在播放: **${song.title}**`);
 }
