@@ -58,7 +58,7 @@ client.on('ready', () =>{
   
 
 client.on('message', (message) =>{
-	if(msg.author==client.user)   
+	if(message.author==client.user)   
 	return;		
 		time(message,client);
 		help(message,client);
@@ -67,5 +67,6 @@ client.on('message', (message) =>{
 		msg(message,client);
 		
 	});
-//client.login(process.env.BOT_TOKEN);
-client.login(token);
+
+client.login(process.env.BOT_TOKEN);
+//client.login(token);
