@@ -8,7 +8,7 @@ const time = require("./events/time.js");
 const help = require("./events/help.js");
 
 const client = new Discord.Client();
-
+// "ffmpeg": "4.2.1", //https://ffmpeg.zeranoe.com/builds/
 const { token, PREFIX, GOOGLE_API_KEY } = require('./config');
 const youtube = new YouTube(GOOGLE_API_KEY);
 
@@ -68,5 +68,5 @@ client.on('message', (message) =>{
 		
 	});
 
-client.login(process.env.BOT_TOKEN);
-//client.login(token);
+//	client.login(process.env.BOT_TOKEN);
+client.login(token);

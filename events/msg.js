@@ -11,6 +11,8 @@ const PREFIX = 'p.';
 
 module.exports = ('message', (message) =>
 {    
+	if(message.author==client.user)   
+	return;
 
 	function addZero(i) 
 	{
@@ -38,7 +40,7 @@ module.exports = ('message', (message) =>
 
 	if(message.content.includes("胎死腹中"))
 	{
-		message.reply("你才吃飯嗆到喝水噎到");
+		message.reply("你才吃飯嗆到喝水噎到");t
 	}
 
 	if(message.content.toLowerCase()==="ping"){ // Check if message is "ping"
