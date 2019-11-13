@@ -6,14 +6,11 @@ const msg = require("./events/msg.js");
 const music = require("./events/music.js");
 const time = require("./events/time.js");
 const help = require("./events/help.js");
-
 const client = new Discord.Client();
-const { token, PREFIX, GOOGLE_API_KEY} = require('./config');
+const { token, PREFIX, GOOGLE_API_KEY} = require('./config.js');
 const youtube = new YouTube(GOOGLE_API_KEY);
 
-
 var generalChannel =  client.channels.get("594119720022573076");
-
 
 function addZero(i) 
 	{
@@ -21,12 +18,11 @@ function addZero(i)
 	  i = "0" + i;
 	}
 	return i;
-  }
+  	}
 
 client.on('warn', console.warn);
 client.on('error', console.error);
 client.on('diconnect', () => generalChannel.send("08被來捆阿"));
-
 
 client.on('ready', () =>{
 	var d = new Date();	
