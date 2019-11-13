@@ -3,8 +3,8 @@ const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
 
 const client = new Client({ disableEveryone: true });
-const {PREFIX, GOOGLE_API_KEY } = require('../config.js');
-const youtube = new YouTube(GOOGLE_API_KEY);
+const {PREFIX, GOOGLE_API_KEY } = require('../config');
+const youtube = new YouTube(process.env.GOOGLE_API_KEY);
 
 const queue = new Map();
 
