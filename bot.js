@@ -9,7 +9,7 @@ const help = require("./events/help.js");
 
 const client = new Discord.Client();
 const { token, PREFIX, google_api_key } = require('./config');
-const youtube = new YouTube(GOOGLE_API_KEY);
+const youtube = new YouTube(google_api_key);
 
 
 var generalChannel =  client.channels.get("594119720022573076");
