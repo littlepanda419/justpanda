@@ -20,6 +20,14 @@
 		"simple-youtube-api": "^5.2.1",
 		"ytdl-core": "^0.29.7",
 		"ytdl-core-discord": "amishshah/ytdl-core-discord"
+		"simple-youtube-api": "^5.2.1",
+		"ytdl-core": "^0.29.7",
+		"google": "2.1.0",
+   		"@vitalets/google-translate-api": "3.0.0",
+  		"moment": "2.24.0",
+		"moment-timezone": "0.5.27",
+ 		"ms": "2.1.2",
+ 		"weather-js": "2.0.0"
 	},
 	"devDependencies": {
 		"eslint": "^5.16.0",
