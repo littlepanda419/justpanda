@@ -20,7 +20,7 @@
 		"simple-youtube-api": "^5.2.1",
 		"ytdl-core": "^0.29.7",
 		"ytdl-core-discord": "amishshah/ytdl-core-discord"
-		"simple-youtube-api": "^5.2.1",
+		"simple-youtube-api" : "^5.2.1",
 		"ytdl-core": "^0.29.7",
 		"google": "2.1.0",
    		"@vitalets/google-translate-api": "3.0.0",
