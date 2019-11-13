@@ -8,8 +8,8 @@ const time = require("./events/time.js");
 const help = require("./events/help.js");
 
 const client = new Discord.Client();
-const { token, PREFIX, google_api_key } = require('./config');
-const youtube = new YouTube(google_api_key);
+const { token, PREFIX, GOOGLE_API_KEY} = require('./config');
+const youtube = new YouTube(GOOGLE_API_KEY);
 
 
 var generalChannel =  client.channels.get("594119720022573076");
