@@ -1,7 +1,7 @@
 {
-	"name": "test",
+	"name": "panda",
 	"description": "test",
-	"version ": "0.0.0",
+	"version ": "1.0.0",
 	"main": "bot.js",
 	"scripts": {
 		"start": "node bot.js"
