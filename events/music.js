@@ -12,11 +12,10 @@ client.on('warn', console.warn);
 
 client.on('error', console.error);
 
-/*client.on('ready', () => console.log('機器人已上線'));
+client.on('ready', () => {
+		console.log('機器人已上線');
+	});
 
-client.on('disconnect', () => console.log('I just disconnected, making sure you know, I will reconnect now...'));
-
-client.on('reconnecting', () => console.log('I am reconnecting now!'));*/
 
 module.exports = ('message', async msg => 
 { // eslint-disable-line
