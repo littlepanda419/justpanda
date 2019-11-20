@@ -61,7 +61,7 @@ client.on('ready', () =>{
   
 
 client.on('message', (message) =>{
-	if(msg.author==client.user)   
+	if(message.author==client.user)   
 	return;		
 		time(message,client);
 		help(message,client);
