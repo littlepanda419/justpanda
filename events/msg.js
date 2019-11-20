@@ -11,7 +11,9 @@ const PREFIX = 'p.';
 
 module.exports = ('message', (message) =>
 {    
-
+	if(message.author==client.user)   
+	return;
+	
 	function addZero(i) 
 	{
 		if (i < 10) {
