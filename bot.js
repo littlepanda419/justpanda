@@ -8,6 +8,7 @@ const time = require("./events/time.js");
 const help = require("./events/help.js");
 const say = require("./events/say.js");
 const {google} = require('googleapis');
+const ignore = require('ignore-errors');
 
 const client = new Discord.Client();
 
@@ -69,5 +70,5 @@ client.on('message', (message) =>{
 		msg(message,client);
 		say(message,client);
 	});
-client.login(process.env.BOT_TOKEN);
-//client.login(token);
+//client.login(process.env.BOT_TOKEN);
+client.login(token);

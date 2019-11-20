@@ -1,6 +1,8 @@
 const { Client, Util } = require('discord.js');
 const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
+const ignore = require('ignore-errors');
+
 
 const client = new Client({ disableEveryone: true });
 const {PREFIX, GOOGLE_API_KEY } = require('../config.js');
@@ -30,7 +32,7 @@ module.exports = ('message', async msg =>
 	let command = msg.content.toLowerCase().split(' ')[0];
 	command = command.slice(PREFIX.length)
 
-	if (command === 'play') {
+	if (command === 'play'||command ==='p') {
 		const voiceChannel = msg.member.voiceChannel;
 		if (!voiceChannel) return msg.channel.send('I\'m sorry but you need to be in a voice channel to play music!');
 		const permissions = voiceChannel.permissionsFor(msg.client.user);
@@ -45,8 +47,8 @@ module.exports = ('message', async msg =>
 			const playlist = await youtube.getPlaylist(url);
 			const videos = await playlist.getVideos();
 			for (const video of Object.values(videos)) {
-				const video2 = await youtube.getVideoByID(video.id); // eslint-disable-line no-await-in-loop
-				await handleVideo(video2, msg, voiceChannel, true); // eslint-disable-line no-await-in-loop
+				const video2 = await youtube.getVideoByID(video.id);
+				await handleVideo(video2, msg, voiceChannel, true); 
 			}
 			return msg.channel.send(`✅ 歌單: **${playlist.title}** 已經加入清單`);
 		} else {
@@ -56,9 +58,7 @@ module.exports = ('message', async msg =>
 				try {
 					var videos = await youtube.searchVideos(searchString, 10);
 					let index = 0;
-					msg.channel.send(`__**Song selection:**__${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}
-					Please provide a value to select one of the search results ranging from 1-10.`);
-					// eslint-disable-next-line max-depth
+					msg.channel.send(`__**歌曲選擇:**__${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}請在10秒內輸入數字來選擇歌曲!`);
 					try {
 						var response = await msg.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 11, {
 							maxMatches: 1,
@@ -67,13 +67,13 @@ module.exports = ('message', async msg =>
 						});
 					} catch (err) {
 						console.error(err);
-						return msg.channel.send('No or invalid value entered, cancelling video selection.');
+						return msg.channel.send('未收到回覆或收到不正確的數值，已停止選擇，請重新點歌。');
 					}
 					const videoIndex = parseInt(response.first().content);
 					var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
 				} catch (err) {
 					console.error(err);
-					return msg.channel.send('🆘 I could not obtain any search results.');
+					return msg.channel.send('🆘 夭壽骨喔 派ㄎㄧㄚ拉。');
 				}
 			}
 			return handleVideo(video, msg, voiceChannel);
@@ -103,8 +103,13 @@ module.exports = ('message', async msg =>
 		return msg.channel.send(`🎶 正在播放: **${serverQueue.songs[0].title}**`);
 	} else if (command === 'queue') {
 		if (!serverQueue) return msg.channel.send('There is nothing playing.');
-		return msg.channel.send(`__**歌曲清單: **__${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}
-		**正在播放: ** ${serverQueue.songs[0].title}`);
+		/*var musicqueue = new Discord.RichEmbed()
+		.addField(" ",`__**歌曲清單: **__${serverQueue.songs.map(song => `**-** ${song.title}`,true)
+		.setColor(0xFFFF00)
+		.setFooter("阿這麼小你也要看");
+		msg.channel.send(musicqueue);*/
+		return msg.channel.send(`__**歌曲清單: **__${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}**正在播放: ** ${serverQueue.songs[0].title}`);
+		/*need to be embed*/
 	} else if (command === 'pause') {
 		if (serverQueue && serverQueue.playing) {
 			serverQueue.playing = false;
@@ -173,7 +178,7 @@ function play(guild, song) {
 	}
 	console.log(serverQueue.songs);
 
-	const dispatcher = serverQueue.connection.playStream(ytdl(song.url))
+	const dispatcher = serverQueue.connection.playStream(ytdl(song.url), {bitrate: 128000 /* 192kbps */})
 		.on('end', reason => {
 			if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
 			else console.log(reason);
