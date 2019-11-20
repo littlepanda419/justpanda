@@ -5,7 +5,7 @@ const ignore = require('ignore-errors');
 
 
 const client = new Client({ disableEveryone: true });
-const {PREFIX, GOOGLE_API_KEY } = require('../config.js');
+const {PREFIX,PREFIX2, GOOGLE_API_KEY } = require('../config.js');
 const youtube = new YouTube(GOOGLE_API_KEY);
 
 const queue = new Map();
@@ -20,9 +20,9 @@ client.on('ready', () => {
 
 
 module.exports = ('message', async msg => 
-{ // eslint-disable-line
+{
 	if (msg.author.bot) return undefined;
-	if (!msg.content.startsWith(PREFIX)) return undefined;
+	if (!(msg.content.startsWith(PREFIX) ^ msg.content.startsWith(PREFIX2))) return undefined;
 
 	const args = msg.content.split(' ');
 	const searchString = args.slice(1).join(' ');
@@ -47,7 +47,13 @@ module.exports = ('message', async msg =>
 			const playlist = await youtube.getPlaylist(url);
 			const videos = await playlist.getVideos();
 			for (const video of Object.values(videos)) {
-				const video2 = await youtube.getVideoByID(video.id);
+				try {
+					const video2 = await youtube.getVideoByID(video.id);	
+				} catch (err) {
+					console.error(err)
+				}
+				
+
 				await handleVideo(video2, msg, voiceChannel, true); 
 			}
 			return msg.channel.send(`✅ 歌單: **${playlist.title}** 已經加入清單`);

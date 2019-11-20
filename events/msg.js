@@ -6,14 +6,15 @@ const kvl = new Discord.Attachment('https://cdn.discordapp.com/attachments/59411
 const zzch = new Discord.Attachment('https://cdn.discordapp.com/attachments/512603339071160377/595194587866464256/65761563_2350292711718973_5573736612304519168_o.png');
 const pi  = new Discord.Attachment('https://truth.bahamut.com.tw/s01/201907/295c16d012c60f51b45fb37d629232ce.JPG');
 const {google} = require('googleapis');
-const PREFIX = 'p.';
+
+const {PREFIX,PREFIX2} = require('../config.js');
 
 
-module.exports = ('message', (message) =>
+module.exports = ('message', message =>
 {    
 	if(message.author==client.user)   
 	return;
-	
+
 	function addZero(i) 
 	{
 		if (i < 10) {
@@ -29,21 +30,23 @@ module.exports = ('message', (message) =>
   	var s = addZero(d.getSeconds());
 	var generalChannel =  client.channels.get('594119720022573076');
 
-	let args = message.content.substring(PREFIX.length).split(" ");
-	switch (args[0])
-		{
-		case 'TT':
-		case 'tt':
+	if (!(message.content.startsWith(PREFIX) ^ message.content.startsWith(PREFIX2)))
+	return undefined;
+
+	let command = message.content.toLowerCase().split(' ')[0];
+		command = command.slice(PREFIX.length)
+		
+		
+	if (command ==='tt') {
 		message.channel.send(h+":"+m+":"+s);
-		break;
 		}
 
-	if(message.content.includes("胎死腹中"))
+	if(command.includes("胎死腹中"))
 	{
 		message.reply("你才吃飯嗆到喝水噎到");
 	}
 
-	if(message.content.toLowerCase()==="ping"){ // Check if message is "ping"
+	if(command.toLowerCase()==="ping"){ // Check if message is "ping"
 			message.channel.send("Pinging ...") // Placeholder for pinging ... 
 			.then((msg) => { // Resolve promise
 				msg.edit("Ping: " + (Date.now() - msg.createdTimestamp)); // Edits message with current timestamp minus timestamp of message
@@ -51,32 +54,32 @@ module.exports = ('message', (message) =>
 			});
 		}
 
-	if(message.content ==="歐姆定律") 
+	if(command ==="歐姆定律") 
 	{
 		message.reply("V=IR , I=V/R , R= V/I");
 	}
-	if(message.content.includes("派"))
+	if(command.includes("派"))
 	{
 		message.reply(pi);
 	}
-	if(message.content.includes("怕"))
+	if(command.includes("怕"))
 	{
 		message.channel.send("gan gan gan gan gan 挖就ㄍㄧㄚㄟ");
 	}
-	if(message.content.toUpperCase()==="KVL") 
+	if(command.toUpperCase()==="KVL") 
 	{
 		message.reply(kvl);
 	}
-	if(message.content.toUpperCase()==="KCL") 
+	if(command.toLowerCase()==="kcl") 
 	{
 		message.reply(kcl);
 	}
-	if(message.content.toUpperCase()==="自走其") 
+	if(command.toUpperCase()==="自走其") 
 	{
 		message.reply(zzch);
 	}
 	
-	if (message.content.toUpperCase()==="PANDAIN")
+	if (command.toUpperCase()==="PANDAIN")
 	{
 		const musicchannel = message.member.voiceChannel;
 		try {
@@ -90,7 +93,7 @@ module.exports = ('message', (message) =>
 			message.react(`${emoji(/*表情ID*/ )}`);
 		}
 	}
-	if (message.content.toUpperCase()==="PANDAOUT")
+	if (command.toUpperCase()==="PANDAOUT")
 	{
 		const musicchannel = message.member.voiceChannel;
 		try {

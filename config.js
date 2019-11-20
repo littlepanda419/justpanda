@@ -1,9 +1,7 @@
 exports.token = '';
+exports.BOT_TOKEN = '';
 
 exports.PREFIX = 'p.';
+exports.PREFIX2 = 'P.';
 
 exports.GOOGLE_API_KEY = "";
-
-exports.private_key= "";
-
-exports.client_email="yoyoandjoy419@gmail.com";

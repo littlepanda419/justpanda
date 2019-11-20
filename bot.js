@@ -70,5 +70,5 @@ client.on('message', (message) =>{
 		msg(message,client);
 		say(message,client);
 	});
-client.login(process.env.BOT_TOKEN);
-//client.login(token);
+//client.login(process.env.BOT_TOKEN);
+client.login(token);
