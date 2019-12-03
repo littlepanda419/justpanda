@@ -7,6 +7,6 @@ const PREFIX = 'p.';
 module.exports = (msg,client) =>
 {
 	//client.channels.get("594119720022573076").send(console.);
-
+"https://www.youtube.com/watch?v=GmENmbrh0EE"
 
 }

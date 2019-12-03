@@ -44,20 +44,19 @@ module.exports = ('message', async msg =>
 		}
 
 		if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
-			const playlist = await youtube.getPlaylist(url);
+			try {
+			const playlist = await youtube.getPlaylist(url);			
 			const videos = await playlist.getVideos();
-			for (const video of Object.values(videos)) {
-				try {
-					const video2 = await youtube.getVideoByID(video.id);	
+			for (const video of Object.values(videos)) {				
+				const video2 = await youtube.getVideoByID(video.id);
+				await handleVideo(video2, msg, voiceChannel, true);
+				}			
+				return msg.channel.send(`✅ 歌單: **${playlist.title}** 已經加入清單`);				
 				} catch (err) {
-					console.error(err)
+					console.error(`清單中有私人影片: ${err}`);
+					msg.channel.send(`清單中有私人影片，移除後可正常點歌`);
 				}
-				
-
-				await handleVideo(video2, msg, voiceChannel, true); 
-			}
-			return msg.channel.send(`✅ 歌單: **${playlist.title}** 已經加入清單`);
-		} else {
+			} else {
 			try {
 				var video = await youtube.getVideo(url);
 			} catch (error) {

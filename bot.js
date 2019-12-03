@@ -3,22 +3,23 @@ const ytdl = require('ytdl-core');
 const YouTube = require('simple-youtube-api');
 const emote = require("./events/emote.js");
 const msg = require("./events/msg.js");
+//const puc = require("./events/pic.js");
 const music = require("./events/music.js");
 const time = require("./events/time.js");
 const help = require("./events/help.js");
 const say = require("./events/say.js");
 const {google} = require('googleapis');
 const ignore = require('ignore-errors');
+var colors = require('colors');
+
 
 const client = new Discord.Client();
-
 const { token, PREFIX, GOOGLE_API_KEY } = require('./config');
 const youtube = new YouTube(GOOGLE_API_KEY);
 
 
+
 var generalChannel =  client.channels.get("594119720022573076");
-
-
 function addZero(i) 
 	{
 	if (i < 10) {
@@ -33,6 +34,7 @@ client.on('diconnect', () => generalChannel.send("08被來捆阿"));
 
 
 client.on('ready', () =>{
+	console.time('start');
 	var d = new Date();	
 	var h = addZero(d.getUTCHours()+8); if (h>=24)	h = "0"+(h-24);
 	var m = addZero(d.getMinutes());
@@ -44,10 +46,10 @@ client.on('ready', () =>{
 		.setColor(0xFFFF00)
 		.setThumbnail("https://qpa.tw/wp-content/uploads/2019/05/%E7%86%8A%E8%B2%93-1.jpg")
 		.setFooter("阿這麼小你也要看");
-	generalChannel.send(Myinfo);	 
+	generalChannel.send(Myinfo);	 //洗頻大師
 	client.user.setStatus('idle');
 	client.user.setActivity("扣ㄉ", { type: 'PLAYING' });		
-	generalChannel.send(" <@324536397803290626> bot已在 "+h+":"+m+":"+s+ " 時開始吃竹子。");
+	generalChannel.send(" <@324536397803290626> bot已在 "+h+":"+m+":"+s+ " 時開始吃竹子。");  //洗頻大師
 
 	var musicchannel = client.channels.get("506108715720769536");
 	try {
@@ -56,7 +58,8 @@ client.on('ready', () =>{
 	} catch (error) {
 		generalChannel.send("進不去啦幹");		
 	}
-	console.log("機器人已上線");
+	console.log("%s\x1b[33m",colors.rainbow ("機器人已上線"));
+	console.timeEnd('start');
 });
   
 
@@ -68,6 +71,7 @@ client.on('message', (message) =>{
 		music(message,client);
 		emote(message,client);
 		msg(message,client);
+		//pic(message,client);
 		say(message,client);
 	});
 //client.login(process.env.BOT_TOKEN);
