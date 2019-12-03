@@ -1,1 +1,3 @@
-123123
+1. 下載 vs code
+2. 下載 node.js
+3. 終端機 npm install
