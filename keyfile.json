@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "pandaaaaaaaa",
+  "private_key_id": "7f45d8c48ec9d9f698e7d6fe2d9fd64b443e1b5e",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQCdpj3LSg8JA+sl\nGcaX5eARpdN53Snf7KLNl+DjyyPW7fm1Im0IihVWcCr+gaMC056O0ztezc+rl8/N\ncISJp1lwgT2fYxgTinDz6s2C+c8LOmFxphhbP+2iKf9GM4DCoP81O1G6M7UzUlX6\n37F9h5lfIwZmpePm9Mkb5ORDnNiv4VEOPJJimZFhYo2pvazAObJ0Xkc3Dn6DPKHU\ne0Wu+7+HdZUz128e1Y8OASuSp1ZK319EgQT9QjzPFyyE6Uj4oxRkihQUZsPT/nUn\nRxqQFYIMMRzwIS2JIQaqM7dJDChc1CkvKg5jxUlOt1ZHwgRxnOtBOkrY42qfKofN\n2GMuow2/AgMBAAECggEASCC1uAtvupe035od7wRpEpn0mhZyoLVzPS5GYeJgyObD\nbzjLevM2VQBn416rltD8g+soCDWQ1LjWBe/7a8GJ3bv71i8v5kzaZfbhRRIHRONW\njvlHvoQOtLmTRmqs+B9R9Ghp+Y/L0SnUFb5/xeei59CuDovKrDIFy0HboAWkbD8q\nAbPrO+Sb+kkMcDlBQPcml6+ZrBQBJ7SsHlG267wKw4fd1f51dTwZ/HCawLwNsgbX\n6JpYTQrEHXn6bAsZZK/rgCa32UY51wWB7On93bE57wYvsObp/lPZS3Gczm62ZIbR\ncddXYlUDj/pJt3XpY+tGXFia53gmPAkFel2ZausoMQKBgQDOawdiAHdDpXnol/rD\n8DzBfQ127lPBXTTo29JgXy4UwVMyUnPKs0ueGYkCH9ejfN33tx4x5Uze0fbOlUVN\nLPI/mD0lwDGZoR8d43s7WvoN83/9RL4axwUnqVWcYVttZOemJwu/n54jmxrFVjrT\n7an7HSppgLp+26JTuenb8ZtHDwKBgQDDhFlGOXhV2IS+JHUWjBnalfVIGwVocZyt\nhJykXHyMzB0odByz2ssuNoIQZVYNoxgt8tZ/wNwvCIt8ktf4bwGvtIipOXiZZ63/\nWAOzvGdyZ2IdE9hs60VLkjTXmOvEHVa3pOp4Bf0Dr/M+dUxs7PmBZZFzgXKrElz1\nqvwx3XVOUQKBgQC9gFjIyfCz88jVliErnPPKFooz81yFGpKmbJjYzMi7WTiN7FBN\neQkk3gCAKMeJWetVrZFU8VP/A/d3dGapEWhcpeENNULT7a1pfRv3Q/BounF4DJIS\ndz/uR3FHHcIXzhk02ofYpitCOPT80cs0IO56kS4MqZeNOwntn7Jor4iEVQKBgQC3\nLM/XExDCnNAAtHdeYHP4bnYWz/oJGCgKCSwYcO3fm3vV4rLhbiLdcQP6CHbO3/ZP\nVivQFQg0qHTGiWz9vEKAM0u1/7oVPyWtDPCq++CPNnydcXJa2TFa0+fd9c8tNa+A\n7mkdeb7KLZZe9dZcVsiLinTzGlwsGlAtebw9m5XDgQKBgCumK9dDK8hGja15giNP\nRFGUxVL/y76TCqLLfyfhcBtGfRtNQ6i5QXwSq6yFoBrEnvHe2gE4ysTIvlDzmQwX\nx9lr96r2tcNEHZxg16g+DA/rMGwgh5JBaJEcVfQYu+aKAFRhoPI6gGKmjBjLluIa\nRMXOdff+LKzvTVMmo6OgZ57/\n-----END PRIVATE KEY-----\n",
+  "client_email": "youtube-api@pandaaaaaaaa.iam.gserviceaccount.com",
+  "client_id": "110610952468921044835",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/youtube-api%40pandaaaaaaaa.iam.gserviceaccount.com"
+}
