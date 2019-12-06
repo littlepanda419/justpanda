@@ -21,71 +21,6 @@ const { token, PREFIX, GOOGLE_API_KEY } = require('./config');
 const youtube = new YouTube(GOOGLE_API_KEY);
 
 
-var OAUTH2_CLIENT_ID = '__YOUR_CLIENT_ID__';
-var OAUTH2_SCOPES = [
-  'https://www.googleapis.com/auth/youtube'
-];
-/*const header = { "alg": "HS256", "typ": "JWT" };
-const encodedHeader = Buffer.from(JSON.stringify(header)).toString('base64');
-const payload = { username: 'panda' };
-const encodedPayload = Buffer.from(JSON.stringify(payload)).toString('base64');
-const jwtSecret = 'secretKey';
-const signature = crypto.createHmac('sha256', jwtSecret).update(encodedHeader + '.' + encodedPayload).digest('base64');
-
-const gtoken = new GoogleToken({
-	keyFile: './auth.json',
-	scope: ['https://www.googleapis.com/auth/youtube'] 
-  });
-  gtoken.getToken((err,) => {
-	if (err) {
-	  console.log(err);
-	  return;
-	}
-  });
-
-const key = require('./auth.json');
-const scopes = 'https://www.googleapis.com/auth/youtube';
-//const jwt = new google.auth.JWT(key.client_email, null, key.private_key, scopes);
-const view_id = 'panda';
-
-process.env.GOOGLE_APPLICATION_CREDENTIALS = './auth.json';
-gapi.auth.authorize({
-    client_id: OAUTH2_CLIENT_ID,
-    scope: OAUTH2_SCOPES,
-    immediate: true
-  }, handleAuthResult);
-}
-const secret = 'secret';
-const tok = jwt.sign({
-		"username": "panda",
-		"userID": 1,
-		"iat": 1575458692,
-		"exp": 1576322692
-    },
-    secret, {
-        expiresIn: "10days"
-    },
-    function(err, tok) {
-        if (err) {
-            console.log(err);
-        } else {
-            console.log(tok);
-        }
-	});
-	*/
-  function checkAuth() {
-  gapi.auth.authorize({
-    client_id: OAUTH2_CLIENT_ID,
-    scope: OAUTH2_SCOPES,
-    immediate: true
-  }, handleAuthResult);
-}
-
- 
-
-
-
-
 
 var generalChannel =  client.channels.get("594119720022573076");
 function addZero(i) 
@@ -140,5 +75,5 @@ client.on('message', (message) =>{
 		//pic(message,client);
 		say(message,client);
 	});
-//client.login(process.env.BOT_TOKEN);
-client.login(token);
+client.login(process.env.BOT_TOKEN);
+//client.login(token);
