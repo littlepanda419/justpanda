@@ -3,6 +3,9 @@
 	"description": "play tons of music ",
 	"version ": "1.0.0",
 	"main": "bot.js",
+	"engines": {
+    		"node": "10.16.x"
+  	}
 	"scripts": {
 		"preinstall" : "node gcpSetup.js",
 		"start": "node bot.js"
