@@ -28,7 +28,8 @@
 		"ytdl-core": "~1.0.0",
 		"ytdl-core-discord": "amishshah/ytdl-core-discord"
 	},
-	"devDependencies": {},
+	"devDependencies": {
+	},
 	"eslintConfig": {
 		"extends": "aqua/node"
 	}
