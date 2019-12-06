@@ -4,7 +4,7 @@
 	"version ": "1.0.0",
 	"main": "bot.js",
 	"scripts": {
-		"preinstall" : "node gcpSetup.js"
+		"preinstall" : "node gcpSetup.js",
 		"start": "node bot.js"
 	},
 	"dependencies": {
