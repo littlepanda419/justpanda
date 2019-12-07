@@ -17,23 +17,7 @@ const {auth} = require('google-auth-library');
 
 const client = new Discord.Client();
 const { token, PREFIX, GOOGLE_API_KEY } = require('./config');
-
 const youtube = google.youtube('v3');
-
-const oauth2Client = new google.auth.OAuth2(
-	"466177097013-i8btthituailfi880mqkpptjvgirn5bu.apps.googleusercontent.com",
-	"oyMknjk9C9ThX20u1LdUTNof",
-	["urn:ietf:wg:oauth:2.0:oob","http://localhost"]
-  );
-  const scopes = [
-	'https://www.googleapis.com/auth/youtube'
-  ];
-  const url = oauth2Client.generateAuthUrl({
-	// 'online' (default) or 'offline' (gets refresh_token)
-	access_type: 'offline',
-  });
-
-
 
 var generalChannel =  client.channels.get("594119720022573076");
 function addZero(i) 
@@ -80,13 +64,14 @@ client.on('ready', () =>{
 client.on('message', (message) =>{
 	if(message.author==client.user)   
 	return;		
-		time(message,client);
+		/*time(message,client);
 		help(message,client);
-		music(message,client);
+		
 		emote(message,client);
 		msg(message,client);
 		//pic(message,client);
-		say(message,client);
+		say(message,client);*/
+		music(message,client);
 	});
 client.login(process.env.BOT_TOKEN);
 //client.login(token);
