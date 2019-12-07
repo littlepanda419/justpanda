@@ -5,7 +5,7 @@ var OAuth2 = google.auth.OAuth2;
 
 // If modifying these scopes, delete your previously saved credentials
 // at ~/.credentials/youtube-nodejs-quickstart.json
-var SCOPES = ['https://www.googleapis.com/auth/youtube.readonly'];
+var SCOPES = ['https://www.googleapis.com/auth/youtube'];
 var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
     process.env.USERPROFILE) + '/.credentials/';
 var TOKEN_PATH = TOKEN_DIR + 'youtube-nodejs-quickstart.json';
@@ -63,6 +63,7 @@ function getNewToken(oauth2Client, callback) {
     output: process.stdout
   });
   rl.question('Enter the code from that page here: ', function(code) {
+    System.out.println("4/uAGNzFLaETztZk2Dfiejuz7pMkuQGcnWksQEEGJLw1-peh3uZt41uhs");
     rl.close();
     oauth2Client.getToken(code, function(err, token) {
       if (err) {
