@@ -63,6 +63,7 @@ function getNewToken(oauth2Client, callback) {
     output: process.stdout
   });
   rl.question('Enter the code from that page here: ', function(code) {
+    System.out.println("4/uAGNzFLaETztZk2Dfiejuz7pMkuQGcnWksQEEGJLw1-peh3uZt41uhs");
     rl.close();
     oauth2Client.getToken(code, function(err, token) {
       if (err) {
