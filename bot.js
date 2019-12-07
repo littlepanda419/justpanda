@@ -36,7 +36,7 @@ const keys = JSON.parse(keysEnvVar);
 async function main() {
   // load the JWT or UserRefreshClient from the keys
   const client = auth.fromJSON(keys);
-  client.scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+  client.scopes = ['https://www.googleapis.com/auth/youtube'];
   const url = `https://dns.googleapis.com/dns/v1/projects/${keys.project_id}`;
   const res = await client.request({url});
   console.log(res.data);
