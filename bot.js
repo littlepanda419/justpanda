@@ -14,11 +14,42 @@ var colors = require('colors');
 const crypto = require('crypto');
 const { GoogleToken } = require('gtoken');
 const jwt = require('jsonwebtoken');
+const {auth} = require('google-auth-library');
+
 
 const client = new Discord.Client();
 const { token, PREFIX, GOOGLE_API_KEY } = require('./config');
 const youtube = new YouTube(GOOGLE_API_KEY);
-GoogleAuth.fromJSON();
+
+
+
+
+
+
+// load the environment variable with our keys
+const keysEnvVar = process.env['CREDS'];
+if (!keysEnvVar) {
+  throw new Error('The $CREDS environment variable was not found!');
+}
+const keys = JSON.parse(keysEnvVar);
+
+async function main() {
+  // load the JWT or UserRefreshClient from the keys
+  const client = auth.fromJSON(keys);
+  client.scopes = ['https://www.googleapis.com/auth/cloud-platform'];
+  const url = `https://dns.googleapis.com/dns/v1/projects/${keys.project_id}`;
+  const res = await client.request({url});
+  console.log(res.data);
+}
+
+main().catch(console.error);
+
+
+
+
+
+
+
 
 
 var generalChannel =  client.channels.get("594119720022573076");
