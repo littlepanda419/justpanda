@@ -4,7 +4,7 @@ const YouTube = require('simple-youtube-api');
 const emote = require("./events/emote.js");
 const msg = require("./events/msg.js");
 //const pic = require("./events/pic.js");
-const music = require("./events/music old.js");
+const music = require("./events/music.js");
 const time = require("./events/time.js");
 const help = require("./events/help.js");
 const say = require("./events/say.js");
@@ -64,13 +64,13 @@ client.on('ready', () =>{
 client.on('message', (message) =>{
 	if(message.author==client.user)   
 	return;		
-		/*time(message,client);
+		time(message,client);
 		help(message,client);
 		
 		emote(message,client);
 		msg(message,client);
 		//pic(message,client);
-		say(message,client);*/
+		say(message,client);
 		music(message,client);
 	});
 client.login(process.env.BOT_TOKEN);
