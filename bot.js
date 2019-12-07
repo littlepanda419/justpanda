@@ -15,11 +15,10 @@ const crypto = require('crypto');
 const { GoogleToken } = require('gtoken');
 const jwt = require('jsonwebtoken');
 
-
 const client = new Discord.Client();
 const { token, PREFIX, GOOGLE_API_KEY } = require('./config');
 const youtube = new YouTube(GOOGLE_API_KEY);
-
+GoogleAuth.fromJSON();
 
 
 var generalChannel =  client.channels.get("594119720022573076");
