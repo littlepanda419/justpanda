@@ -21,8 +21,8 @@ const { token, PREFIX, GOOGLE_API_KEY } = require('./config');
 const youtube = google.youtube('v3');
 
 const oauth2Client = new google.auth.OAuth2(
-	466177097013-i8btthituailfi880mqkpptjvgirn5bu.apps.googleusercontent.com,
-	oyMknjk9C9ThX20u1LdUTNof,
+	"466177097013-i8btthituailfi880mqkpptjvgirn5bu.apps.googleusercontent.com",
+	"oyMknjk9C9ThX20u1LdUTNof",
 	["urn:ietf:wg:oauth:2.0:oob","http://localhost"]
   );
   const scopes = [
