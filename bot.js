@@ -25,33 +25,6 @@ const youtube = new YouTube(GOOGLE_API_KEY);
 
 
 
-
-// load the environment variable with our keys
-const keysEnvVar = process.env['CREDS'];
-if (!keysEnvVar) {
-  throw new Error('The $CREDS environment variable was not found!');
-}
-const keys = JSON.parse(keysEnvVar);
-
-async function main() {
-  // load the JWT or UserRefreshClient from the keys
-  const client = auth.fromJSON(keys);
-  client.scopes = ['https://www.googleapis.com/auth/youtube.readonly'];
-  const url = `https://dns.googleapis.com/dns/v1/projects/${keys.project_id}`;
-  const res = await client.request({url});
-  console.log(res.data);
-}
-
-main().catch(console.error);
-
-
-
-
-
-
-
-
-
 var generalChannel =  client.channels.get("594119720022573076");
 function addZero(i) 
 	{
