@@ -12,16 +12,26 @@ const { google } = require('googleapis');
 const ignore = require('ignore-errors');
 var colors = require('colors');
 const crypto = require('crypto');
-const { GoogleToken } = require('gtoken');
-const jwt = require('jsonwebtoken');
 const {auth} = require('google-auth-library');
 
 
 const client = new Discord.Client();
 const { token, PREFIX, GOOGLE_API_KEY } = require('./config');
-const youtube = new YouTube(GOOGLE_API_KEY);
 
+const youtube = google.youtube('v3');
 
+const oauth2Client = new google.auth.OAuth2(
+	466177097013-i8btthituailfi880mqkpptjvgirn5bu.apps.googleusercontent.com,
+	oyMknjk9C9ThX20u1LdUTNof,
+	["urn:ietf:wg:oauth:2.0:oob","http://localhost"]
+  );
+  const scopes = [
+	'https://www.googleapis.com/auth/youtube'
+  ];
+  const url = oauth2Client.generateAuthUrl({
+	// 'online' (default) or 'offline' (gets refresh_token)
+	access_type: 'offline',
+  });
 
 
 
