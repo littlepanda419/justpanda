@@ -1,1 +1,1 @@
-worker: node quickstart.js
+worker: node .js
