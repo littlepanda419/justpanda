@@ -1,26 +1,18 @@
 const { Client, Util } = require('discord.js');
 const YouTube = require('simple-youtube-api');
 const ytdl = require('ytdl-core');
-const ignore = require('ignore-errors');
 
 
-const client = new Client({ disableEveryone: true });
+const client = new Client({ disableEveryone: false });
 const {PREFIX,PREFIX2, GOOGLE_API_KEY } = require('../config.js');
 const youtube = new YouTube(GOOGLE_API_KEY);
 
 const queue = new Map();
 
-client.on('warn', console.warn);
-
-client.on('error', console.error);
-
-client.on('ready', () => {
-		console.log('機器人已上線');
-	});
-
-
 module.exports = ('message', async msg => 
 {
+	playwhenon,play,handleVideo
+	
 	if (msg.author.bot) return undefined;
 	if (!(msg.content.startsWith(PREFIX) ^ msg.content.startsWith(PREFIX2))) return undefined;
 
@@ -54,7 +46,7 @@ module.exports = ('message', async msg =>
 				return msg.channel.send(`✅ 歌單: **${playlist.title}** 已經加入清單`);				
 				} catch (err) {
 					console.error(`清單中有私人影片: ${err}`);
-					msg.channel.send(`清單中有私人影片，移除後可正常點歌`);
+					msg.channel.send(`清單中有私人影片，將會自動略過，其他歌曲仍可正常播放。`);
 				}
 			} else {
 			try {
@@ -63,9 +55,9 @@ module.exports = ('message', async msg =>
 				try {
 					var videos = await youtube.searchVideos(searchString, 10);
 					let index = 0;
-					msg.channel.send(`__**歌曲選擇:**__${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}請在10秒內輸入數字來選擇歌曲!`);
+					msg.channel.send(`__**歌曲選擇:**__${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}\n請在10秒內輸入數字來選擇歌曲!`);
 					try {
-						var response = await msg.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 11, {
+						var response = await msg.channel.awaitMessages(msg2 => msg2.content > 0 && msg2.content < 11 ||msg2.content =="N", {
 							maxMatches: 1,
 							time: 10000,
 							errors: ['time']
@@ -138,7 +130,6 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
 	const serverQueue = queue.get(msg.guild.id);
 	console.log(video);
 	const song = {
-		id: video.id,
 		title: Util.escapeMarkdown(video.title),
 		url: `https://www.youtube.com/watch?v=${video.id}`
 	};
@@ -177,7 +168,6 @@ function play(guild, song) {
 	const serverQueue = queue.get(guild.id);
 
 	if (!song) {
-		serverQueue.voiceChannel.leave();
 		queue.delete(guild.id);
 		return;
 	}
@@ -195,3 +185,23 @@ function play(guild, song) {
 
 	serverQueue.textChannel.send(`🎶 正在播放: **${song.title}**`);
 }
+async function playwhenon() {
+	const rqst = "https://www.youtube.com/playlist?list=PL7tnvmTUTcvZhYaBzNPxVgGz8tdwVyyX5";
+	const url = rqst[1] ? rqst[1].replace(/<(.+)>/g, '$1') : '';
+	const voiceChannel = client.channels.get("506108715720769536");
+	const requestchannel =client.channels.get("503134664811347970");
+	if (url.match(/^https?:\/\/(www.youtube.com|youtube.com)\/playlist(.*)$/)) {
+		try {
+		const playlist = await youtube.getPlaylist(url);			
+		const videos = await playlist.getVideos();
+		for (const video of Object.values(videos)) {				
+			const video2 = await youtube.getVideoByID(video.id);
+			await handleVideo(video2, msg, voiceChannel, true);
+			}			
+			return requestchannel.send(`✅ 歌單: **${playlist.title}** 已經加入清單`);				
+			} catch (err) {
+				console.error(`清單中有私人影片: ${err}`);
+				requestchannel.send(`清單中有私人影片，將會自動略過，其他歌曲仍可正常播放。`);
+			}
+		}
+	}

@@ -1,0 +1,39 @@
+if(!(numberN.startsWith("1")||numberN.startsWith("2")||numberN.startsWith("3")||numberN.startsWith("4")||numberN.startsWith("5")
+            ||numberN.startsWith("6")||numberN.startsWith("7")||numberN.startsWith("8")||numberN.startsWith("9")||numberN.startsWith("0")
+            ||numberN.startsWith("(")))
+            {//開頭需為數字        
+                console.log(number+"\n想害你機器人爆炸的人是 "+message.author.username + "\n開頭非數字，無法計算。");
+                message.channel.send("請輸入正確且完整的算式 如：__**p.calc (8+9)*87**__");
+                return undefined;      
+            }
+            else if (!(message.content.includes("+")||message.content.includes("-")||message.content.includes("*")||message.content.includes("/"))) 
+            {//需要有+-*/
+                console.log(number);         
+                console.log("想害你機器人爆炸的人是 "+message.author.username+ "\n無運算符號");
+                message.channel.send("請輸入正確且完整的算式 如：__**p.calc (8+9)*87**__");
+                return undefined;   
+            }
+            else if (message.content.includes('M'.toUpperCase())||message.content.includes('D'.toUpperCase())||message.content.includes('C'.toUpperCase())
+            ||message.content.includes('L'.toUpperCase()))
+            {//不可有英文
+                console.log(number);         
+                console.log("想害你機器人爆炸的人是 "+message.author.username+ "\n有英文");
+                message.channel.send("請輸入正確且完整的算式 如：__**p.calc (8+9)*87**__");
+                return undefined;   
+            }
+            else if (
+            message.content.includes('!')||message.content.includes('[]')||message.content.includes('//')||message.content.includes('/*1*/')||
+            message.content.includes(';')||message.content.includes('[')||message.content.includes(']')||message.content.includes(' " ')||
+            message.content.includes('**')||message.content.includes('++')||message.content.includes('--')||message.content.includes('$')||
+            message.content.includes(' ` ')) 
+            {//不可有FSFUCK字元
+                console.log(number);
+                console.log("想害你機器人爆炸的人是 "+message.author.username+ "\n想FUCK");
+                message.channel.send("請輸入正確且完整的算式 如：__**p.calc (8+9)*87**__");
+                return undefined;
+            }
+            else 
+            {//最終EVAL
+                message.channel.send(eval(numberN));
+                console.log(message.content + " successed by : "+message.author.username);
+            }
