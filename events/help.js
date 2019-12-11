@@ -9,8 +9,13 @@ module.exports = (message,client) =>{
         const e = client.emojis.find(emoji => emoji.id === e_id)
         return e;
     }
-    if(message.content.toLocaleLowerCase()=="help")
+    if(message.content.toString().toLowerCase()=="help")
     {
+        if(message.author==client.user)   
+        return;	
+        if(message.author.bot)   
+        return; 
+    
         var help = new Discord.RichEmbed()
             .setColor(0xFFFF00)
             .addField("**指令說明**","快點把指令背起啦來幹")

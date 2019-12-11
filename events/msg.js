@@ -1,12 +1,14 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
-const time = require("./time.js");
+const addZero = require ("./addzero.js");
 const kcl = new Discord.Attachment('https://cdn.discordapp.com/attachments/594119720022573076/594555557709611033/unknown.png');
 const kvl = new Discord.Attachment('https://cdn.discordapp.com/attachments/594119720022573076/594556625155784724/unknown.png');
 const zzch = new Discord.Attachment('https://cdn.discordapp.com/attachments/512603339071160377/595194587866464256/65761563_2350292711718973_5573736612304519168_o.png');
 const pi  = new Discord.Attachment('https://truth.bahamut.com.tw/s01/201907/295c16d012c60f51b45fb37d629232ce.JPG');
 const {google} = require('googleapis');
 const waitasec = new Discord.Attachment('https://truth.bahamut.com.tw/s01/201910/58c65f2a9243312e93cc8512034fe636.JPG');
+
+
 
 const {PREFIX,PREFIX2} = require('../config.js');
 
@@ -19,10 +21,10 @@ module.exports = ('message', message =>
 	console.log(message.guild.id);
 	//console.log(message);
 	}*/
-	if(message.author == client.user)   
-	return;
+	if(message.author==client.user)   
+	return;	
 	if(message.author.bot)   
-	return;
+	return; 
 	
 
 	/*//戒嚴時期
@@ -66,16 +68,13 @@ module.exports = ('message', message =>
 			}
 		}
 	*/
-	
-	function addZero(i) 
-	{
-		if (i < 10) {
+function addZero(i) 
+{
+	if (i < 10) {
 		i = "0" + i;
-		}
-		return i;
-	  }
-	  
-
+	}
+	return i;
+}
 	var d = new Date();
 	var h = addZero(d.getUTCHours()+8); if (h>=24)	h = "0"+(h-24);
 	var m = addZero(d.getMinutes());
@@ -83,7 +82,7 @@ module.exports = ('message', message =>
 	var generalChannel =  client.channels.get('653569315089416225');	
 
 	let command = message.content.toLowerCase().split(' ')[0];
-		command = command.slice(PREFIX.length);			
+        command = command.slice(PREFIX.length);		
 	
 		if(message.content.includes("<@624396190984831016>"))
 		{
