@@ -1,3 +1,5 @@
 1. 下載 vs code
 2. 下載 node.js
+3. 下載 https://www.ffmpeg.org/ 
+4. add to path
 3. 終端機 npm install
