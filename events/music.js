@@ -11,8 +11,6 @@ const queue = new Map();
 
 module.exports = ('message', async msg => 
 {
-	playwhenon,play,handleVideo
-	
 	if (msg.author.bot) return undefined;
 	if (!(msg.content.startsWith(PREFIX) ^ msg.content.startsWith(PREFIX2))) return undefined;
 
@@ -97,13 +95,29 @@ module.exports = ('message', async msg =>
 		return msg.channel.send(`I set the volume to: **${args[1]}**`);
 	} else if (command === 'np') {
 		if (!serverQueue) return msg.channel.send('There is nothing playing.');
-		return msg.channel.send(`🎶 正在播放: **${serverQueue.songs[0].title}**`);
+		return msg.channel.send(`🎶 正在播放: **${serverQueue.songs[0].title}**`);		
+	} else if (command === 'shuffle') {
+		if (!serverQueue) return msg.channel.send('There is nothing playing.');
+		shuffle(serverQueue);
+		return msg.channel.send(`🎶 歌單已隨機排列。`);
 	} else if (command === 'queue') {
 		if (!serverQueue) return msg.channel.send('There is nothing playing.');
-		/*var musicqueue = new Discord.RichEmbed()
-		.addField(" ",`__**歌曲清單: **__${serverQueue.songs.map(song => `**-** ${song.title}`,true)
-		.setColor(0xFFFF00)
-		.setFooter("阿這麼小你也要看");
+		/*
+		const musicqueue = new Discord.RichEmbed()
+		.setColor('#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6))
+		.setTitle('Some title')
+		.setURL('https://discord.js.org/')
+		.setAuthor('Some name', 'https://i.imgur.com/wSTFkRM.png', 'https://discord.js.org')
+		.setDescription('Some description here')
+		.setThumbnail('https://i.imgur.com/wSTFkRM.png')
+		.addField('Regular field title', 'Some value here')
+		.addBlankField()
+		.addField('Inline field title', 'Some value here', true)
+		.addField('Inline field title', 'Some value here', true)
+		.addField('Inline field title', 'Some value here', true)
+		.setImage('https://i.imgur.com/wSTFkRM.png')
+		.setTimestamp()
+		.setFooter('Some footer text here', 'https://i.imgur.com/wSTFkRM.png');
 		msg.channel.send(musicqueue);*/
 		return msg.channel.send(`__**歌曲清單: **__${serverQueue.songs.map(song => `**-** ${song.title}`).join('\n')}**正在播放: ** ${serverQueue.songs[0].title}`);
 		/*need to be embed*/
@@ -157,7 +171,7 @@ async function handleVideo(video, msg, voiceChannel, playlist = false) {
 		}
 	} else {
 		serverQueue.songs.push(song);
-		console.log(serverQueue.songs);
+		//console.log(serverQueue.songs); //對CONSOLE輸出整個歌單
 		if (playlist) return undefined;
 		else return msg.channel.send(`✅ **${song.title}** 已被加入清單`);
 	}
@@ -171,18 +185,17 @@ function play(guild, song) {
 		queue.delete(guild.id);
 		return;
 	}
-	console.log(serverQueue.songs);
+	//console.log(serverQueue.songs); //對CONSOLE輸出整個歌單
 
 	const dispatcher = serverQueue.connection.playStream(ytdl(song.url), {bitrate: 128000 /* 192kbps */})
 		.on('end', reason => {
-			if (reason === 'Stream is not generating quickly enough.') console.log('Song ended.');
+			if (reason === 'Stream is not generating quickly enough.') console.log('Stream is not generating quickly enough. \t Song ended.');
 			else console.log(reason);
 			serverQueue.songs.shift();
 			play(guild, serverQueue.songs[0]);
 		})
 		.on('error', error => console.error(error));
 	dispatcher.setVolumeLogarithmic(serverQueue.volume / 5);
-
 	serverQueue.textChannel.send(`🎶 正在播放: **${song.title}**`);
 }
 async function playwhenon() {
@@ -200,8 +213,25 @@ async function playwhenon() {
 			}			
 			return requestchannel.send(`✅ 歌單: **${playlist.title}** 已經加入清單`);				
 			} catch (err) {
-				console.error(`清單中有私人影片: ${err}`);
-				requestchannel.send(`清單中有私人影片，將會自動略過，其他歌曲仍可正常播放。`);
+				console.error(`讀取到私人影片: ${err}`);
+				requestchannel.send(`讀取到私人影片，將會自動略過，其他歌曲仍可正常播放。`);
 			}
 		}
 	}
+async function 	shuffle(array) {
+        var currentIndex = array.length, temporaryValue, randomIndex;
+
+        // While there remain elements to shuffle...
+        while (currentIndex !== 0) {
+
+            // Pick a remaining element...
+            randomIndex = Math.floor(Math.random() * currentIndex);
+            currentIndex -= 1;
+
+            // And swap it with the current element.
+            temporaryValue      = array[currentIndex];
+            array[currentIndex] = array[randomIndex];
+            array[randomIndex]  = temporaryValue;
+        }
+        return array;
+    }

@@ -16,7 +16,7 @@ const crypto = require('crypto');
 const {auth} = require('google-auth-library');
 const Math = require('mathjs');
 const safeEval = require('safe-eval');
-
+const playwhenon = require("./events/playwhenon.js");
 
 
 const client = new Discord.Client();
@@ -46,7 +46,9 @@ client.on('ready', () =>{
 	var Myinfo = new Discord.RichEmbed()
 		.addField("蛤","肏零呆蛤沙小",true)
 		.addField("我在幹嘛","我誰",true)
-		.setColor(0xFFFF00)
+		//.setColor(0xFFFF00)
+		.setColor('#'+(0x1000000+(Math.random())*0xffffff).toString(16).substr(1,6)
+		)
 		.setThumbnail("https://qpa.tw/wp-content/uploads/2019/05/%E7%86%8A%E8%B2%93-1.jpg")
 		.setFooter("阿這麼小你也要看");
 	generalChannel.send(Myinfo);	 //洗頻大師
@@ -59,8 +61,10 @@ client.on('ready', () =>{
 
 	var musicchannel = client.channels.get("506108715720769536");	
 	try {
-		playwhenon();
+		generalChannel.send("you can't see me.");
+		playwhenon.playwhenon();
 	} catch (error) {
+		console.log(error);
 		generalChannel.send("登入時播放出現錯誤");		
 	}
 });

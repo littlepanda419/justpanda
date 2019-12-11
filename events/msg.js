@@ -14,9 +14,11 @@ const {PREFIX,PREFIX2} = require('../config.js');
 module.exports = ('message', message =>
 {    
 	//獲取訊息相關資料
-	/*if(message.author.id=="324536397803290626")
-	console.log(message);	
-	*/
+	/*if(message.author.id=="324536397803290626"){
+	console.log(message.guild);
+	console.log(message.guild.id);
+	//console.log(message);
+	}*/
 	if(message.author == client.user)   
 	return;
 	if(message.author.bot)   
