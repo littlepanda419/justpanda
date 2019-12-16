@@ -1,36 +1,29 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const ytdl = require('ytdl-core');
+const colors = require('colors');
+const crypto = require('crypto');
+const {auth} = require('google-auth-library');
+const Math = require('mathjs');
+const safeEval = require('safe-eval');
 const YouTube = require('simple-youtube-api');
-const emote = require("./events/emote.js");
+const { google } = require('googleapis');
+
+const emoji = require("./events/emote.js");
 const msg = require("./events/msg.js");
 const pic = require("./events/pic.js");
 const music = require("./events/music.js");
 const help = require("./events/help.js");
 const say = require("./events/say.js");
 const calc = require("./events/calc.js");
-const { google } = require('googleapis');
-const colors = require('colors');
-const crypto = require('crypto');
-const {auth} = require('google-auth-library');
-const Math = require('mathjs');
-const safeEval = require('safe-eval');
+const search = require("./events/search.js");
+const trans = require("./events/trans.js");
 const addzer0 = require ("./events/addzero.js");
 const sleep = require ("./events/sleep.js");//only can be used in async  cant use in like client.on
 
 
 const { token, PREFIX,PREFIX2, GOOGLE_API_KEY } = require('./config');
-
 var generalChannel =  client.channels.get("594119720022573076");
-
-
-/*function addZero(i) 
-{
-	if (i < 10) {
-		i = "0" + i;
-	}
-	return i;
-}*/
 
 client.on('warn', console.warn);
 client.on('error', console.error);
@@ -60,23 +53,28 @@ client.on('ready', () =>{
 		pandavoice.join().then(connection=> {
 			console.log("已經連接至\"熊貓貓的第一個家\"");
 		});
-		songchannel.send("p.play https://www.youtube.com/playlist?list=PL7tnvmTUTcvZhYaBzNPxVgGz8tdwVyyX5");
+	//songchannel.send("p.play https://www.youtube.com/playlist?list=PL7tnvmTUTcvZhYaBzNPxVgGz8tdwVyyX5");
 	} catch (error) {
 		console.log(error);
 		generalChannel.send("登入時播放出現錯誤");		
 	}
 });
-  
+
+let y =process.openStdin();
+y.addListener("data",res =>{
+	let x =res.toString().trim().split(/ +/g)
+	client.channels.get("653569315089416225").send(x.join(" "));
+});
 
 client.on('message', (message) =>{
 		music(message,client);
-		help(message,client);		
-		emote(message,client);
 		msg(message,client);
+		help(message,client);		
 		pic(message,client);
 		say(message,client);
 		calc(message,client);
-		//trans
+		search(message,client);
+		trans(message,client);
 	});
 //client.login(process.env.BOT_TOKEN);
 client.login(token);

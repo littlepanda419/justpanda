@@ -12,15 +12,16 @@ const queue = new Map();
 module.exports = ('message', async message => 
 {
 	
-	if(message.content == "p.play https://www.youtube.com/playlist?list=PL7tnvmTUTcvZhYaBzNPxVgGz8tdwVyyX5" && message.author.id=='594373024879476737'){
+	if(message.content == "p.play https://www.youtube.com/playlist?list=PL7tnvmTUTcvZhYaBzNPxVgGz8tdwVyyX5" 
+	&& message.author.id=='594373024879476737'){
 	console.log("已自動點歌");
 	await sleep.sleep(2000);
 	message.delete();	
 	}else if(message.author.id=='594373024879476737'){
-	console.log("原來是我自己 逼逼\t"+ message.content);
+	//console.log("原來是我自己 逼逼\t"+ message.content);
 	return;	
 	}else if(message.author.bot){
-	console.log("機器人 逼逼\t"+ message.content + message.author.username);
+	//console.log("機器人 逼逼\t"+ message.content + message.author.username);
 	return;	
 	}
 

@@ -3,9 +3,14 @@ const request = require("request"); /* Used to make requests to URLs and fetch r
 const Discord = require('discord.js');
 const client = new Discord.Client(); 
 const {PREFIX,PREFIX2} = require('../config.js');
+const sleep = require ("./sleep.js");//only can be used in async  cant use in like client.on
 
 module.exports = ("message", async message => 
 { 
+    if(message.author.bot)   
+	return;
+    if (!(message.content.startsWith(PREFIX) ^ message.content.startsWith(PREFIX2)))
+	return;
     let command = message.content.toLowerCase().split(' ')[0];
         command = command.slice(PREFIX.length); 
     // Splits message into an array for every space, 
@@ -54,39 +59,52 @@ async function image(message, command) {
         //console.log(urls);
         if (!urls.length) {
             // Handle no results
+            message.channel.send("該關鍵字搜尋不到任何圖片");
             return;
         } 
         // Send result
-        
-        const rdn = getRandomInt(15); //從網址亂數
-        let answer = new Discord.Attachment(urls[rdn]); //把查詢到的網址 隨機取一個 存成圖片
-        msg.delete();        //刪除查詢中
-        message.channel.send(answer);
-        message.react("🐼");
-        message.channel.send("是否要獲取圖片網址? 若需要的話請輸入\"y\"\n無需網址可不理會。 ");
+         
+        const rdnURL = getRandomInt(20); //1~15隨機選數字  //urls[rdnURL]為選擇隨機數字的該圖片網址
+        if(!(urls[rdnURL].endsWith("jpeg")||urls[rdnURL].endsWith("jpg")||urls[rdnURL].endsWith("png"))){
+                let answer0 = new Discord.Attachment(urls[0]); //隨機到的圖片並非上述格式 因此輸出第一個
+                message.channel.send(answer0)
+                .then(() => {
+                    message.react("🐼");
+                    msg.delete();//刪除"查詢中"
+                    message.channel.send("是否要獲取圖片網址? 若需要的話請輸入\"y\"\n無需網址可輸入\"n\"，或不理會即可。 ");
+                });
+        }else{
+            let answer = new Discord.Attachment(urls[rdnURL]); //把查詢到的網址 隨機取一個 存成圖片            
+            message.channel.send(answer)
+			.then(() => {
+                message.react("🐼");                
+                msg.delete();//刪除"查詢中"
+                message.channel.send("是否要獲取圖片網址? 若需要的話請輸入\"y\"\n無需網址可輸入\"n\"，或不理會即可。 ");
+            });
+        }
         try {
-            var response = await message.channel.awaitMessages(message2 => message2.content =="Y"||message2.content =="y", {
+            var response = await message.channel.awaitMessages(message2 => message2.content =="Y"||message2.content =="y"||
+            message2.content =="N"||message2.content =="n", {
                 maxMatches: 1,
-                time: 15000,
+                time: 10000,
                 errors: ['time']
             });
             if (response.first().content.toLowerCase='y') 
-            message.channel.send(urls[rdn]);
+            message.channel.send(urls[rdnURL]);
             if (response.first().content.toLowerCase='n')
             return;
         } catch (err) {
             console.error(err);
-            return message.channel.send('已取消獲取網址');
+            return message.channel.send('**已取消獲取網址。**');
         }
-
         
-         /* message.channel.send( urls[0] );
-            msg.delete();
-            message.react("🐼");*/
         });
+        
+        
         
     }); 
 }
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));
 }
+

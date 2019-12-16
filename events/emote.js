@@ -1,11 +1,12 @@
 const Discord = require('discord.js')
-module.exports = (msg,client) =>
+const client = new Discord.Client();
 
+
+function emoji(e_id)
 {
-    //function emoji(e_id)
-//{
- //   const e = client.emojis.find(emoji => emoji.id === e_id)
-//    return e;
-//}
-//msg.channel.send(`${emoji(/*表情ID*/)}`);
+   const e = client.emojis.find(emoji => emoji.id === e_id)
+    return e;
+}
+module.exports = {
+	emoji
 }

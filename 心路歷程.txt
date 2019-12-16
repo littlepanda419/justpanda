@@ -8,5 +8,7 @@
 12/8 圖片查詢 算數學
 12/9 數學規則更新 以阻擋大多數**惡意攻擊**
 12/11 開機自動播音樂 圖片查詢更新 ADDZERO函式庫化
-12/XX 翻譯
+12/15 打什麼就傳什麼到頻道  估狗翻譯
+12/XX 查詢
+12/XX 音樂 :  SHUFFLE LOOP LOOPQUEUE playtop playskip (OPTIONAL lyrics seek 
 12/XX INFO更新
