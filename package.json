@@ -26,7 +26,7 @@
 		"safe-eval": "^0.4.1",
 		"simple-youtube-api": "^5.2.1",
 		"ytdl-core": "^1.0.3",
-		"ytdl-core-discord": "amishshah/ytdl-core-discord"
+		"ytdl-core-discord": "github:amishshah/ytdl-core-discord"
 	},
 	"devDependencies": {},
 	"eslintConfig": {

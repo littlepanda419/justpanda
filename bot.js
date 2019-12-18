@@ -53,20 +53,23 @@ client.on('ready', () =>{
 		pandavoice.join().then(connection=> {
 			console.log("已經連接至\"熊貓貓的第一個家\"");
 		});
-	//songchannel.send("p.play https://www.youtube.com/playlist?list=PL7tnvmTUTcvZhYaBzNPxVgGz8tdwVyyX5");
+	//songchannel.send("p.play https://www.youtube.com/playlist?list=PL7tnvmTUTcvZhYaBzNPxVgGz8tdwVyyX5");	
 	} catch (error) {
 		console.log(error);
 		generalChannel.send("登入時播放出現錯誤");		
 	}
 });
 
+//機器人說話
 let y =process.openStdin();
 y.addListener("data",res =>{
 	let x =res.toString().trim().split(/ +/g)
 	client.channels.get("653569315089416225").send(x.join(" "));
 });
 
+
 client.on('message', (message) =>{
+			
 		music(message,client);
 		msg(message,client);
 		help(message,client);		
