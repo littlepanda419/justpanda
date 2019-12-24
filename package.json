@@ -17,6 +17,7 @@
 		"fs": "0.0.1-security",
 		"google": "^2.1.0",
 		"google-auth-library": "^5.7.0",
+		"google-it": "^1.2.2",
 		"googleapis": "^45.0.0",
 		"mathjs": "^6.2.5",
 		"npm-check-updates": "~3.2.1",
@@ -24,9 +25,10 @@
 		"opusscript": "~0.0.7",
 		"request": "^2.88.0",
 		"safe-eval": "^0.4.1",
+		"serp": "^2.0.7",
 		"simple-youtube-api": "^5.2.1",
 		"ytdl-core": "^1.0.3",
-		"ytdl-core-discord": "github:amishshah/ytdl-core-discord"
+		"ytdl-core-discord": "amishshah/ytdl-core-discord"
 	},
 	"devDependencies": {},
 	"eslintConfig": {

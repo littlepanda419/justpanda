@@ -14,7 +14,6 @@ const msg = require("./events/msg.js");
 const pic = require("./events/pic.js");
 const music = require("./events/music.js");
 const help = require("./events/help.js");
-const say = require("./events/say.js");
 const calc = require("./events/calc.js");
 const search = require("./events/search.js");
 const trans = require("./events/trans.js");
@@ -47,34 +46,30 @@ client.on('ready', () =>{
 	generalChannel.send(Myinfo);  //洗頻大師	
 	console.log("%s\x1b[33m",colors.rainbow("機器人已上線"));
 	console.timeEnd('start');
-	try {
+	/*try {
 		const pandavoice = client.channels.get("506108715720769536");
 		const songchannel = client.channels.get("503134664811347970");
 		pandavoice.join().then(connection=> {
 			console.log("已經連接至\"熊貓貓的第一個家\"");
 		});
-	//songchannel.send("p.play https://www.youtube.com/playlist?list=PL7tnvmTUTcvZhYaBzNPxVgGz8tdwVyyX5");	
+	//songchannel.send("p.play https://www.youtube.com/playlist?list=PL7tnvmTUTcvZhYaBzNPxVgGz8tdwVyyX5");
 	} catch (error) {
 		console.log(error);
 		generalChannel.send("登入時播放出現錯誤");		
-	}
+	}*/
 });
 
-//機器人說話
 let y =process.openStdin();
 y.addListener("data",res =>{
 	let x =res.toString().trim().split(/ +/g)
 	client.channels.get("653569315089416225").send(x.join(" "));
 });
 
-
 client.on('message', (message) =>{
-			
 		music(message,client);
 		msg(message,client);
 		help(message,client);		
 		pic(message,client);
-		say(message,client);
 		calc(message,client);
 		search(message,client);
 		trans(message,client);

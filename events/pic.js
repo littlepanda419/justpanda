@@ -3,7 +3,8 @@ const request = require("request"); /* Used to make requests to URLs and fetch r
 const Discord = require('discord.js');
 const client = new Discord.Client(); 
 const {PREFIX,PREFIX2} = require('../config.js');
-const sleep = require ("./sleep.js");//only can be used in async  cant use in like client.on
+const translate = require('@vitalets/google-translate-api');
+const sleep = require ("./sleep.js");
 
 module.exports = ("message", async message => 
 { 
@@ -13,29 +14,35 @@ module.exports = ("message", async message =>
 	return;
     let command = message.content.toLowerCase().split(' ')[0];
         command = command.slice(PREFIX.length); 
+    
+    
+    
     // Splits message into an array for every space, 
-    //our layout: "<command> [search query]" will become ["<command>", "search query"]
- 
+    //our layout: "<command> [search query]" will become ["<command>", "search query"] 
     /* Simple command manager */
-    if (command === "image") { // Check if first part of message is image command
- 
-        // call the image function
-        
-        image(message, command); // Pass requester message to image function 
-        
+    
+    if (command === "image"||command === "pic"||command === "img") { // Check if first part of message is image command 
+    const args = message.content.split(' ');
+    const searchstring = args.slice(1).join(' ');
+    if (!searchstring) return message.channel.send('請輸入要查詢的文字');
+    image(message, command); // Pass requester message to image function         
     } 
 });
 
 async function image(message, command) { 
     /* extract search query from message */ 
     const args = message.content.split(' ');
-    const searchstring = args.slice(1).join(' '); // Slices of the command part of the array 
+    const searchstring = args.slice(1).join(' ');
+    if (!searchstring) return message.channel.send('請輸入要查詢的文字');
+    // Slices of the command part of the array 
     //["!image", "cute", "dog"] ---> ["cute", "dog"] ---> "cute dog"
+    translate( searchstring , {to: 'en'}).then(res => {
+    var EN = res.text;    
+    message.channel.send("查詢字元為 "+EN)
     message.channel.send("查詢中...")
-    .then((msg) => {
- 
+    .then((msg) => { 
     var options = {
-        url: "http://results.dogpile.com/serp?qc=images&q=" + searchstring,
+        url: "http://results.dogpile.com/serp?qc=images&q=" + EN,
         method: "GET",
         headers: {
             "Accept": "text/html",
@@ -71,7 +78,7 @@ async function image(message, command) {
                 .then(() => {
                     message.react("🐼");
                     msg.delete();//刪除"查詢中"
-                    message.channel.send("是否要獲取圖片網址? 若需要的話請輸入\"y\"\n無需網址可輸入\"n\"，或不理會即可。 ");
+                    message.channel.send("是否要獲取圖片網址? 若需要的話請輸入\"y\"\n無需網址不理會即可。 ");
                 });
         }else{
             let answer = new Discord.Attachment(urls[rdnURL]); //把查詢到的網址 隨機取一個 存成圖片            
@@ -79,30 +86,24 @@ async function image(message, command) {
 			.then(() => {
                 message.react("🐼");                
                 msg.delete();//刪除"查詢中"
-                message.channel.send("是否要獲取圖片網址? 若需要的話請輸入\"y\"\n無需網址可輸入\"n\"，或不理會即可。 ");
+                message.channel.send("是否要獲取圖片網址? 若需要的話請輸入\"y\"\n無需網址不理會即可。 ");
             });
         }
         try {
-            var response = await message.channel.awaitMessages(message2 => message2.content =="Y"||message2.content =="y"||
-            message2.content =="N"||message2.content =="n", {
+            var response = await message.channel.awaitMessages(message2 => message2.content =="Y"||message2.content =="y"||{
                 maxMatches: 1,
                 time: 10000,
                 errors: ['time']
             });
             if (response.first().content.toLowerCase='y') 
             message.channel.send(urls[rdnURL]);
-            if (response.first().content.toLowerCase='n')
-            return;
         } catch (err) {
             console.error(err);
             return message.channel.send('**已取消獲取網址。**');
-        }
-        
+        }        
         });
-        
-        
-        
     }); 
+})
 }
 function getRandomInt(max) {
     return Math.floor(Math.random() * Math.floor(max));

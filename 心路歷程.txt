@@ -9,6 +9,8 @@
 12/9 數學規則更新 以阻擋大多數**惡意攻擊**
 12/11 開機自動播音樂 圖片查詢更新 ADDZERO函式庫化
 12/15 打什麼就傳什麼到頻道  估狗翻譯
-12/XX 查詢
-12/XX 音樂 :  SHUFFLE LOOP LOOPQUEUE playtop playskip (OPTIONAL lyrics seek 
-12/XX INFO更新
+12/22 google查詢 音樂 LOOP LOOPQUEUE 
+12/22 INFO更新 QUEUE 音樂STAT  SHUFFLE playtop playskip
+12/22 機器人指令說明
+12/22 圖片查詢可以查中文
+12月22日 機器人指令說明	
