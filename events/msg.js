@@ -74,9 +74,11 @@ module.exports = ('message', message =>
 
 	/*if(message.content.includes("<@!624396190984831016>"))
 		message.channel.send(" <@551290295078223885> 上面有訊息要TAG你 :point_up:，\n但是他可能跟熊貓一樣懶得找，或是眼殘TAG錯，所以我特地TAG你喔 \n :yellow_heart: ");*/
-	if(message.content.includes("<@!624396190984831016>"))
-		message.channel.send(" <@551290295078223885> "+ message.content);
-	if(message.content.includes("胎死腹中"))
+	if(message.content.includes("<@!624396190984831016>")){
+		let forMirror = message.content.split(`<@!624396190984831016>`);
+		    forMirror = forMirror.join('');
+		message.channel.send(" <@551290295078223885> \n"+message.author+"想要跟你說\n" + forMirror);
+	}if(message.content.includes("胎死腹中"))
 		message.reply("你才吃飯嗆到喝水噎到");
 	if(message.content.includes("修但幾咧"))
 		message.reply(waitasec);
@@ -87,7 +89,7 @@ module.exports = ('message', message =>
 		if(message.content.includes("去你他眼鏡盒玉米濃湯的"))
 			message.channel.send(cornsoup);
 	if(message.content.includes("有趣")||message.content.includes("促咪")){
-		message.channel.send("阿"+ message.author.username+  "你不就很有趣");
+		message.channel.send("阿"+ message.author+"你不就很有趣");
 		message.channel.send(tsu);
 		message.channel.send(mi);
 	}
@@ -155,10 +157,10 @@ module.exports = ('message', message =>
 	}
 
 	
-	if(command==="ping"){ // Check if message is "ping"
-			message.channel.send("Pinging ...") // Placeholder for pinging ... 
-			.then((msg) => { // Resolve promise
-				msg.edit("Ping: " + Math.abs(Date.now() - msg.createdTimestamp) + " ms"); // Edits message with current timestamp minus timestamp of message
+	if(command==="ping"){ 
+			message.channel.send("Pinging ...") 
+			.then((msg) => { 
+				msg.edit("Ping: " + Math.abs(Date.now() - msg.createdTimestamp) + " ms"); 
 				message.react("🐼");
 			});			
 		}

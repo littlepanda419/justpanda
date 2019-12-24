@@ -61,8 +61,8 @@ module.exports = ('message', async message =>
 				return message.channel.send(`✅ 歌單: **${playlist.title}** 已經加入清單`);				
 				} catch (err) {
 					console.error(`沒得播喔 995 : ${err}`);
-					message.channel.send(`清單中有私人影片，將會自動略過，其他歌曲仍可正常播放。\n如果沒有任何音樂播出，表示youtube API的免費用量已經滿了，
-					請匯款至以下帳戶，讓咚咚鏘熊貓貓有錢可以儲值空間**OwO**`);
+					message.channel.send(`若清單中有私人影片，將會自動略過，其他歌曲仍可正常播放。\n如果沒有任何音樂播出，表示youtube API的免費用量已經滿了，
+請匯款至以下帳戶，讓咚咚鏘熊貓貓有錢可以儲值空間**OwO**`);
 				}
 			} else {
 			try {
@@ -73,7 +73,7 @@ module.exports = ('message', async message =>
 					let index = 0;
 					message.channel.send(`__**歌曲選擇:**__${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}\n請在10秒內輸入數字來選擇歌曲!`);
 					try {
-						var response = await message.channel.awaitMessages(message2 => message2.content > 0 && message2.content < 11 ||message2.content ==="N"||message2.content ==="n", {
+						var response = await message.channel.awaitMessages(message2 => (message2.content > 0 && message2.content < 11) ||message2.content ==="N"||message2.content ==="n", {
 							maxMatches: 1,
 							time: 10000,
 							errors: ['time']
@@ -89,7 +89,9 @@ module.exports = ('message', async message =>
 					else 
 					var video = await youtube.getVideoByID(videos[videoIndex - 1].id);
 				} catch (err) {
-					console.error(err);					
+					console.error(err);
+					if(errors.reason === 'quotaExceeded')
+					return message.channel.send(':regional_indicator_h: :regional_indicator_a: :regional_indicator_k: :regional_indicator_a: :regional_indicator_a: 客家用量已滿 8888888。');
 					return message.channel.send('🆘 夭壽骨喔 派ㄎㄧㄚ拉。');
 				}
 			}
@@ -97,9 +99,9 @@ module.exports = ('message', async message =>
 		}
 	} else if (command === 'skip'||command === 's') {
 		if (!message.member.voiceChannel) return message.channel.send('你必須先進入一個語音頻道');
-		if (!serverQueue) return message.channel.send('There is nothing playing that I could skip for you.');		
-		serverQueue.connection.dispatcher.end('已跳過歌曲');
-		message.channel.send('已跳過歌曲。');
+		if (!serverQueue) return message.channel.send('There is nothing playing that I could skip for you.');
+		message.channel.send('已跳過歌曲。');		
+		serverQueue.connection.dispatcher.end('已跳過歌曲');		
 		return undefined;
 		
 	} else if (command === 'in'){
@@ -114,14 +116,14 @@ module.exports = ('message', async message =>
 	} else if (command === 'quit'||command === 'out'||command === 'dc') {
 		if (!message.member.voiceChannel) return message.channel.send('你必須先進入一個語音頻道');
 		try {
-		if ((message.guild.me.voiceChannel.id === message.member.voiceChannel.id)){
-		message.member.voiceChannel.leave();
+		if ((message.guild.me.voiceChannel.id === message.member.voiceChannel.id)){		
 		lop = (false);
 		lopquq = (false);		
 			if (serverQueue){ 
 				serverQueue.connection.dispatcher.end('已離開語音，循環設定已重置。');
 				serverQueue.songs = [];
 			}
+			message.member.voiceChannel.leave();
 		return message.channel.send('已離開語音，循環設定已重置。');			
 		}
 		} catch (error) {
@@ -130,17 +132,17 @@ module.exports = ('message', async message =>
 		
 	} else if (command === 'volume') {
 		if (!message.member.voiceChannel) return message.channel.send('你必須先進入一個語音頻道');
-		if (!serverQueue) return message.channel.send('There is nothing playing.');
+		if (!serverQueue) return message.channel.send('現在沒有任何影片正在播放');
 		if (!args[1]) return message.channel.send(`現在音量為: **${serverQueue.volume}**`);
 		serverQueue.volume = args[1];
 		serverQueue.connection.dispatcher.setVolumeLogarithmic(args[1] / 5);
 		return message.channel.send(`I set the volume to: **${args[1]}**`);
 	} else if (command === 'np') {
-		if (!serverQueue) return message.channel.send('There is nothing playing.');
+		if (!serverQueue) return message.channel.send('現在沒有任何影片正在播放');
 		return message.channel.send(`🎶 正在播放: **${serverQueue.songs[0].title}**`);		
 	} else if (command === 'remove'||command==='rm') {
 		if (!message.member.voiceChannel) return message.channel.send('你必須先進入一個語音頻道');
-		if (!serverQueue) return message.channel.send('There is nothing playing.');
+		if (!serverQueue) return message.channel.send('現在沒有任何影片正在播放');
 		if (!args[1]) return message.channel.send(`請輸入要移除的歌曲的編號!`);
 		if (args[1]-1 ===0) serverQueue.connection.dispatcher.end('已跳過歌曲');
 		
@@ -194,15 +196,36 @@ module.exports = ('message', async message =>
 		return message.channel.send(`♻️ 單曲循環OFF。`);	
 		}
 	}else if (command === 'shuffle'||command === 'sh') {
-		if (!serverQueue) return message.channel.send('There is nothing playing.');
+		if (!serverQueue) return message.channel.send('現在沒有任何影片正在播放');
 		shuffle(serverQueue.songs);
 		return message.channel.send(`🎶 歌單已隨機排列。`);
 	}else if (command === 'queue'||command === 'q') {
-		if (!serverQueue) return message.channel.send('There is nothing playing.');
-		console.log(serverQueue.songs.length);
-		let index = 0;
-	    message.channel.send(`__**歌曲清單: \n**__${serverQueue.songs.map(song =>`**${++index} -** ${song.title}`).join('\n')}\n**__正在播放: __** ${serverQueue.songs[0].title}`);		
-		return;		
+		if (!serverQueue) return message.channel.send('現在沒有任何影片正在播放');
+
+		var npst=serverQueue.songs[0].title;
+		var npstlink=serverQueue.songs[0].url;
+		var songnumb=serverQueue.songs.length;
+		for (let index = 0; index < 19; index++) {
+			var A=serverQueue.songs.map(song =>`**${index+1} -** ${song.title}`).join('\n');
+			console.log(A);		
+		}
+		
+		var queueue = new Discord.RichEmbed()
+            .setColor(0xFFFF00)
+            .setTitle('__**歌曲清單: \n**__')
+            .setURL('https://github.com/pandayoooo/justpanda')
+			.addField('清單內共有 ', `**${songnumb}** 首歌 `,true)
+			.addField('正在播放', `**[${npst}](${npstlink} 'panda小彩蛋')**`,true)
+            .addField("歌曲清單",`${A}`)
+            .setTimestamp()
+            .setImage('https://cdn.discordapp.com/attachments/375207017259728897/658668640362561536/ddba5fa98e2085a4.png')
+            .setFooter(':有問題都可以私訊咚咚鏘 不過他有可能不會回你', 'https://cdn.discordapp.com/attachments/450975130387218457/633675033025445889/dd9ef01df9d3dcca.png');
+			 message.channel.send(queueue);
+		
+			 //`${serverQueue.songs.map(song =>`**${++index} -** ${song.title}`).join('\n')}`) /original
+
+	   // return message.channel.send(`\n__**歌曲清單: **__\n${A}** ${serverQueue.songs[0].title}`);		
+			return;
 		
 	} else if (command === 'pause') {
 		if (serverQueue && serverQueue.playing) {
@@ -210,14 +233,14 @@ module.exports = ('message', async message =>
 			serverQueue.connection.dispatcher.pause();
 			return message.channel.send('⏸ 已暫停音樂');
 		}
-		return message.channel.send('There is nothing playing.');
+		return message.channel.send('現在沒有任何影片正在播放');
 	} else if (command === 'resume') {
 		if (serverQueue && !serverQueue.playing) {
 			serverQueue.playing = true;
 			serverQueue.connection.dispatcher.resume();
 			return message.channel.send('▶ 重新開始播放');
 		}
-		return message.channel.send('There is nothing playing.');
+		return message.channel.send('現在沒有任何影片正在播放');
 	}
 	return undefined;
 });
@@ -286,13 +309,13 @@ function play(guild, song) {
 			if(!lop){
 			if (!lopquq) {
 			serverQueue.songs.shift();
-			play(guild, serverQueue.songs[0]);
+			return play(guild, serverQueue.songs[0]);
 			} else if(lopquq) {
 			serverQueue.songs.push(serverQueue.songs.shift());
-			play(guild, serverQueue.songs[0]);
+			return play(guild, serverQueue.songs[0]);
 			}
 			} else if (lop){
-			play(guild, serverQueue.songs[0]);
+			return play(guild, serverQueue.songs[0]);
 			}
 		})
 		.on('error', error => console.error(error));

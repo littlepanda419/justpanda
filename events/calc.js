@@ -25,7 +25,7 @@ module.exports = ('message', message =>
             let args = message.content.split(' ');
             var number = args.slice(1);
             var numberN = number.join(' '); 
-            var numberrule = new RegExp('[0-9]'/*,'[^a-z]'*/);
+            var numberrule = new RegExp('[0-9]','[^a-z]');
             if (!(numberN.match(numberrule))) {
                 message.channel.send("請輸入正確且完整的算式，括號請務必包括前後括號，\n僅能使用小括號()，優先由內而外計算。如：__**p.calc (8+9)*87**__。");
                 console.log(numberN.brightRed + "\t" + numberN.brightRed +" failed by : ".brightRed + message.author.username);
@@ -43,8 +43,7 @@ module.exports = ('message', message =>
             }
         } catch (error) {
             console.log(numberN.brightRed + "\t" + numberN.brightRed +" failed by : ".brightRed + message.author.username);
-            message.channel.send("請輸入正確且完整的算式，括號請務必包括前後括號，\n僅能使用小括號()，優先由內而外計算。如：__**p.calc (8+9)*87**__。");
-            
+            message.channel.send("請輸入正確且完整的算式，括號請務必包括前後括號，\n僅能使用小括號()，優先由內而外計算。如：__**p.calc (8+9)*87**__。");            
             return;
         }        
     }

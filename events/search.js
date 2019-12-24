@@ -19,8 +19,6 @@ module.exports = ("message", async message =>
 
     if (command === "g"||command === "google") { 
         
-      
-
       googleIt({'query': searchstring}).then(results => {
 
       const rstbed = new Discord.RichEmbed()
@@ -39,7 +37,8 @@ module.exports = ("message", async message =>
       .setFooter(':有問題都可以私訊咚咚鏘 不過他有可能不會回你', 'https://cdn.discordapp.com/attachments/450975130387218457/633675033025445889/dd9ef01df9d3dcca.png');
       message.channel.send(rstbed);   
     }).catch(error => {
-      console.error();          
+      console.error();      
+      message.channel.send("您的關鍵字搜尋不到結果!");    
       // any possible errors that might have occurred (like no Internet connection)
     })
 

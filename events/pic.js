@@ -71,7 +71,8 @@ async function image(message, command) {
         } 
         // Send result
          
-        const rdnURL = getRandomInt(20); //1~15隨機選數字  //urls[rdnURL]為選擇隨機數字的該圖片網址
+        const rdnURL = getRandomInt(15); //1~15隨機選數字  //urls[rdnURL]為選擇隨機數字的該圖片網址
+
         if(!(urls[rdnURL].endsWith("jpeg")||urls[rdnURL].endsWith("jpg")||urls[rdnURL].endsWith("png"))){
                 let answer0 = new Discord.Attachment(urls[0]); //隨機到的圖片並非上述格式 因此輸出第一個
                 message.channel.send(answer0)
@@ -79,28 +80,35 @@ async function image(message, command) {
                     message.react("🐼");
                     msg.delete();//刪除"查詢中"
                     message.channel.send("是否要獲取圖片網址? 若需要的話請輸入\"y\"\n無需網址不理會即可。 ");
+                    let choice = 0;
                 });
         }else{
-            let answer = new Discord.Attachment(urls[rdnURL]); //把查詢到的網址 隨機取一個 存成圖片            
+            let answer = new Discord.Attachment(urls[rdnURL]); //把查詢到的網址 隨機取一個 存成圖片
             message.channel.send(answer)
 			.then(() => {
-                message.react("🐼");                
+                message.react("🐼");
                 msg.delete();//刪除"查詢中"
                 message.channel.send("是否要獲取圖片網址? 若需要的話請輸入\"y\"\n無需網址不理會即可。 ");
+                let choice = 1;
             });
         }
         try {
-            var response = await message.channel.awaitMessages(message2 => message2.content =="Y"||message2.content =="y"||{
+            var response = await message.channel.awaitMessages(message2 => message2.content =="Y"||message2.content =="y",{
                 maxMatches: 1,
                 time: 10000,
                 errors: ['time']
             });
-            if (response.first().content.toLowerCase='y') 
-            message.channel.send(urls[rdnURL]);
         } catch (err) {
             console.error(err);
             return message.channel.send('**已取消獲取網址。**');
-        }        
+        }
+        if (response.first().content.toLowerCase='y') 
+        if(choice = 0){
+            urllll = urls[0];
+            message.channel.send(urllll);
+        } else        
+            urllll = urls[rdnURL];
+            message.channel.send(urllll);
         });
     }); 
 })
