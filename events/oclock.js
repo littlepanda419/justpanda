@@ -11,7 +11,7 @@ function oclock(client) {
     let m = addzer0.addzero(d.getMinutes());
     let s = addzer0.addzero(d.getSeconds());
     console.log(`${h}:${m}:${s}`)
-    if(/* m==="00" &&*/ s==="00" ){
+    if( m==="00" && s==="00" ){
         if (h==12)        
         generalChannel.send(`<@324536397803290626> 中午${h}點ㄌ，該吃飯嚕。`);
         if (h==18)
@@ -30,5 +30,5 @@ function oclock(client) {
     }
 }
 module.exports = {
-	oclock
+	oclock	
 }
