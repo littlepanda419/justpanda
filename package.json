@@ -13,7 +13,7 @@
 		"@vitalets/google-translate-api": "github:vitalets/google-translate-api",
 		"cheerio": "^1.0.0-rc.3",
 		"colors": "^1.4.0",
-		"crypto": "`1.0.1",
+		"crypto": "1.0.1",
 		"discord.js": "~11.5.1",
 		"dotenv": "~8.2.0",
 		"ffmpeg": "0.0.4",
