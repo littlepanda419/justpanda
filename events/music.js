@@ -71,7 +71,7 @@ module.exports = ('message', async message =>
 				try {
 					var videos = await youtube.searchVideos(searchString, 10);
 					let index = 0;
-					message.channel.send(`__**歌曲選擇:**__${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}\n請在10秒內輸入數字來選擇歌曲!`);
+					message.channel.send(`__**歌曲選擇:**__${videos.map(video2 => `**${++index} -** ${video2.title}`).join('\n')}\n請在10秒內輸入數字來選擇歌曲!\n**--------------------------------------------------**`);
 					try {
 						var response = await message.channel.awaitMessages(message2 => (message2.content > 0 && message2.content < 11) ||message2.content ==="N"||message2.content ==="n", {
 							maxMatches: 1,
@@ -205,10 +205,18 @@ module.exports = ('message', async message =>
 		var npst=serverQueue.songs[0].title;
 		var npstlink=serverQueue.songs[0].url;
 		var songnumb=serverQueue.songs.length;
-		for (let index = 0; index < 19; index++) {
-			var A=serverQueue.songs.map(song =>`**${index+1} -** ${song.title}`).join('\n');
-			console.log(A);		
+		if (songnumb>20) {
+			for (let index = 0; index < 20; index) {
+				var A=serverQueue.songs.map(song =>`**${++index} -** ${song.title}`).join('\n');
+				console.log(A);		
+			}
+		} else {
+			for (let index = 0; index < songnumb; index) {
+				var A=serverQueue.songs.map(song =>`**${++index} -** ${song.title}`).join('\n');
+				console.log(A);		
+			}
 		}
+			
 		
 		var queueue = new Discord.RichEmbed()
             .setColor(0xFFFF00)
@@ -294,7 +302,7 @@ async function handleVideo(video, message, voiceChannel, playlist = false) {
 	return undefined;
 }
 
-function play(guild, song) {
+async function play(guild, song) {
 	const serverQueue = queue.get(guild.id);
 	if (!song) {
 		queue.delete(guild.id);
@@ -303,18 +311,21 @@ function play(guild, song) {
 	//console.log(serverQueue.songs); //對CONSOLE輸出整個歌單
 
 	const dispatcher = serverQueue.connection.playStream(ytdl(song.url), {bitrate: 128000 /* 192kbps */})
-		.on('end', reason => {
+		.on('end', async reason => {
 			if (reason === 'Stream is not generating quickly enough.') console.log('播放完畢 \t Song ended.');
 			else console.log(reason);
 			if(!lop){
 			if (!lopquq) {
 			serverQueue.songs.shift();
+			await sleep.sleep(500);
 			return play(guild, serverQueue.songs[0]);
 			} else if(lopquq) {
 			serverQueue.songs.push(serverQueue.songs.shift());
+			await sleep.sleep(500);
 			return play(guild, serverQueue.songs[0]);
-			}
-			} else if (lop){
+			}}
+			if (lop){			
+			await sleep.sleep(500);	
 			return play(guild, serverQueue.songs[0]);
 			}
 		})

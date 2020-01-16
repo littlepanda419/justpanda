@@ -18,23 +18,24 @@ const calc = require("./events/calc.js");
 const search = require("./events/search.js");
 const trans = require("./events/trans.js");
 const addzer0 = require ("./events/addzero.js");
+const ocl0ck = require ("./events/oclock.js");
 const sleep = require ("./events/sleep.js");//only can be used in async  cant use in like client.on
 
 
 const { token, PREFIX,PREFIX2, GOOGLE_API_KEY } = require('./config');
-var generalChannel =  client.channels.get("594119720022573076");
 
 client.on('warn', console.warn);
 client.on('error', console.error);
 client.on('diconnect', () => generalChannel.send("08被來捆阿"));
 client.on('ready', () =>{
 	console.time('start');
-	var d = new Date();	
-	var h = addzer0.addzero(d.getUTCHours()+8);		if (h>=24) h = "0"+(h-24);
-	var m = addzer0.addzero(d.getMinutes());
-	var s = addzer0.addzero(d.getSeconds());
-	var generalChannel =  client.channels.get("653569315089416225");
-	var Myinfo = new Discord.RichEmbed()
+	let d = new Date();	
+	let h = addzer0.addzero(d.getUTCHours()+8);		if (h>=24) h = "0"+(h-24);
+	let m = addzer0.addzero(d.getMinutes());
+	let s = addzer0.addzero(d.getSeconds());
+	let generalChannel =  client.channels.get("653569315089416225");
+	console.log(generalChannel.id);
+	let Myinfo = new Discord.RichEmbed()
 		.addField("蛤","肏零呆蛤沙小",true)
 		.addField("我在幹嘛","我誰",true)
 		.setColor('#'+Math.random().toString(16).substr(-6))
@@ -46,6 +47,9 @@ client.on('ready', () =>{
 	generalChannel.send(Myinfo);  //洗頻大師	
 	console.log("%s\x1b[33m",colors.rainbow("機器人已上線"));
 	console.timeEnd('start');
+	setInterval(()=>{
+		ocl0ck.oclock(client);
+	}, 1000);//整點報時的啦
 	/*try {
 		const pandavoice = client.channels.get("506108715720769536");
 		const songchannel = client.channels.get("503134664811347970");
@@ -58,7 +62,7 @@ client.on('ready', () =>{
 		generalChannel.send("登入時播放出現錯誤");		
 	}*/
 });
-
+//機器人會說話ㄌ
 let y =process.openStdin();
 y.addListener("data",res =>{
 	let x =res.toString().trim().split(/ +/g)

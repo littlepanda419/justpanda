@@ -5,8 +5,6 @@ const Math = require('mathjs');
 const colors = require('colors');
 const safeEval = require('safe-eval');
 
-
-
 module.exports = ('message', message =>
 { 
     if(message.author.bot)   
@@ -16,8 +14,6 @@ module.exports = ('message', message =>
 	return undefined;
 	let command = message.content.toLowerCase().split(' ')[0];
         command = command.slice(PREFIX.length);
-
-    
     
 	if (command ==='calc') {
         try {
@@ -25,7 +21,7 @@ module.exports = ('message', message =>
             let args = message.content.split(' ');
             var number = args.slice(1);
             var numberN = number.join(' '); 
-            var numberrule = new RegExp('[0-9]','[^a-z]');
+            var numberrule = new RegExp('[0-9]',/*'[^a-z]'*/);
             if (!(numberN.match(numberrule))) {
                 message.channel.send("請輸入正確且完整的算式，括號請務必包括前後括號，\n僅能使用小括號()，優先由內而外計算。如：__**p.calc (8+9)*87**__。");
                 console.log(numberN.brightRed + "\t" + numberN.brightRed +" failed by : ".brightRed + message.author.username);
@@ -36,9 +32,11 @@ module.exports = ('message', message =>
             message.channel.send("請輸入正確且完整的算式，括號請務必包括前後括號，\n僅能使用小括號()，優先由內而外計算。如：__**p.calc (8+9)*87**__。");
             console.log(numberN.brightRed + "\t" + numberN.brightRed +" failed by : ".brightRed + message.author.username);
             }else{            
-            //let fina = Math.evaluate(numberN);
-            let fina = safeEval(numberN);
-            message.channel.send(fina); 
+            let fina = Math.evaluate(numberN);
+            //let fina = safeEval(numberN);
+            //let fina1 = eval(numberN);
+            message.channel.send(fina);
+
             console.log(numberN.brightCyan+" = ".brightCyan + colors.brightCyan(fina)+ "\t" + " successed by : ".brightCyan + message.author.username);
             }
         } catch (error) {
