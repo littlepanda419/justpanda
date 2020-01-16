@@ -6,6 +6,9 @@
 	"scripts": {
 		"start": "node bot.js"
 	},
+	"engines": {
+	    "node": "12.14.0"
+	  },
 	"dependencies": {
 		"@vitalets/google-translate-api": "github:vitalets/google-translate-api",
 		"cheerio": "^1.0.0-rc.3",
