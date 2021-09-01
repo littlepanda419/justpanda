@@ -1,7 +1,7 @@
 const Discord = require('discord.js');
 const client = new Discord.Client();
 const addzer0 = require ("./addzero.js");
-const emoji = require ("./emote.js");
+//const emoji = require ("./emote.js");
 const {PREFIX,PREFIX2} = require('../config.js');
 const {google} = require('googleapis');
 
@@ -25,7 +25,10 @@ const
 	moneyy = new Discord.Attachment('https://truth.bahamut.com.tw/s01/202001/a51639b34724b3a579872be913fdee61.JPG'),
 	helloo = new Discord.Attachment('https://cdn.discordapp.com/attachments/375207017259728897/665161383159005195/80859153_644772576059376_3614397953780744192_n.png'),
 	dickk = new Discord.Attachment('https://cdn.discordapp.com/attachments/375207017259728897/665774817407926332/81989294_1002087336858497_5836934879673057280_n.png'),
-	dodo =new Discord.Attachment('https://cdn.discordapp.com/attachments/375207017259728897/665773958208946196/82338092_670075040489366_551955069071785984_n.png');
+	dodo =new Discord.Attachment('https://cdn.discordapp.com/attachments/375207017259728897/665773958208946196/82338092_670075040489366_551955069071785984_n.png'),
+	bow = new Discord.Attachment('https://i.imgur.com/WbaPKjb.gif'),
+	duck = new Discord.Attachment('https://cdn.discordapp.com/attachments/375207017259728897/677870907892695062/656f5a1b-926a-4717-b452-429c8545b0e4.png');
+
 
 module.exports = ('message', message =>
 {
@@ -40,6 +43,8 @@ module.exports = ('message', message =>
 	message.delete();
 	message.channel.send(message.content + " BY " + message.author.username);	
 	}*/
+		
+	
 	//學加鈞說話
 	/*if(message.author.id=="551290295078223885"){
 		if (message.attachments.size > 0) {
@@ -56,15 +61,16 @@ module.exports = ('message', message =>
 			}
 		}*/
 	//學熊貓說話
-	/*if(message.author.id=="324536397803290626"){
+	/*
+	if(message.author.id=="324536397803290626"){
 		if (message.attachments.size > 0) {
 			if (message.attachments.every(IFattachIsImage)){
-				message.delete();
-				let nuupicc  = new Discord.Attachment(message.attachments.first().url);				
+				let nuupicc  = new Discord.Attachment(message.attachments.first().url);
 				message.channel.send(nuupicc);
 					if (message.content !=='')
 					message.channel.send(message.content);
-				}
+				}				
+				message.delete();
 			}else{
 				message.delete();
 				message.channel.send(message.content);
@@ -89,14 +95,25 @@ module.exports = ('message', message =>
 		message.reply(waitasec);
 	if(message.content.includes("派"))
 		message.reply(pi);
+	if(message.content.includes("爆射"))
+		message.reply(bow);
+	if(message.content.includes("瓜張")||message.content.includes("呱張")||message.content.includes("誇張"))
+		message.reply(duck);
 	if(message.content.includes("怕"))
 		message.channel.send("gan gan gan gan gan 挖就ㄍㄧㄚㄟ");
 		if(message.content.includes("去你他眼鏡盒玉米濃湯的"))
 			message.channel.send(cornsoup);
 	if(message.content.includes("有趣")||message.content.includes("促咪")){
+		if(message.content.includes("<@!")&&message.content.includes(">")){
+			message.channel.send("阿 "+ message.content.substring(message.content.indexOf(`<`),message.content.indexOf(`>`)+1)+" 你不就很有趣");
+			message.channel.send(tsu);
+			message.channel.send(mi);
+		}
+		else{
 		message.channel.send("阿"+ message.author+"你不就很有趣");
 		message.channel.send(tsu);
 		message.channel.send(mi);
+		}
 	}
 	if(message.content.includes("你妹")||message.content.includes("妳妹"))
 		message.channel.send(yousister);	
@@ -138,6 +155,16 @@ module.exports = ('message', message =>
 
 	const args = message.content.split(' ');
 	const aftcmd = args.slice(1).join(' ');
+
+	if (command === 'repeat'||command === 'rpt'){		
+		if (!aftcmd) return message.channel.send('repeat你媽媽啦');
+		else{
+			if (aftcmd === '我是笨蛋'||aftcmd === '我是白癡')
+			return message.channel.send('我知道阿');
+		return message.channel.send(aftcmd);
+		}
+	}
+
 		
 	if(command ==="歐姆定律")
 		message.reply("V=IR , I=V/R , R= V/I");
@@ -160,7 +187,7 @@ module.exports = ('message', message =>
         let muterole = message.guild.roles.find(role => role.name === '馬的吵三小，給我安靜點')
         if (muterole) {
             member.addRole(muterole)
-            message.channel.send(member + '解決不了問題 就解決提出問題的人 :ok_hand: ')
+            message.channel.send(member + '解決不了問題 就解決提出問題的人 \:ok_hand: ')
         }
         else {
             message.guild.createRole({name: '馬的吵三小，給我安靜點', permissions: 0}).then(function (role) {
@@ -183,7 +210,7 @@ module.exports = ('message', message =>
 					})	
 				member.addRole(role);
 			})			
-		message.channel.send(member + ' 解決不了問題 就解決提出問題的人 :ok_hand: ');
+		message.channel.send(member + ' 解決不了問題 就解決提出問題的人 \:ok_hand: ');
 		}	
 	}
 
@@ -195,11 +222,19 @@ module.exports = ('message', message =>
 				message.react("🐼");
 			});			
 		}
-	if (command ==='time'||command ==='tt') {
+	if (command ==='time') {
 		message.channel.send(h+":"+m+":"+s);
 		}
-	
-	
+	if (command ==='tt') {
+		message.channel.send(".");
+		}
+	if (command === 'emojilist') {
+		const emotes = message.guild.emojis.map(emoji => emoji.toString()).join(" ");
+		console.log(message.guild.emojis.constructor.name);
+		console.log(emotes);
+		message.channel.send(emotes);
+		}
+		
 	function IFattachIsImage(msgAttach) {
 		var url = msgAttach.url;
 		return (url.indexOf("jpeg", url.length - "jpeg".length )!==-1||

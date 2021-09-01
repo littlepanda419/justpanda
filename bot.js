@@ -19,6 +19,7 @@ const search = require("./events/search.js");
 const trans = require("./events/trans.js");
 const addzer0 = require ("./events/addzero.js");
 const ocl0ck = require ("./events/oclock.js");
+const countdown = require ("./events/count-down.js");
 const sleep = require ("./events/sleep.js");//only can be used in async  cant use in like client.on
 
 
@@ -34,7 +35,6 @@ client.on('ready', () =>{
 	let m = addzer0.addzero(d.getMinutes());
 	let s = addzer0.addzero(d.getSeconds());
 	let generalChannel =  client.channels.get("653569315089416225");
-	console.log(generalChannel.id);
 	let Myinfo = new Discord.RichEmbed()
 		.addField("蛤","肏零呆蛤沙小",true)
 		.addField("我在幹嘛","我誰",true)
@@ -49,7 +49,8 @@ client.on('ready', () =>{
 	console.timeEnd('start');
 	setInterval(()=>{
 		ocl0ck.oclock(client);
-	}, 1000);//整點報時的啦
+		countdown.CountDown(client);
+	},1000);//整點報時的啦
 	/*try {
 		const pandavoice = client.channels.get("506108715720769536");
 		const songchannel = client.channels.get("503134664811347970");
@@ -78,5 +79,5 @@ client.on('message', (message) =>{
 		search(message,client);
 		trans(message,client);
 	});
-client.login(process.env.BOT_TOKEN);
-//client.login(token);
+//client.login(process.env.BOT_TOKEN);
+client.login(token);
