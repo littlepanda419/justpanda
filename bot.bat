@@ -1,5 +1,5 @@
 echo off
 cls
 echo Starting Bot
-node bot.js
+node bot_silent.js
 pause

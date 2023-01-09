@@ -7,8 +7,8 @@
 		"start": "node bot.js"
 	},
 	"engines": {
-	    "node": "10.16.0"
-	  },
+		"node": "10.16.0"
+	},
 	"dependencies": {
 		"@vitalets/google-translate-api": "github:vitalets/google-translate-api",
 		"cheerio": "^1.0.0-rc.3",
@@ -33,7 +33,6 @@
 		"ytdl-core": "^1.0.3",
 		"ytdl-core-discord": "amishshah/ytdl-core-discord"
 	},
-	"devDependencies": {},
 	"eslintConfig": {
 		"extends": "aqua/node"
 	}
