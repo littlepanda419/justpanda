@@ -11,9 +11,9 @@ function oclock(client) {
     let m = addzer0.addzero(d.getMinutes());
     let s = addzer0.addzero(d.getSeconds());    
     if( m==="00" && s==="00" ){        
-        yuChannel.send(`<@!554654697261105180> 什麼時候要讓耿鬼每天講一次倒數阿。`);
-        
+        /*yuChannel.send(`<@!554654697261105180> 什麼時候要讓耿鬼每天講一次倒數阿。`);        
         return;
+        */
         /*        
         if (h==12){
         console.log(`${h}:${m}:${s}`)

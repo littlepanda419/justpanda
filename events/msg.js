@@ -34,10 +34,11 @@ module.exports = ('message', message =>
 {
 	if(message.author.bot)   
 	return;
+
 	//獲取訊息相關資料
-	/*if(message.author.id=="324536397803290626"){
-	console.log(message);
-	}*/
+	//if(message.author.id=="324536397803290626")
+	//	console.log(message);
+	 
 	/*//戒嚴時期
 	if (message.channel.id='653569019454029864') {
 	message.delete();
@@ -145,7 +146,10 @@ module.exports = ('message', message =>
 		message.channel.send(dickk);
 	if(message.content.includes("度的")||message.content.includes("度ㄉ"))
 		message.channel.send(dodo);
-
+	if(message.content.includes(":toadRRRRR:")){
+		message.channel.send("<:toadrrrrr:1060797784120373308>");
+		message.react("1060797784120373308");
+		}
 	//--------------------以下需要前綴-----------------
 
 	if (!(message.content.startsWith(PREFIX) ^ message.content.startsWith(PREFIX2)))
