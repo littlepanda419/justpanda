@@ -1,0 +1,32 @@
+{
+	"name": "panda-discord-bot",
+	"description": "discord bot",
+	"version ": "1.0.0",
+	"main": "bot.js",
+	"scripts": {
+		"start": "node bot.js"
+	},
+	"dependencies": {
+		"@vitalets/google-translate-api": "github:vitalets/google-translate-api",
+		"colors": "^1.4.0",
+		"crypto": "1.0.1",
+		"discord.js": "^14.7.1",
+		"ffmpeg": "0.0.4",
+		"fs": "0.0.1-security",
+		"google": "^2.1.0",
+		"google-auth-library": "^8.7.0",
+		"google-it": "1.6.4",
+		"googleapis": "110.0.0",
+		"mathjs": "11.5.0",
+		"npm-check-updates": "16.6.2",
+		"npm-install-all": "1.1.21",
+		"safe-eval": "^0.4.1",
+		"serp": "2.2.2",
+		"simple-youtube-api": "^5.2.1",
+		"ytdl-core": "^4.11.2",
+		"ytdl-core-discord": "amishshah/ytdl-core-discord"
+	},
+	"eslintConfig": {
+		"extends": "aqua/node"
+	}
+}

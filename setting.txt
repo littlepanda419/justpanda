@@ -1,0 +1,8 @@
+﻿1. 下載 vs code
+2. 下載 node.js //Andromeda Theme
+3. 下載 https://ffmpeg.zeranoe.com/builds/
+4. add to path     https://www.thewindowsclub.com/how-to-install-ffmpeg-on-windows-10
+5. (重開vscode) 終端機 npm install npm-install-all -g
+6. npm-install-all
+7.npm outdated 查看過期模組
+8.npm update  更新所有模組
